@@ -4,7 +4,7 @@
 
 import { node, dom } from 'jsx-pragmatic/src';
 import { create, type ZoidComponent } from 'zoid/src';
-import { inlineMemoize } from 'belter/src';
+import { inlineMemoize, noop } from 'belter/src';
 import { getSDKMeta, getClientID } from '@paypal/sdk-client/src';
 import { ZalgoPromise } from 'zalgo-promise/src';
 
@@ -31,7 +31,7 @@ export type TDSProps = {|
 
 export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
     return inlineMemoize(getThreeDomainSecureComponent, () => {
-        return create({
+        const component = create({
             tag:               'three-domain-secure',
             url:               getThreeDomainSecureUrl,
 
@@ -108,5 +108,14 @@ export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
                 }
             }
         });
+
+        if (component.isChild()) {
+            window.xchild = {
+                props: component.xprops,
+                close: noop
+            };
+        }
+
+        return component;
     });
 }
