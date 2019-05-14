@@ -1,0 +1,80 @@
+{
+  "name": "@paypal/common-components",
+  "version": "1.0.0",
+  "description": "PayPal common components, for integrating checkout products.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --ext .js --ext .jsx src/ test/ *.js",
+    "flow-typed": "rm -rf flow-typed && flow-typed install",
+    "flow": "flow",
+    "karma": "cross-env NODE_ENV=test babel-node $(npm bin)/karma start",
+    "test": "npm run lint && npm run flow-typed && npm run flow && npm run karma",
+    "webpack": "babel-node --plugins=transform-es2015-modules-commonjs ./node_modules/.bin/webpack --progress",
+    "build": "npm run test && npm run webpack",
+    "release": "./scripts/publish.sh",
+    "release:patch": "./scripts/publish.sh patch",
+    "release:minor": "./scripts/publish.sh minor",
+    "release:major": "./scripts/publish.sh major",
+    "preversion": "./scripts/preversion.sh",
+    "version": "./scripts/version.sh",
+    "postversion": "./scripts/postversion.sh",
+    "clean": "rimraf dist coverage",
+    "reinstall": "rimraf flow-typed && rimraf node_modules && npm install && flow-typed install",
+    "debug": "cross-env NODE_ENV=debug",
+    "eslint-find-rules": "eslint-find-rules --current .eslintrc.js --unused --plugin"
+  },
+  "files": [
+    "src/",
+    "dist/",
+    "__sdk__.js",
+    "globals.js"
+  ],
+  "browserslist": [
+    "IE >= 9",
+    "chrome >= 27",
+    "firefox >= 30",
+    "safari >= 5",
+    "opera >= 23"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.paypal.com/paypal/paypal-checkout.git"
+  },
+  "homepage": "https://developer.paypal.com/",
+  "keywords": [
+    "cross-domain",
+    "cross domain",
+    "components",
+    "component",
+    "krakenjs",
+    "kraken"
+  ],
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "babel-core": "^7.0.0-bridge.0",
+    "conventional-changelog-cli": "^2.0.11",
+    "flow-bin": "^0.81.0",
+    "fs-extra": "^4.0.2",
+    "grumbler-scripts": "^3",
+    "imagemagick": "^0.1.3",
+    "imgur": "^0.2.1",
+    "memory-fs": "^0.4.1",
+    "mocha": "^4",
+    "mocketeer": "^0.3.0",
+    "pixelmatch": "^4.0.2",
+    "pngjs": "^3.3.0",
+    "serve": "^10.1.2",
+    "sync-browser-mocks": "^2.0.0"
+  },
+  "dependencies": {
+    "@paypal/sdk-client": "^4.0.0",
+    "@paypal/sdk-constants": "^1.0.1",
+    "@paypal/sdk-logos": "^1.0.1",
+    "belter": "^1.0.2",
+    "jsx-pragmatic": "^2",
+    "post-robot": "^10.0.0",
+    "zalgo-promise": "^1.0.10",
+    "zoid": "^9.0.0"
+  }
+}
