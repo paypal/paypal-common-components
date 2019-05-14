@@ -1,3 +1,9 @@
+## <small>1.0.2 (2019-05-14)</small>
+
+* Fix release script ([ed467e0](http://github.paypal.com/paypal/paypal-checkout/commit/ed467e0))
+
+
+
 ## <small>1.0.1 (2019-05-14)</small>
 
 * Add xchild hack ([5be95e0](http://github.paypal.com/paypal/paypal-checkout/commit/5be95e0))
