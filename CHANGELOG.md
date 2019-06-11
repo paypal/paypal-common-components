@@ -1,3 +1,9 @@
+## <small>1.0.3 (2019-06-11)</small>
+
+* Add index with reexports ([bffbfbb](http://github.paypal.com/paypal/paypal-checkout/commit/bffbfbb))
+
+
+
 ## <small>1.0.2 (2019-05-14)</small>
 
 * Fix release script ([ed467e0](http://github.paypal.com/paypal/paypal-checkout/commit/ed467e0))
