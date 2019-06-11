@@ -25,7 +25,6 @@ export type OverlayProps = {|
     }
 |};
 
-// $FlowFixMe
 export function Overlay({ context, close, focus, event, frame, prerenderFrame, content = {} } : OverlayProps) : ElementNode {
 
     const uid = `paypal-overlay-${ uniqueID() }`;
