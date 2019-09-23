@@ -1,3 +1,10 @@
+## <small>1.0.4 (2019-09-23)</small>
+
+* Add spinnerPage component ([ab192b0](http://github.paypal.com/paypal/paypal-checkout/commit/ab192b0))
+* Publish a dist folder ([b37b019](http://github.paypal.com/paypal/paypal-checkout/commit/b37b019))
+
+
+
 ## <small>1.0.3 (2019-06-11)</small>
 
 * Add index with reexports ([bffbfbb](http://github.paypal.com/paypal/paypal-checkout/commit/bffbfbb))
