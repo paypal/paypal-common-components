@@ -1,3 +1,9 @@
+## <small>1.0.5 (2019-09-23)</small>
+
+* Use innerHTML for style tag ([1c1456a](http://github.paypal.com/paypal/paypal-checkout/commit/1c1456a))
+
+
+
 ## <small>1.0.4 (2019-09-23)</small>
 
 * Add spinnerPage component ([ab192b0](http://github.paypal.com/paypal/paypal-checkout/commit/ab192b0))
