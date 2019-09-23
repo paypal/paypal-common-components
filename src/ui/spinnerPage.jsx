@@ -78,9 +78,7 @@ export function SpinnerPage({ nonce } : { nonce : ?string }) : ElementNode {
             </head>
             <body>
                 <div class="preloader spinner">
-                    <style nonce={ nonce }>
-                        { spinnerStyle }
-                    </style>
+                    <style nonce={ nonce } innerHTML={ spinnerStyle } />
 
                     <div class="spinWrap">
                         <p class="spinnerImage" />
