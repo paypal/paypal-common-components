@@ -89,5 +89,7 @@ export const testGlobals = {
     __VERSION__:        '1.0.55',
     __NAMESPACE__:      'paypal',
     __COMPONENTS__:     [ 'buttons' ],
-    __CORRELATION_ID__: 'abc123'
+    __CORRELATION_ID__: 'abc123',
+    __CLIENT_ID__:      'abcxyz123',
+    __MERCHANT_ID__:    [ 'abc' ]
 };

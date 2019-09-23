@@ -2,14 +2,14 @@
   "name": "@paypal/common-components",
   "version": "1.0.3",
   "description": "PayPal common components, for integrating checkout products.",
-  "main": "index.js",
+  "main": "dist/ui.js",
   "scripts": {
     "lint": "eslint --ext .js --ext .jsx src/ test/ *.js",
     "flow-typed": "rm -rf flow-typed && flow-typed install",
     "flow": "flow",
     "karma": "cross-env NODE_ENV=test babel-node $(npm bin)/karma start",
     "test": "npm run lint && npm run flow-typed && npm run flow && npm run karma",
-    "build": "npm run test",
+    "build": "npm run test && npm run webpack",
     "release": "./scripts/publish.sh",
     "release:patch": "./scripts/publish.sh patch",
     "release:minor": "./scripts/publish.sh minor",
@@ -20,6 +20,7 @@
     "clean": "rimraf dist coverage",
     "reinstall": "rimraf flow-typed && rimraf node_modules && npm install && flow-typed install",
     "debug": "cross-env NODE_ENV=debug",
+    "webpack": "babel-node --plugins=transform-es2015-modules-commonjs ./node_modules/.bin/webpack --progress",
     "eslint-find-rules": "eslint-find-rules --current .eslintrc.js --unused --plugin"
   },
   "files": [
