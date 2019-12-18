@@ -1,3 +1,9 @@
+## <small>1.0.7 (2019-12-18)</small>
+
+* Export postRobot ([08f2789](http://github.paypal.com/paypal/paypal-checkout/commit/08f2789))
+
+
+
 ## <small>1.0.6 (2019-12-18)</small>
 
 * Allow passing children to spinner page ([ea89e62](http://github.paypal.com/paypal/paypal-checkout/commit/ea89e62))
