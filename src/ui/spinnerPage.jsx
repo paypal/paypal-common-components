@@ -1,7 +1,7 @@
 /* @flow */
 /** @jsx node */
 
-import { node, type ElementNode } from 'jsx-pragmatic/src';
+import { node, type ElementNode, type ChildrenType } from 'jsx-pragmatic/src';
 
 const spinnerStyle = `
 
@@ -69,7 +69,7 @@ const spinnerStyle = `
     }
 `;
 
-export function SpinnerPage({ nonce } : { nonce : ?string }) : ElementNode {
+export function SpinnerPage({ nonce } : { nonce : ?string }, children : ChildrenType) : ElementNode {
     return (
         <html>
             <head>
@@ -85,6 +85,7 @@ export function SpinnerPage({ nonce } : { nonce : ?string }) : ElementNode {
                         <p class="loader" />
                     </div>
                 </div>
+                { children }
             </body>
         </html>
     );
