@@ -1,3 +1,9 @@
+## <small>1.0.6 (2019-12-18)</small>
+
+* Allow passing children to spinner page ([ea89e62](http://github.paypal.com/paypal/paypal-checkout/commit/ea89e62))
+
+
+
 ## <small>1.0.5 (2019-09-23)</small>
 
 * Use innerHTML for style tag ([1c1456a](http://github.paypal.com/paypal/paypal-checkout/commit/1c1456a))

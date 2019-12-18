@@ -536,13 +536,15 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 function mapReactProps(props) {
   var innerHTML = props.innerHTML,
-      remainingProps = _objectWithoutPropertiesLoose(props, ["innerHTML"]);
+      className = props.class,
+      remainingProps = _objectWithoutPropertiesLoose(props, ["innerHTML", "class"]);
 
   var dangerouslySetInnerHTML = innerHTML ? {
     __html: innerHTML
   } : null;
   return _extends({
-    dangerouslySetInnerHTML: dangerouslySetInnerHTML
+    dangerouslySetInnerHTML: dangerouslySetInnerHTML,
+    className: className
   }, remainingProps);
 }
 
@@ -653,7 +655,55 @@ function html() {
 
   return htmlRenderer;
 }
+// CONCATENATED MODULE: ./node_modules/jsx-pragmatic/src/renderers/preact.js
+
+
+// eslint-disable-line import/no-unresolved
+
+
+
+function mapPreactProps(props) {
+  var innerHTML = props.innerHTML,
+      remainingProps = _objectWithoutPropertiesLoose(props, ["innerHTML"]);
+
+  var dangerouslySetInnerHTML = innerHTML ? {
+    __html: innerHTML
+  } : null;
+  return _extends({
+    dangerouslySetInnerHTML: dangerouslySetInnerHTML
+  }, remainingProps);
+}
+
+function preact(_temp) {
+  var _ref = _temp === void 0 ? {} : _temp,
+      Preact = _ref.Preact;
+
+  if (!Preact) {
+    throw new Error("Must pass Preact library to react renderer");
+  }
+
+  var reactRenderer = function reactRenderer(node) {
+    if (node.type === NODE_TYPE.COMPONENT) {
+      return Preact.h.apply(Preact, [function () {
+        return node.renderComponent(reactRenderer) || null;
+      }, node.props].concat(node.renderChildren(reactRenderer)));
+    }
+
+    if (node.type === NODE_TYPE.ELEMENT) {
+      return Preact.h.apply(Preact, [node.name, mapPreactProps(node.props)].concat(node.renderChildren(reactRenderer)));
+    }
+
+    if (node.type === NODE_TYPE.TEXT) {
+      return node.text;
+    }
+
+    throw new TypeError("Unhandleable node");
+  };
+
+  return reactRenderer;
+}
 // CONCATENATED MODULE: ./node_modules/jsx-pragmatic/src/renderers/index.js
+
 
 
 
@@ -665,7 +715,7 @@ function html() {
 /** @jsx node */
 
 var spinnerStyle = "\n\n    body {\n        width: 100%;\n        height: 100%;\n        overflow: hidden;\n        position: fixed;\n        top: 0;\n        left: 0;\n        margin: 0;\n    }\n\n    .spinner {\n        height: 100%;\n        width: 100%;\n        position: absolute;\n        z-index: 10\n    }\n\n    .spinner .spinWrap {\n        width: 200px;\n        height: 100px;\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        margin-left: -100px;\n        margin-top: -50px\n    }\n\n    .spinner .loader,\n    .spinner .spinnerImage {\n        height: 100px;\n        width: 100px;\n        position: absolute;\n        top: 0;\n        left: 50%;\n        opacity: 1;\n        filter: alpha(opacity=100)\n    }\n\n    .spinner .spinnerImage {\n        margin: 28px 0 0 -25px;\n        background: url(https://www.paypalobjects.com/images/checkout/hermes/icon_ot_spin_lock_skinny.png) no-repeat\n    }\n\n    .spinner .loader {\n        margin: 0 0 0 -55px;\n        background-color: transparent;\n        animation: rotation .7s infinite linear;\n        border-left: 5px solid #cbcbca;\n        border-right: 5px solid #cbcbca;\n        border-bottom: 5px solid #cbcbca;\n        border-top: 5px solid #2380be;\n        border-radius: 100%\n    }\n\n    @keyframes rotation {\n        from {\n            transform: rotate(0deg)\n        }\n        to {\n            transform: rotate(359deg)\n        }\n    }\n";
-function SpinnerPage(_ref) {
+function SpinnerPage(_ref, children) {
   var nonce = _ref.nonce;
   return node_node("html", null, node_node("head", null, node_node("title", null, "PayPal"), node_node("meta", {
     name: "viewport",
@@ -681,7 +731,7 @@ function SpinnerPage(_ref) {
     class: "spinnerImage"
   }), node_node("p", {
     class: "loader"
-  })))));
+  }))), children));
 }
 // CONCATENATED MODULE: ./src/ui/index.js
 /* concated harmony reexport SpinnerPage */__webpack_require__.d(__webpack_exports__, "SpinnerPage", function() { return SpinnerPage; });
