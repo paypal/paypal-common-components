@@ -15,10 +15,10 @@ export type TDSResult = {|
     
 |};
 
-export const UserType = {
+export const USER_TYPE = {
     BRANDED_GUEST:   ('BRANDED_GUEST' : 'BRANDED_GUEST'), // inline guest flow
     UNBRANDED_GUEST: ('UNBRANDED_GUEST' : 'UNBRANDED_GUEST'), // UCC
-    MEMBER:          ('UNBRANDED_GUEST' : 'UNBRANDED_GUEST')
+    MEMBER:          ('MEMBER' : 'MEMBER')
 };
 
 export type TDSProps = {|
@@ -33,7 +33,7 @@ export type TDSProps = {|
         windowMessage : string,
         continueMessage : string
     },
-    userType : ?$Values<typeof UserType>
+    userType : ?$Values<typeof USER_TYPE>
 |};
 
 export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
