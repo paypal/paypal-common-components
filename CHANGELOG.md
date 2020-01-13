@@ -1,3 +1,10 @@
+## <small>1.0.8 (2020-01-13)</small>
+
+* Add userType for ThreeDomainSecure component ([a9531e7](http://github.paypal.com/paypal/paypal-checkout/commit/a9531e7))
+* Address comments ([bd08f92](http://github.paypal.com/paypal/paypal-checkout/commit/bd08f92))
+
+
+
 ## <small>1.0.7 (2019-12-18)</small>
 
 * Export postRobot ([08f2789](http://github.paypal.com/paypal/paypal-checkout/commit/08f2789))
