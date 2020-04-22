@@ -2,7 +2,7 @@
 /** @jsx node */
 /* eslint max-lines: off, react/jsx-max-depth: off */
 
-import { isIos, animate, noop, destroyElement, uniqueID } from 'belter/src';
+import { isIos, animate, noop, destroyElement, uniqueID, supportsPopups } from 'belter/src';
 import { EVENT, CONTEXT } from 'zoid/src';
 import { node, type ElementNode } from 'jsx-pragmatic/src';
 import { LOGO_COLOR, PPLogo, PayPalLogo } from '@paypal/sdk-logos/src';
@@ -38,6 +38,10 @@ export function Overlay({ context, close, focus, event, frame, prerenderFrame, c
     function focusCheckout(e) {
         e.preventDefault();
         e.stopPropagation();
+
+        if (!supportsPopups()) {
+            return;
+        }
 
         if (isIos()) {
             // eslint-disable-next-line no-alert
