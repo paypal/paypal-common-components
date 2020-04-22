@@ -14,15 +14,15 @@ export type OverlayProps = {|
     context : $Values<typeof CONTEXT>,
     close : () => ZalgoPromise<void>,
     focus : () => ZalgoPromise<void>,
-    event : {
+    event : {|
         on : (string, () => ?ZalgoPromise<void>) => void
-    },
+    |},
     frame : ?HTMLElement,
     prerenderFrame : ?HTMLElement,
-    content? : {
+    content? : {|
         windowMessage? : ?string,
         continueMessage? : ?string
-    }
+    |}
 |};
 
 export function Overlay({ context, close, focus, event, frame, prerenderFrame, content = {} } : OverlayProps) : ElementNode {
@@ -102,13 +102,11 @@ export function Overlay({ context, close, focus, event, frame, prerenderFrame, c
                                 {content.windowMessage &&
                                     <div class="paypal-checkout-message">
                                         {content.windowMessage}
-                                    </div>
-                                }
+                                    </div>}
                                 {content.continueMessage &&
                                     <div class="paypal-checkout-continue">
                                         <a onClick={ focus } href='#'>{content.continueMessage}</a>
-                                    </div>
-                                }
+                                    </div>}
                                 <div class="paypal-checkout-loader">
                                     <div class="paypal-spinner" />
                                 </div>

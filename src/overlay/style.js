@@ -10,7 +10,7 @@ export const CLASS = {
     PRERENDER_FRAME: 'prerender-frame'
 };
 
-export function getSandboxStyle({ uid } : { uid : string }) : string {
+export function getSandboxStyle({ uid } : {| uid : string |}) : string {
     return `
         #${ uid }.paypal-checkout-sandbox {
             display: block;
@@ -70,7 +70,7 @@ export function getSandboxStyle({ uid } : { uid : string }) : string {
     `;
 }
 
-export function getContainerStyle({ uid } : { uid : string }) : string {
+export function getContainerStyle({ uid } : {| uid : string |}) : string {
     return `
         #${ uid } {
             position: absolute;

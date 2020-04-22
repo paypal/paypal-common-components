@@ -69,7 +69,7 @@ const spinnerStyle = `
     }
 `;
 
-export function SpinnerPage({ nonce } : { nonce : ?string }, children : ChildrenType) : ElementNode {
+export function SpinnerPage({ nonce } : {| nonce : ?string |}, children : ChildrenType) : ElementNode {
     return (
         <html>
             <head>
