@@ -1,741 +1,259 @@
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-
-// CONCATENATED MODULE: ./node_modules/jsx-pragmatic/src/constants.js
-var NODE_TYPE = {
-  ELEMENT: 'element',
-  TEXT: 'text',
-  COMPONENT: 'component',
-  FRAGMENT: 'fragment'
-};
-// CONCATENATED MODULE: ./node_modules/jsx-pragmatic/src/node.js
-
-
-function _renderChildren(children, renderer) {
-  // eslint-disable-line no-use-before-define
-  var result = [];
-
-  for (var _i2 = 0; _i2 < children.length; _i2++) {
-    var child = children[_i2];
-    var renderedChild = child.render(renderer);
-
-    if (!renderedChild) {
-      continue;
-    } else if (Array.isArray(renderedChild)) {
-      for (var _i4 = 0; _i4 < renderedChild.length; _i4++) {
-        var subchild = renderedChild[_i4];
-
-        if (subchild) {
-          result.push(subchild);
-        }
-      }
-    } else {
-      result.push(renderedChild);
+module.exports = function(modules) {
+    var installedModules = {};
+    function __webpack_require__(moduleId) {
+        if (installedModules[moduleId]) return installedModules[moduleId].exports;
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: !1,
+            exports: {}
+        };
+        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+        module.l = !0;
+        return module.exports;
     }
-  }
-
-  return result;
-}
-
-var node_ElementNode =
-/*#__PURE__*/
-function () {
-  // eslint-disable-line no-use-before-define
-  // eslint-disable-line no-undef
-  function ElementNode(name, props, children) {
-    this.type = NODE_TYPE.ELEMENT;
-    this.name = void 0;
-    this.props = void 0;
-    this.children = void 0;
-    this.onRender = void 0;
-    // eslint-disable-line no-use-before-define
-    this.name = name;
-    this.props = props;
-    this.children = children;
-    var onRender = props.onRender;
-
-    if (typeof onRender === 'function') {
-      this.onRender = onRender;
-      delete props.onRender;
-    }
-  }
-
-  var _proto = ElementNode.prototype;
-
-  _proto.render = function render(renderer) {
-    var el = renderer(this);
-
-    if (this.onRender) {
-      this.onRender(el);
-    }
-
-    return el;
-  };
-
-  _proto.renderChildren = function renderChildren(renderer) {
-    return _renderChildren(this.children, renderer);
-  };
-
-  return ElementNode;
-}();
-var node_FragmentNode =
-/*#__PURE__*/
-function () {
-  // eslint-disable-line no-use-before-define
-  function FragmentNode(children) {
-    this.type = NODE_TYPE.FRAGMENT;
-    this.children = void 0;
-    // eslint-disable-line no-use-before-define
-    this.children = children;
-  }
-
-  var _proto2 = FragmentNode.prototype;
-
-  _proto2.render = function render(renderer) {
-    return _renderChildren(this.children, renderer);
-  };
-
-  return FragmentNode;
-}();
-var node_TextNode =
-/*#__PURE__*/
-function () {
-  function TextNode(text) {
-    this.type = NODE_TYPE.TEXT;
-    this.text = void 0;
-    this.text = text;
-  }
-
-  var _proto3 = TextNode.prototype;
-
-  _proto3.render = function render(renderer) {
-    return renderer(this);
-  };
-
-  return TextNode;
-}();
-var node_ComponentNode =
-/*#__PURE__*/
-function () {
-  function ComponentNode(component, props, children) {
-    this.type = NODE_TYPE.COMPONENT;
-    this.component = void 0;
-    this.props = void 0;
-    this.children = void 0;
-    this.component = component;
-    this.props = props;
-    this.children = children;
-  }
-
-  var _proto4 = ComponentNode.prototype;
-
-  _proto4.renderComponent = function renderComponent(renderer) {
-    // $FlowFixMe
-    var props = this.props;
-    var child = normalizeChild(this.component(props, this.children)); // eslint-disable-line no-use-before-define
-
-    if (child) {
-      return child.render(renderer);
-    }
-  };
-
-  _proto4.render = function render(renderer) {
-    return renderer(this);
-  };
-
-  _proto4.renderChildren = function renderChildren(renderer) {
-    return _renderChildren(this.children, renderer);
-  };
-
-  return ComponentNode;
-}();
-
-function normalizeChildren(children) {
-  var result = [];
-
-  for (var _i6 = 0; _i6 < children.length; _i6++) {
-    var child = children[_i6];
-
-    if (!child) {
-      continue;
-    } else if (typeof child === 'string') {
-      result.push(new node_TextNode(child));
-    } else if (Array.isArray(child)) {
-      for (var _i8 = 0, _normalizeChildren2 = normalizeChildren(child); _i8 < _normalizeChildren2.length; _i8++) {
-        var subchild = _normalizeChildren2[_i8];
-        result.push(subchild);
-      }
-    } else if (child && (child.type === NODE_TYPE.ELEMENT || child.type === NODE_TYPE.TEXT || child.type === NODE_TYPE.COMPONENT)) {
-      result.push(child);
-    } else {
-      throw new TypeError("Unrecognized node type: " + typeof child);
-    }
-  }
-
-  return result;
-}
-
-function normalizeChild(child) {
-  var children = normalizeChildren(Array.isArray(child) ? child : [child]);
-
-  if (children.length === 1) {
-    return children[0];
-  } else if (children.length > 1) {
-    return new node_FragmentNode(children);
-  }
-}
-
-var node_node = function node(element, props) {
-  for (var _len = arguments.length, children = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-    children[_key - 2] = arguments[_key];
-  }
-
-  // $FlowFixMe
-  props = props || {};
-  children = normalizeChildren(children);
-
-  if (typeof element === 'string') {
-    // $FlowFixMe
-    return new node_ElementNode(element, props, children);
-  }
-
-  if (typeof element === 'function') {
-    // $FlowFixMe
-    return new node_ComponentNode(element, props, children);
-  }
-
-  throw new TypeError("Expected jsx element to be a string or a function");
-};
-var Fragment = function Fragment(props, children) {
-  if (props && Object.keys(props).length) {
-    throw new Error("Do not pass props to Fragment");
-  }
-
-  return children;
-};
-// CONCATENATED MODULE: ./node_modules/jsx-pragmatic/src/util.js
-var ALPHA_CHARS = '0123456789abcdef';
-function uniqueID() {
-  return 'xxxxxxxxxx'.replace(/./g, function () {
-    return ALPHA_CHARS.charAt(Math.floor(Math.random() * ALPHA_CHARS.length));
-  });
-}
-// CONCATENATED MODULE: ./node_modules/jsx-pragmatic/src/renderers/dom.js
-var _ADD_CHILDREN;
-
-
-
-
-var ELEMENT_TAG = {
-  HTML: 'html',
-  IFRAME: 'iframe',
-  SCRIPT: 'script',
-  NODE: 'node',
-  DEFAULT: 'default'
-};
-var ELEMENT_PROP = {
-  ID: 'id',
-  INNER_HTML: 'innerHTML',
-  EL: 'el'
-};
-
-function fixScripts(el, doc) {
-  if (doc === void 0) {
-    doc = window.document;
-  }
-
-  for (var _i2 = 0, _el$querySelectorAll2 = el.querySelectorAll('script'); _i2 < _el$querySelectorAll2.length; _i2++) {
-    var script = _el$querySelectorAll2[_i2];
-    var parentNode = script.parentNode;
-
-    if (!parentNode) {
-      continue;
-    }
-
-    var newScript = doc.createElement('script'); // $FlowFixMe
-
-    newScript.text = script.textContent;
-    parentNode.replaceChild(newScript, script);
-  }
-}
-
-function createElement(doc, node) {
-  if (node.props[ELEMENT_PROP.EL]) {
-    // $FlowFixMe
-    return node.props[ELEMENT_PROP.EL];
-  }
-
-  return doc.createElement(node.name);
-}
-
-function createTextElement(doc, node) {
-  return doc.createTextNode(node.text);
-}
-
-function addProps(el, node) {
-  var props = node.props;
-
-  for (var _i4 = 0, _Object$keys2 = Object.keys(props); _i4 < _Object$keys2.length; _i4++) {
-    var prop = _Object$keys2[_i4];
-    var val = props[prop];
-
-    if (val === null || typeof val === 'undefined' || prop === ELEMENT_PROP.EL || prop === ELEMENT_PROP.INNER_HTML) {
-      continue;
-    }
-
-    if (prop.match(/^on[A-Z][a-z]/) && typeof val === 'function') {
-      el.addEventListener(prop.slice(2).toLowerCase(), val);
-    } else if (typeof val === 'string' || typeof val === 'number') {
-      el.setAttribute(prop, val.toString());
-    } else if (typeof val === 'boolean') {
-      if (val === true) {
-        el.setAttribute(prop, '');
-      }
-    }
-  }
-
-  if (el.tagName.toLowerCase() === ELEMENT_TAG.IFRAME && !props.id) {
-    el.setAttribute(ELEMENT_PROP.ID, "jsx-iframe-" + uniqueID());
-  }
-}
-
-var ADD_CHILDREN = (_ADD_CHILDREN = {}, _ADD_CHILDREN[ELEMENT_TAG.IFRAME] = function (el, node) {
-  var firstChild = node.children[0];
-
-  if (node.children.length !== 1 || !(firstChild && firstChild.type === NODE_TYPE.ELEMENT) || firstChild.name !== ELEMENT_TAG.HTML) {
-    throw new Error("Expected only single html element node as child of " + ELEMENT_TAG.IFRAME + " element");
-  }
-
-  el.addEventListener('load', function () {
-    // $FlowFixMe
-    var win = el.contentWindow;
-
-    if (!win) {
-      throw new Error("Expected frame to have contentWindow");
-    }
-
-    var doc = win.document;
-    var docElement = doc.documentElement;
-
-    while (docElement.children && docElement.children.length) {
-      docElement.removeChild(docElement.children[0]);
-    } // eslint-disable-next-line no-use-before-define
-
-
-    var child = firstChild.render(dom({
-      doc: doc
+    __webpack_require__.m = modules;
+    __webpack_require__.c = installedModules;
+    __webpack_require__.d = function(exports, name, getter) {
+        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
+            enumerable: !0,
+            get: getter
+        });
+    };
+    __webpack_require__.r = function(exports) {
+        "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(exports, Symbol.toStringTag, {
+            value: "Module"
+        });
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+    };
+    __webpack_require__.t = function(value, mode) {
+        1 & mode && (value = __webpack_require__(value));
+        if (8 & mode) return value;
+        if (4 & mode && "object" == typeof value && value && value.__esModule) return value;
+        var ns = Object.create(null);
+        __webpack_require__.r(ns);
+        Object.defineProperty(ns, "default", {
+            enumerable: !0,
+            value: value
+        });
+        if (2 & mode && "string" != typeof value) for (var key in value) __webpack_require__.d(ns, key, function(key) {
+            return value[key];
+        }.bind(null, key));
+        return ns;
+    };
+    __webpack_require__.n = function(module) {
+        var getter = module && module.__esModule ? function() {
+            return module.default;
+        } : function() {
+            return module;
+        };
+        __webpack_require__.d(getter, "a", getter);
+        return getter;
+    };
+    __webpack_require__.o = function(object, property) {
+        return {}.hasOwnProperty.call(object, property);
+    };
+    __webpack_require__.p = "";
+    return __webpack_require__(__webpack_require__.s = 0);
+}([ function(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+    __webpack_require__.r(__webpack_exports__);
+    __webpack_require__.d(__webpack_exports__, "SpinnerPage", (function() {
+        return SpinnerPage;
     }));
-
-    while (child.children.length) {
-      docElement.appendChild(child.children[0]);
-    }
-  });
-}, _ADD_CHILDREN[ELEMENT_TAG.SCRIPT] = function (el, node) {
-  var firstChild = node.children[0];
-
-  if (node.children.length !== 1 || !(firstChild && firstChild.type === NODE_TYPE.TEXT)) {
-    throw new Error("Expected only single text node as child of " + ELEMENT_TAG.SCRIPT + " element");
-  } // $FlowFixMe
-
-
-  el.text = firstChild.text;
-}, _ADD_CHILDREN[ELEMENT_TAG.DEFAULT] = function (el, node, renderer) {
-  for (var _i6 = 0, _node$renderChildren2 = node.renderChildren(renderer); _i6 < _node$renderChildren2.length; _i6++) {
-    var child = _node$renderChildren2[_i6];
-    el.appendChild(child);
-  }
-}, _ADD_CHILDREN);
-
-function addChildren(el, node, doc, renderer) {
-  if (node.props.hasOwnProperty(ELEMENT_PROP.INNER_HTML)) {
-    if (node.children.length) {
-      throw new Error("Expected no children to be passed when " + ELEMENT_PROP.INNER_HTML + " prop is set");
-    }
-
-    var html = node.props[ELEMENT_PROP.INNER_HTML];
-
-    if (typeof html !== 'string') {
-      throw new TypeError(ELEMENT_PROP.INNER_HTML + " prop must be string");
-    }
-
-    if (node.name === ELEMENT_TAG.SCRIPT) {
-      // $FlowFixMe
-      el.text = html;
-    } else {
-      el.innerHTML = html;
-      fixScripts(el, doc);
-    }
-  } else {
-    var addChildrenToElement = ADD_CHILDREN[node.name] || ADD_CHILDREN[ELEMENT_TAG.DEFAULT];
-    addChildrenToElement(el, node, renderer);
-  }
-}
-
-function dom(opts) {
-  if (opts === void 0) {
-    opts = {};
-  }
-
-  var _opts = opts,
-      _opts$doc = _opts.doc,
-      doc = _opts$doc === void 0 ? document : _opts$doc;
-
-  var domRenderer = function domRenderer(node) {
-    if (node.type === NODE_TYPE.COMPONENT) {
-      return node.renderComponent(domRenderer);
-    }
-
-    if (node.type === NODE_TYPE.TEXT) {
-      // $FlowFixMe
-      return createTextElement(doc, node);
-    }
-
-    if (node.type === NODE_TYPE.ELEMENT) {
-      var el = createElement(doc, node);
-      addProps(el, node);
-      addChildren(el, node, doc, domRenderer); // $FlowFixMe
-
-      return el;
-    }
-
-    throw new TypeError("Unhandleable node");
-  };
-
-  return domRenderer;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
+    function _renderChildren(children, renderer) {
+        var result = [];
+        for (var _i2 = 0; _i2 < children.length; _i2++) {
+            var renderedChild = children[_i2].render(renderer);
+            if (renderedChild) if (Array.isArray(renderedChild)) for (var _i4 = 0; _i4 < renderedChild.length; _i4++) {
+                var subchild = renderedChild[_i4];
+                subchild && result.push(subchild);
+            } else result.push(renderedChild);
         }
-      }
+        return result;
     }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-// CONCATENATED MODULE: ./node_modules/jsx-pragmatic/src/renderers/react.js
-
-
-// eslint-disable-line import/no-unresolved
-
-
-
-function mapReactProps(props) {
-  var innerHTML = props.innerHTML,
-      className = props.class,
-      remainingProps = _objectWithoutPropertiesLoose(props, ["innerHTML", "class"]);
-
-  var dangerouslySetInnerHTML = innerHTML ? {
-    __html: innerHTML
-  } : null;
-  return _extends({
-    dangerouslySetInnerHTML: dangerouslySetInnerHTML,
-    className: className
-  }, remainingProps);
-}
-
-function react(_temp) {
-  var _ref = _temp === void 0 ? {} : _temp,
-      React = _ref.React;
-
-  if (!React) {
-    throw new Error("Must pass React library to react renderer");
-  }
-
-  var reactRenderer = function reactRenderer(node) {
-    if (node.type === NODE_TYPE.COMPONENT) {
-      return React.createElement.apply(React, [function () {
-        return node.renderComponent(reactRenderer) || null;
-      }, node.props].concat(node.renderChildren(reactRenderer)));
+    var node_ElementNode = function() {
+        function ElementNode(name, props, children) {
+            this.type = "element";
+            this.name = void 0;
+            this.props = void 0;
+            this.children = void 0;
+            this.onRender = void 0;
+            this.name = name;
+            this.props = props;
+            this.children = children;
+            var onRender = props.onRender;
+            if ("function" == typeof onRender) {
+                this.onRender = onRender;
+                delete props.onRender;
+            }
+        }
+        var _proto = ElementNode.prototype;
+        _proto.render = function(renderer) {
+            var el = renderer(this);
+            this.onRender && this.onRender(el);
+            return el;
+        };
+        _proto.renderChildren = function(renderer) {
+            return _renderChildren(this.children, renderer);
+        };
+        return ElementNode;
+    }();
+    var node_FragmentNode = function() {
+        function FragmentNode(children) {
+            this.type = "fragment";
+            this.children = void 0;
+            this.children = children;
+        }
+        FragmentNode.prototype.render = function(renderer) {
+            return _renderChildren(this.children, renderer);
+        };
+        return FragmentNode;
+    }();
+    var node_TextNode = function() {
+        function TextNode(text) {
+            this.type = "text";
+            this.text = void 0;
+            this.text = text;
+        }
+        TextNode.prototype.render = function(renderer) {
+            return renderer(this);
+        };
+        return TextNode;
+    }();
+    var node_ComponentNode = function() {
+        function ComponentNode(component, props, children) {
+            this.type = "component";
+            this.component = void 0;
+            this.props = void 0;
+            this.children = void 0;
+            this.component = component;
+            this.props = props;
+            this.children = children;
+        }
+        var _proto4 = ComponentNode.prototype;
+        _proto4.renderComponent = function(renderer) {
+            var child = function(child) {
+                var children = normalizeChildren(Array.isArray(child) ? child : [ child ]);
+                return 1 === children.length ? children[0] : children.length > 1 ? new node_FragmentNode(children) : void 0;
+            }(this.component(this.props, this.children));
+            if (child) return child.render(renderer);
+        };
+        _proto4.render = function(renderer) {
+            return renderer(this);
+        };
+        _proto4.renderChildren = function(renderer) {
+            return _renderChildren(this.children, renderer);
+        };
+        return ComponentNode;
+    }();
+    function normalizeChildren(children) {
+        var result = [];
+        for (var _i6 = 0; _i6 < children.length; _i6++) {
+            var child = children[_i6];
+            if (child) if ("string" == typeof child) result.push(new node_TextNode(child)); else if (Array.isArray(child)) for (var _i8 = 0, _normalizeChildren2 = normalizeChildren(child); _i8 < _normalizeChildren2.length; _i8++) result.push(_normalizeChildren2[_i8]); else {
+                if (!child || "element" !== child.type && "text" !== child.type && "component" !== child.type) throw new TypeError("Unrecognized node type: " + typeof child);
+                result.push(child);
+            }
+        }
+        return result;
     }
-
-    if (node.type === NODE_TYPE.ELEMENT) {
-      return React.createElement.apply(React, [node.name, mapReactProps(node.props)].concat(node.renderChildren(reactRenderer)));
+    var node_node = function(element, props) {
+        for (var _len = arguments.length, children = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) children[_key - 2] = arguments[_key];
+        props = props || {};
+        children = normalizeChildren(children);
+        if ("string" == typeof element) return new node_ElementNode(element, props, children);
+        if ("function" == typeof element) return new node_ComponentNode(element, props, children);
+        throw new TypeError("Expected jsx element to be a string or a function");
+    };
+    var _ADD_CHILDREN;
+    var ADD_CHILDREN = ((_ADD_CHILDREN = {}).iframe = function(el, node) {
+        var firstChild = node.children[0];
+        if (1 !== node.children.length || !firstChild || "element" !== firstChild.type || "html" !== firstChild.name) throw new Error("Expected only single html element node as child of iframe element");
+        el.addEventListener("load", (function() {
+            var win = el.contentWindow;
+            if (!win) throw new Error("Expected frame to have contentWindow");
+            var doc = win.document;
+            var docElement = doc.documentElement;
+            for (;docElement.children && docElement.children.length; ) docElement.removeChild(docElement.children[0]);
+            var child = firstChild.render(function(opts) {
+                void 0 === opts && (opts = {});
+                var _opts$doc = opts.doc, doc = void 0 === _opts$doc ? document : _opts$doc;
+                return function domRenderer(node) {
+                    if ("component" === node.type) return node.renderComponent(domRenderer);
+                    if ("text" === node.type) return function(doc, node) {
+                        return doc.createTextNode(node.text);
+                    }(doc, node);
+                    if ("element" === node.type) {
+                        var el = function(doc, node) {
+                            return node.props.el ? node.props.el : doc.createElement(node.name);
+                        }(doc, node);
+                        !function(el, node) {
+                            var props = node.props;
+                            for (var _i4 = 0, _Object$keys2 = Object.keys(props); _i4 < _Object$keys2.length; _i4++) {
+                                var prop = _Object$keys2[_i4];
+                                var val = props[prop];
+                                null != val && "el" !== prop && "innerHTML" !== prop && (prop.match(/^on[A-Z][a-z]/) && "function" == typeof val ? el.addEventListener(prop.slice(2).toLowerCase(), val) : "string" == typeof val || "number" == typeof val ? el.setAttribute(prop, val.toString()) : "boolean" == typeof val && !0 === val && el.setAttribute(prop, ""));
+                            }
+                            "iframe" !== el.tagName.toLowerCase() || props.id || el.setAttribute("id", "jsx-iframe-" + "xxxxxxxxxx".replace(/./g, (function() {
+                                return "0123456789abcdef".charAt(Math.floor(Math.random() * "0123456789abcdef".length));
+                            })));
+                        }(el, node);
+                        !function(el, node, doc, renderer) {
+                            if (node.props.hasOwnProperty("innerHTML")) {
+                                if (node.children.length) throw new Error("Expected no children to be passed when innerHTML prop is set");
+                                var html = node.props.innerHTML;
+                                if ("string" != typeof html) throw new TypeError("innerHTML prop must be string");
+                                if ("script" === node.name) el.text = html; else {
+                                    el.innerHTML = html;
+                                    !function(el, doc) {
+                                        void 0 === doc && (doc = window.document);
+                                        for (var _i2 = 0, _el$querySelectorAll2 = el.querySelectorAll("script"); _i2 < _el$querySelectorAll2.length; _i2++) {
+                                            var script = _el$querySelectorAll2[_i2];
+                                            var parentNode = script.parentNode;
+                                            if (parentNode) {
+                                                var newScript = doc.createElement("script");
+                                                newScript.text = script.textContent;
+                                                parentNode.replaceChild(newScript, script);
+                                            }
+                                        }
+                                    }(el, doc);
+                                }
+                            } else (ADD_CHILDREN[node.name] || ADD_CHILDREN.default)(el, node, renderer);
+                        }(el, node, doc, domRenderer);
+                        return el;
+                    }
+                    throw new TypeError("Unhandleable node");
+                };
+            }({
+                doc: doc
+            }));
+            for (;child.children.length; ) docElement.appendChild(child.children[0]);
+        }));
+    }, _ADD_CHILDREN.script = function(el, node) {
+        var firstChild = node.children[0];
+        if (1 !== node.children.length || !firstChild || "text" !== firstChild.type) throw new Error("Expected only single text node as child of script element");
+        el.text = firstChild.text;
+    }, _ADD_CHILDREN.default = function(el, node, renderer) {
+        for (var _i6 = 0, _node$renderChildren2 = node.renderChildren(renderer); _i6 < _node$renderChildren2.length; _i6++) el.appendChild(_node$renderChildren2[_i6]);
+    }, _ADD_CHILDREN);
+    function SpinnerPage(_ref, children) {
+        var nonce = _ref.nonce;
+        return node_node("html", null, node_node("head", null, node_node("title", null, "PayPal"), node_node("meta", {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1"
+        })), node_node("body", null, node_node("div", {
+            class: "preloader spinner"
+        }, node_node("style", {
+            nonce: nonce,
+            innerHTML: "\n\n    body {\n        width: 100%;\n        height: 100%;\n        overflow: hidden;\n        position: fixed;\n        top: 0;\n        left: 0;\n        margin: 0;\n    }\n\n    .spinner {\n        height: 100%;\n        width: 100%;\n        position: absolute;\n        z-index: 10\n    }\n\n    .spinner .spinWrap {\n        width: 200px;\n        height: 100px;\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        margin-left: -100px;\n        margin-top: -50px\n    }\n\n    .spinner .loader,\n    .spinner .spinnerImage {\n        height: 100px;\n        width: 100px;\n        position: absolute;\n        top: 0;\n        left: 50%;\n        opacity: 1;\n        filter: alpha(opacity=100)\n    }\n\n    .spinner .spinnerImage {\n        margin: 28px 0 0 -25px;\n        background: url(https://www.paypalobjects.com/images/checkout/hermes/icon_ot_spin_lock_skinny.png) no-repeat\n    }\n\n    .spinner .loader {\n        margin: 0 0 0 -55px;\n        background-color: transparent;\n        animation: rotation .7s infinite linear;\n        border-left: 5px solid #cbcbca;\n        border-right: 5px solid #cbcbca;\n        border-bottom: 5px solid #cbcbca;\n        border-top: 5px solid #2380be;\n        border-radius: 100%\n    }\n\n    @keyframes rotation {\n        from {\n            transform: rotate(0deg)\n        }\n        to {\n            transform: rotate(359deg)\n        }\n    }\n"
+        }), node_node("div", {
+            class: "spinWrap"
+        }, node_node("p", {
+            class: "spinnerImage"
+        }), node_node("p", {
+            class: "loader"
+        }))), children));
     }
-
-    if (node.type === NODE_TYPE.TEXT) {
-      return node.text;
-    }
-
-    throw new TypeError("Unhandleable node");
-  };
-
-  return reactRenderer;
-}
-// CONCATENATED MODULE: ./node_modules/jsx-pragmatic/src/renderers/html.js
-
-
-var html_ELEMENT_PROP = {
-  INNER_HTML: 'innerHTML'
-};
-var SELF_CLOSING_TAGS = {
-  br: true
-};
-
-function htmlEncode(text) {
-  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/\//g, '&#x2F;');
-}
-
-function propsToHTML(props) {
-  var keys = Object.keys(props).filter(function (key) {
-    var val = props[key];
-
-    if (key === html_ELEMENT_PROP.INNER_HTML) {
-      return false;
-    }
-
-    if (!val) {
-      return false;
-    }
-
-    if (typeof val === 'string' || typeof val === 'number' || val === true) {
-      return true;
-    }
-
-    return false;
-  });
-
-  if (!keys.length) {
-    return '';
-  }
-
-  var pairs = keys.map(function (key) {
-    var val = props[key];
-
-    if (val === true) {
-      return "" + htmlEncode(key);
-    }
-
-    if (typeof val !== 'string' && typeof val !== 'number') {
-      throw new TypeError("Unexpected prop type: " + typeof val);
-    }
-
-    return htmlEncode(key) + "=\"" + htmlEncode(val.toString()) + "\"";
-  });
-  return " " + pairs.join(' ');
-}
-
-function html() {
-  var htmlRenderer = function htmlRenderer(node) {
-    if (node.type === NODE_TYPE.COMPONENT) {
-      return [].concat(node.renderComponent(htmlRenderer)).join('');
-    }
-
-    if (node.type === NODE_TYPE.ELEMENT) {
-      var renderedProps = propsToHTML(node.props);
-
-      if (SELF_CLOSING_TAGS[node.name]) {
-        return "<" + node.name + renderedProps + " />";
-      } else {
-        var renderedChildren = typeof node.props[html_ELEMENT_PROP.INNER_HTML] === 'string' ? node.props[html_ELEMENT_PROP.INNER_HTML] : node.renderChildren(htmlRenderer).join('');
-        return "<" + node.name + renderedProps + ">" + renderedChildren + "</" + node.name + ">";
-      }
-    }
-
-    if (node.type === NODE_TYPE.TEXT) {
-      return htmlEncode(node.text);
-    }
-
-    throw new TypeError("Unhandleable node: " + node.type);
-  };
-
-  return htmlRenderer;
-}
-// CONCATENATED MODULE: ./node_modules/jsx-pragmatic/src/renderers/preact.js
-
-
-// eslint-disable-line import/no-unresolved
-
-
-
-function mapPreactProps(props) {
-  var innerHTML = props.innerHTML,
-      remainingProps = _objectWithoutPropertiesLoose(props, ["innerHTML"]);
-
-  var dangerouslySetInnerHTML = innerHTML ? {
-    __html: innerHTML
-  } : null;
-  return _extends({
-    dangerouslySetInnerHTML: dangerouslySetInnerHTML
-  }, remainingProps);
-}
-
-function preact(_temp) {
-  var _ref = _temp === void 0 ? {} : _temp,
-      Preact = _ref.Preact;
-
-  if (!Preact) {
-    throw new Error("Must pass Preact library to react renderer");
-  }
-
-  var reactRenderer = function reactRenderer(node) {
-    if (node.type === NODE_TYPE.COMPONENT) {
-      return Preact.h.apply(Preact, [function () {
-        return node.renderComponent(reactRenderer) || null;
-      }, node.props].concat(node.renderChildren(reactRenderer)));
-    }
-
-    if (node.type === NODE_TYPE.ELEMENT) {
-      return Preact.h.apply(Preact, [node.name, mapPreactProps(node.props)].concat(node.renderChildren(reactRenderer)));
-    }
-
-    if (node.type === NODE_TYPE.TEXT) {
-      return node.text;
-    }
-
-    throw new TypeError("Unhandleable node");
-  };
-
-  return reactRenderer;
-}
-// CONCATENATED MODULE: ./node_modules/jsx-pragmatic/src/renderers/index.js
-
-
-
-
-// CONCATENATED MODULE: ./node_modules/jsx-pragmatic/src/index.js
-
-
-
-// CONCATENATED MODULE: ./src/ui/spinnerPage.jsx
-/** @jsx node */
-
-var spinnerStyle = "\n\n    body {\n        width: 100%;\n        height: 100%;\n        overflow: hidden;\n        position: fixed;\n        top: 0;\n        left: 0;\n        margin: 0;\n    }\n\n    .spinner {\n        height: 100%;\n        width: 100%;\n        position: absolute;\n        z-index: 10\n    }\n\n    .spinner .spinWrap {\n        width: 200px;\n        height: 100px;\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        margin-left: -100px;\n        margin-top: -50px\n    }\n\n    .spinner .loader,\n    .spinner .spinnerImage {\n        height: 100px;\n        width: 100px;\n        position: absolute;\n        top: 0;\n        left: 50%;\n        opacity: 1;\n        filter: alpha(opacity=100)\n    }\n\n    .spinner .spinnerImage {\n        margin: 28px 0 0 -25px;\n        background: url(https://www.paypalobjects.com/images/checkout/hermes/icon_ot_spin_lock_skinny.png) no-repeat\n    }\n\n    .spinner .loader {\n        margin: 0 0 0 -55px;\n        background-color: transparent;\n        animation: rotation .7s infinite linear;\n        border-left: 5px solid #cbcbca;\n        border-right: 5px solid #cbcbca;\n        border-bottom: 5px solid #cbcbca;\n        border-top: 5px solid #2380be;\n        border-radius: 100%\n    }\n\n    @keyframes rotation {\n        from {\n            transform: rotate(0deg)\n        }\n        to {\n            transform: rotate(359deg)\n        }\n    }\n";
-function SpinnerPage(_ref, children) {
-  var nonce = _ref.nonce;
-  return node_node("html", null, node_node("head", null, node_node("title", null, "PayPal"), node_node("meta", {
-    name: "viewport",
-    content: "width=device-width, initial-scale=1"
-  })), node_node("body", null, node_node("div", {
-    class: "preloader spinner"
-  }, node_node("style", {
-    nonce: nonce,
-    innerHTML: spinnerStyle
-  }), node_node("div", {
-    class: "spinWrap"
-  }, node_node("p", {
-    class: "spinnerImage"
-  }), node_node("p", {
-    class: "loader"
-  }))), children));
-}
-// CONCATENATED MODULE: ./src/ui/index.js
-/* concated harmony reexport SpinnerPage */__webpack_require__.d(__webpack_exports__, "SpinnerPage", function() { return SpinnerPage; });
-
-
-/***/ })
-/******/ ]);
+} ]);

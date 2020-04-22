@@ -1,3 +1,10 @@
+## <small>1.0.9 (2020-04-22)</small>
+
+* Fix lint ([cb10ac9](http://github.paypal.com/paypal/paypal-checkout/commit/cb10ac9))
+* Only try to refocus if popups supported ([244b6f3](http://github.paypal.com/paypal/paypal-checkout/commit/244b6f3))
+
+
+
 ## <small>1.0.8 (2020-01-13)</small>
 
 * Add userType for ThreeDomainSecure component ([a9531e7](http://github.paypal.com/paypal/paypal-checkout/commit/a9531e7))
