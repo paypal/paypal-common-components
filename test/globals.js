@@ -67,6 +67,9 @@ export const fundingEligibility = {
     },
     zimpler: {
         eligible: false
+    },
+    mercadopago: {
+        eligible: false
     }
 };
 

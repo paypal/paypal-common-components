@@ -67,6 +67,9 @@ window.__TEST_FUNDING_ELIGIBILITY__ = {
     },
     zimpler: {
         eligible: false
+    },
+    mercadopago: {
+        eligible: false
     }
 };
 
