@@ -1,3 +1,10 @@
+## <small>1.0.10 (2020-05-19)</small>
+
+* adding MERCADOPAGO funding sources for APM (#2) ([a4f31af](http://github.paypal.com/paypal/paypal-checkout/commit/a4f31af)), closes [#2](http://github.paypal.com/paypal/paypal-checkout/issues/2)
+* Use common funding eligibility ([9cf8a67](http://github.paypal.com/paypal/paypal-checkout/commit/9cf8a67))
+
+
+
 ## <small>1.0.9 (2020-04-22)</small>
 
 * Fix lint ([cb10ac9](http://github.paypal.com/paypal/paypal-checkout/commit/cb10ac9))
