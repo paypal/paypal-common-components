@@ -143,5 +143,9 @@ export type FundingEligibilityType = {|
     zimpler : {|
         eligible : boolean,
         branded : boolean
+    |},
+    mercadopago : {|
+        eligible : boolean,
+        branded : boolean
     |}
 |};
