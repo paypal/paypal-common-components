@@ -1,8 +1,7 @@
 /* @flow */
 
+import type { FundingEligibilityType } from '@paypal/sdk-client/src';
 import { FUNDING } from '@paypal/sdk-constants/src';
-
-import type { FundingEligibilityType } from './types';
 
 export function getFundingEligibility() : FundingEligibilityType {
     return __paypal_checkout__.serverConfig.fundingEligibility;
