@@ -1,6 +1,10 @@
 PayPal Common Components
 ------------------------
 
+[![npm version](https://img.shields.io/npm/v/@paypal/common-components.svg?style=flat-square)](https://www.npmjs.com/package/@paypal/common-components) [![build status](https://img.shields.io/travis/paypal/paypal-common-components/master.svg?style=flat-square)](https://travis-ci.org/paypal/paypal-common-components)
+
+[![dependencies Status](https://david-dm.org/paypal/paypal-common-components/status.svg)](https://david-dm.org/paypal/paypal-common-components) [![devDependencies Status](https://david-dm.org/paypal/paypal-common-components/dev-status.svg)](https://david-dm.org/paypal/paypal-common-components?type=dev)
+
 Common components for the PayPal JavaScript SDK
 
 ## Development
