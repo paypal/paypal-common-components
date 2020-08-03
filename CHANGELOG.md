@@ -1,3 +1,12 @@
+## <small>1.0.11 (2020-08-03)</small>
+
+* Configure Renovate (#3) ([b314284](http://github.paypal.com/paypal/paypal-checkout/commit/b314284)), closes [#3](http://github.paypal.com/paypal/paypal-checkout/issues/3)
+* Update README.md ([4b0f0cf](http://github.paypal.com/paypal/paypal-checkout/commit/4b0f0cf))
+* Upgrade .travis.yml to always follow latest Node LTS (Node 12) (#12) ([7dbd703](http://github.paypal.com/paypal/paypal-checkout/commit/7dbd703)), closes [#12](http://github.paypal.com/paypal/paypal-checkout/issues/12)
+* Upgrade flow ([49247c0](http://github.paypal.com/paypal/paypal-checkout/commit/49247c0))
+
+
+
 ## <small>1.0.10 (2020-05-19)</small>
 
 * adding MERCADOPAGO funding sources for APM (#2) ([a4f31af](http://github.paypal.com/paypal/paypal-checkout/commit/a4f31af)), closes [#2](http://github.paypal.com/paypal/paypal-checkout/issues/2)
