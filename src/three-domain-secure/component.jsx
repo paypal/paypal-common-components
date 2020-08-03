@@ -81,9 +81,8 @@ export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
                 createOrder: {
                     type:       'function',
                     queryParam: 'cart_id',
-                    queryValue: ({ value }) => {
-                        return ZalgoPromise.try(value);
-                    }
+                    // $FlowFixMe
+                    queryValue: ({ value }) => ZalgoPromise.try(value)
                 },
                 clientID: {
                     type:       'string',
