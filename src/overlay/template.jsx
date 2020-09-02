@@ -2,7 +2,7 @@
 /** @jsx node */
 /* eslint max-lines: off, react/jsx-max-depth: off */
 
-import { isIos, animate, noop, destroyElement, uniqueID, supportsPopups } from 'belter/src';
+import { isIos, animate, noop, destroyElement, uniqueID, supportsPopups, type EventEmitterType } from 'belter/src';
 import { EVENT, CONTEXT } from 'zoid/src';
 import { node, type ElementNode } from 'jsx-pragmatic/src';
 import { LOGO_COLOR, PPLogo, PayPalLogo } from '@paypal/sdk-logos/src';
@@ -14,14 +14,12 @@ export type OverlayProps = {|
     context : $Values<typeof CONTEXT>,
     close : () => ZalgoPromise<void>,
     focus : () => ZalgoPromise<void>,
-    event : {|
-        on : (string, () => ?ZalgoPromise<void>) => void
-    |},
+    event : EventEmitterType,
     frame : ?HTMLElement,
     prerenderFrame : ?HTMLElement,
-    content? : {|
-        windowMessage? : ?string,
-        continueMessage? : ?string
+    content? : void | {|
+        windowMessage? : string,
+        continueMessage? : string
     |}
 |};
 

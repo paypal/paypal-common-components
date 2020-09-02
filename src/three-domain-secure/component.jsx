@@ -29,9 +29,9 @@ export type TDSProps = {|
     onSuccess : (TDSResult) => void,
     onError : (mixed) => void,
     sdkMeta : string,
-    content : ?{|
-        windowMessage : string,
-        continueMessage : string
+    content? : void | {|
+        windowMessage? : string,
+        continueMessage? : string
     |},
     userType : ?$Values<typeof USER_TYPE>
 |};
