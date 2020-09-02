@@ -1,3 +1,12 @@
+## <small>1.0.12 (2020-09-02)</small>
+
+* Add CODEOWNERS ([57ccf2f](http://github.paypal.com/paypal/paypal-checkout/commit/57ccf2f))
+* Fix registry ([7b431d5](http://github.paypal.com/paypal/paypal-checkout/commit/7b431d5))
+* Type fixes ([605c51a](http://github.paypal.com/paypal/paypal-checkout/commit/605c51a))
+* Update CODEOWNERS ([69a3012](http://github.paypal.com/paypal/paypal-checkout/commit/69a3012))
+
+
+
 ## <small>1.0.11 (2020-08-03)</small>
 
 * Configure Renovate (#3) ([b314284](http://github.paypal.com/paypal/paypal-checkout/commit/b314284)), closes [#3](http://github.paypal.com/paypal/paypal-checkout/issues/3)
