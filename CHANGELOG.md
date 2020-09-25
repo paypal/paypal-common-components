@@ -1,3 +1,9 @@
+## <small>1.0.13 (2020-09-25)</small>
+
+* Adding autoresize and hideclosebutton for Overlay component (#14) ([3492b82](http://github.paypal.com/paypal/paypal-checkout/commit/3492b82)), closes [#14](http://github.paypal.com/paypal/paypal-checkout/issues/14)
+
+
+
 ## <small>1.0.12 (2020-09-02)</small>
 
 * Add CODEOWNERS ([57ccf2f](http://github.paypal.com/paypal/paypal-checkout/commit/57ccf2f))
