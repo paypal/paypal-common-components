@@ -2,7 +2,7 @@
 /** @jsx node */
 /* eslint max-lines: off, react/jsx-max-depth: off */
 
-import { isIos, animate, noop, destroyElement, uniqueID, supportsPopups, type EventEmitterType } from 'belter/src';
+import { isIos, animate, noop, destroyElement, uniqueID, supportsPopups, type EventEmitterType, toCSS } from 'belter/src';
 import { EVENT, CONTEXT } from 'zoid/src';
 import { node, type ElementNode } from 'jsx-pragmatic/src';
 import { LOGO_COLOR, PPLogo, PayPalLogo } from '@paypal/sdk-logos/src';
@@ -20,10 +20,12 @@ export type OverlayProps = {|
     content? : void | {|
         windowMessage? : string,
         continueMessage? : string
-    |}
+    |},
+    autoResize? : boolean,
+    hideCloseButton? : boolean
 |};
 
-export function Overlay({ context, close, focus, event, frame, prerenderFrame, content = {} } : OverlayProps) : ElementNode {
+export function Overlay({ context, close, focus, event, frame, prerenderFrame, content = {}, autoResize, hideCloseButton } : OverlayProps) : ElementNode {
 
     const uid = `paypal-overlay-${ uniqueID() }`;
 
@@ -58,6 +60,25 @@ export function Overlay({ context, close, focus, event, frame, prerenderFrame, c
         };
     };
 
+    const setupAutoResize = (el) => {
+        event.on(EVENT.RESIZE, ({ width: newWidth, height: newHeight }) => {
+            if (typeof newWidth === 'number') {
+                el.style.width = toCSS(newWidth);
+            }
+
+            if (typeof newHeight === 'number') {
+                el.style.height = toCSS(newHeight);
+            }
+        });
+    };
+    
+    const outletOnRender = (el) => {
+        setupAnimations('component')(el);
+        if (autoResize) {
+            setupAutoResize(el);
+        }
+    };
+
     let outlet;
 
     if (frame && prerenderFrame) {
@@ -80,7 +101,7 @@ export function Overlay({ context, close, focus, event, frame, prerenderFrame, c
         });
 
         outlet = (
-            <div class={ CLASS.OUTLET } onRender={ setupAnimations('component') }>
+            <div class={ CLASS.OUTLET } onRender={ outletOnRender }>
                 <node el={ frame } />
                 <node el={ prerenderFrame } />
             </div>
@@ -95,7 +116,7 @@ export function Overlay({ context, close, focus, event, frame, prerenderFrame, c
                 <html>
                     <body>
                         <div id={ uid } onClick={ focusCheckout } class={ `paypal-overlay-context-${ context } paypal-checkout-overlay` }>
-                            <a href='#' class="paypal-checkout-close" onClick={ closeCheckout } aria-label="close" role="button" />
+                            { !hideCloseButton && <a href='#' class="paypal-checkout-close" onClick={ closeCheckout } aria-label="close" role="button" /> }
                             <div class="paypal-checkout-modal">
                                 <div class="paypal-checkout-logo">
                                     <PPLogo logoColor={ LOGO_COLOR.WHITE } />
