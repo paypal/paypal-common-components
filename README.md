@@ -1,9 +1,19 @@
 PayPal Common Components
 ------------------------
 
-[![npm version](https://img.shields.io/npm/v/@paypal/common-components.svg?style=flat-square)](https://www.npmjs.com/package/@paypal/common-components) [![build status](https://img.shields.io/travis/paypal/paypal-common-components/master.svg?style=flat-square)](https://travis-ci.org/paypal/paypal-common-components)
+[![build status][build-badge]][build]
+[![code coverage][coverage-badge]][coverage]
+[![npm version][version-badge]][package]
+[![apache license][license-badge]][license]
 
-[![dependencies Status](https://david-dm.org/paypal/paypal-common-components/status.svg)](https://david-dm.org/paypal/paypal-common-components) [![devDependencies Status](https://david-dm.org/paypal/paypal-common-components/dev-status.svg)](https://david-dm.org/paypal/paypal-common-components?type=dev)
+[build-badge]: https://img.shields.io/github/workflow/status/paypal/paypal-common-components/build?logo=github&style=flat-square
+[build]: https://github.com/paypal/paypal-common-components/actions?query=workflow%3Abuild
+[coverage-badge]: https://img.shields.io/codecov/c/github/paypal/paypal-common-components.svg?style=flat-square
+[coverage]: https://codecov.io/github/paypal/paypal-common-components/
+[version-badge]: https://img.shields.io/npm/v/@paypal/common-components.svg?style=flat-square
+[package]: https://www.npmjs.com/package/@paypal/common-components
+[license-badge]: https://img.shields.io/npm/l/@paypal/common-components.svg?style=flat-square
+[license]: https://github.com/paypal/paypal-common-components/blob/master/LICENSE
 
 Common components for the PayPal JavaScript SDK
 
