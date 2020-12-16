@@ -1,3 +1,9 @@
+## <small>1.0.16 (2020-12-16)</small>
+
+* Fix venmo spinner positioning ([9a4028e](http://github.paypal.com/paypal/paypal-checkout/commit/9a4028e))
+
+
+
 ## <small>1.0.15 (2020-12-16)</small>
 
 * Export granular spinners ([59e0a16](http://github.paypal.com/paypal/paypal-checkout/commit/59e0a16))
