@@ -59,8 +59,14 @@ module.exports = function(modules) {
 }([ function(module, __webpack_exports__, __webpack_require__) {
     "use strict";
     __webpack_require__.r(__webpack_exports__);
+    __webpack_require__.d(__webpack_exports__, "Spinner", (function() {
+        return Spinner;
+    }));
     __webpack_require__.d(__webpack_exports__, "SpinnerPage", (function() {
         return SpinnerPage;
+    }));
+    __webpack_require__.d(__webpack_exports__, "VenmoSpinner", (function() {
+        return VenmoSpinner;
     }));
     __webpack_require__.d(__webpack_exports__, "VenmoSpinnerPage", (function() {
         return VenmoSpinnerPage;
@@ -173,6 +179,9 @@ module.exports = function(modules) {
         if ("function" == typeof element) return new node_ComponentNode(element, props, children);
         throw new TypeError("Expected jsx element to be a string or a function");
     };
+    var Fragment = function(props, children) {
+        return children;
+    };
     var _ADD_CHILDREN;
     var ADD_CHILDREN = ((_ADD_CHILDREN = {}).iframe = function(el, node) {
         var firstChild = node.children[0];
@@ -244,15 +253,11 @@ module.exports = function(modules) {
     }, _ADD_CHILDREN.default = function(el, node, renderer) {
         for (var _i6 = 0, _node$renderChildren2 = node.renderChildren(renderer); _i6 < _node$renderChildren2.length; _i6++) el.appendChild(_node$renderChildren2[_i6]);
     }, _ADD_CHILDREN);
-    function SpinnerPage(_ref, children) {
-        var nonce = _ref.nonce;
-        return node_node("html", null, node_node("head", null, node_node("title", null, "PayPal"), node_node("meta", {
-            name: "viewport",
-            content: "width=device-width, initial-scale=1"
-        })), node_node("body", null, node_node("div", {
+    function Spinner(_ref) {
+        return node_node("div", {
             class: "preloader spinner"
         }, node_node("style", {
-            nonce: nonce,
+            nonce: _ref.nonce,
             innerHTML: "\n\n    body {\n        width: 100%;\n        height: 100%;\n        overflow: hidden;\n        position: fixed;\n        top: 0;\n        left: 0;\n        margin: 0;\n    }\n\n    .spinner {\n        height: 100%;\n        width: 100%;\n        position: absolute;\n        z-index: 10\n    }\n\n    .spinner .spinWrap {\n        width: 200px;\n        height: 100px;\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        margin-left: -100px;\n        margin-top: -50px\n    }\n\n    .spinner .loader,\n    .spinner .spinnerImage {\n        height: 100px;\n        width: 100px;\n        position: absolute;\n        top: 0;\n        left: 50%;\n        opacity: 1;\n        filter: alpha(opacity=100)\n    }\n\n    .spinner .spinnerImage {\n        margin: 28px 0 0 -25px;\n        background: url(https://www.paypalobjects.com/images/checkout/hermes/icon_ot_spin_lock_skinny.png) no-repeat\n    }\n\n    .spinner .loader {\n        margin: 0 0 0 -55px;\n        background-color: transparent;\n        animation: rotation .7s infinite linear;\n        border-left: 5px solid #cbcbca;\n        border-right: 5px solid #cbcbca;\n        border-bottom: 5px solid #cbcbca;\n        border-top: 5px solid #2380be;\n        border-radius: 100%\n    }\n\n    @keyframes rotation {\n        from {\n            transform: rotate(0deg)\n        }\n        to {\n            transform: rotate(359deg)\n        }\n    }\n"
         }), node_node("div", {
             class: "spinWrap"
@@ -260,18 +265,32 @@ module.exports = function(modules) {
             class: "spinnerImage"
         }), node_node("p", {
             class: "loader"
-        }))), children));
+        })));
     }
-    function VenmoSpinnerPage(_ref, children) {
-        var nonce = _ref.nonce;
+    function SpinnerPage(_ref2, children) {
+        var nonce = _ref2.nonce;
         return node_node("html", null, node_node("head", null, node_node("title", null, "PayPal"), node_node("meta", {
             name: "viewport",
             content: "width=device-width, initial-scale=1"
-        })), node_node("body", null, node_node("style", {
-            nonce: nonce,
+        })), node_node("body", null, node_node(Spinner, {
+            nonce: nonce
+        }), children));
+    }
+    function VenmoSpinner(_ref) {
+        return node_node(Fragment, null, node_node("style", {
+            nonce: _ref.nonce,
             innerHTML: '\n    body {\n        width: 100%;\n        height: 100%;\n        overflow: hidden;\n        position: relative;\n        top: 0;\n        left: 0;\n        margin: 0;\n    }\n    .spinner {\n        color: official;\n        display: inline-block;\n        width: 80px;\n        height: 80px;\n        position: absolute;\n        left: 50%;\n        top: 50%;\n        -webkit-transform: translate(-50%, -50%);\n        transform: translate(-50%, -50%);\n    }\n    .spinner div {\n        transform-origin: 40px 40px;\n        animation: spinner 1.2s linear infinite;\n    }\n    .spinner div:after {\n        content: " ";\n        display: block;\n        position: absolute;\n        top: 20px;\n        left: 37px;\n        width: 3px;\n        height: 10px;\n        border-radius: 30%;\n        background: #808080;\n    }\n    .spinner div:nth-child(1) {\n        transform: rotate(0deg);\n        animation-delay: -1.1s;\n    }\n    .spinner div:nth-child(2) {\n        transform: rotate(30deg);\n        animation-delay: -1s;\n    }\n    .spinner div:nth-child(3) {\n        transform: rotate(60deg);\n        animation-delay: -0.9s;\n    }\n    .spinner div:nth-child(4) {\n        transform: rotate(90deg);\n        animation-delay: -0.8s;\n    }\n    .spinner div:nth-child(5) {\n        transform: rotate(120deg);\n        animation-delay: -0.7s;\n    }\n    .spinner div:nth-child(6) {\n        transform: rotate(150deg);\n        animation-delay: -0.6s;\n    }\n    .spinner div:nth-child(7) {\n        transform: rotate(180deg);\n        animation-delay: -0.5s;\n    }\n    .spinner div:nth-child(8) {\n        transform: rotate(210deg);\n        animation-delay: -0.4s;\n    }\n    .spinner div:nth-child(9) {\n        transform: rotate(240deg);\n        animation-delay: -0.3s;\n    }\n    .spinner div:nth-child(10) {\n        transform: rotate(270deg);\n        animation-delay: -0.2s;\n    }\n    .spinner div:nth-child(11) {\n        transform: rotate(300deg);\n        animation-delay: -0.1s;\n    }\n    .spinner div:nth-child(12) {\n        transform: rotate(330deg);\n        animation-delay: 0s;\n    }\n    @keyframes spinner {\n        0% {\n            opacity: 1;\n        }\n        100% {\n            opacity: 0;\n        }\n    }\n'
         }), node_node("div", {
             class: "spinner"
-        }, node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null)), children));
+        }, node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null), node_node("div", null)));
+    }
+    function VenmoSpinnerPage(_ref2, children) {
+        var nonce = _ref2.nonce;
+        return node_node("html", null, node_node("head", null, node_node("title", null, "Venmo"), node_node("meta", {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1"
+        })), node_node("body", null, node_node(VenmoSpinner, {
+            nonce: nonce
+        }), children));
     }
 } ]);

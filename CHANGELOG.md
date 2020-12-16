@@ -1,3 +1,9 @@
+## <small>1.0.15 (2020-12-16)</small>
+
+* Export granular spinners ([59e0a16](http://github.paypal.com/paypal/paypal-checkout/commit/59e0a16))
+
+
+
 ## <small>1.0.14 (2020-12-16)</small>
 
 * Add VenmoSpinnerPage ([f196f76](http://github.paypal.com/paypal/paypal-checkout/commit/f196f76))
