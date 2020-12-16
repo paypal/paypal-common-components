@@ -1,7 +1,7 @@
 /* @flow */
 /** @jsx node */
 
-import { node, type ElementNode, type ChildrenType } from 'jsx-pragmatic/src';
+import { node, Fragment, type ElementNode, type ChildrenType, type ComponentNode } from 'jsx-pragmatic/src';
 
 const spinnerStyle = `
     body {
@@ -97,30 +97,38 @@ const spinnerStyle = `
     }
 `;
 
+export function VenmoSpinner({ nonce } : {| nonce : ?string |}) : ComponentNode<{||}> {
+    return (
+        <Fragment>
+            <style nonce={ nonce } innerHTML={ spinnerStyle } />
+
+            <div class="spinner">
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+            </div>
+        </Fragment>
+    );
+}
+
 export function VenmoSpinnerPage({ nonce } : {| nonce : ?string |}, children : ChildrenType) : ElementNode {
     return (
         <html>
             <head>
-                <title>PayPal</title>
+                <title>Venmo</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </head>
             <body>
-                <style nonce={ nonce } innerHTML={ spinnerStyle } />
-
-                <div class="spinner">
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                </div>
+                <VenmoSpinner nonce={ nonce } />
                 { children }
             </body>
         </html>

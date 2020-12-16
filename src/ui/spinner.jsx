@@ -69,6 +69,19 @@ const spinnerStyle = `
     }
 `;
 
+export function Spinner({ nonce } : {| nonce : ?string |}) : ElementNode {
+    return (
+        <div class="preloader spinner">
+            <style nonce={ nonce } innerHTML={ spinnerStyle } />
+
+            <div class="spinWrap">
+                <p class="spinnerImage" />
+                <p class="loader" />
+            </div>
+        </div>
+    );
+}
+
 export function SpinnerPage({ nonce } : {| nonce : ?string |}, children : ChildrenType) : ElementNode {
     return (
         <html>
@@ -77,14 +90,7 @@ export function SpinnerPage({ nonce } : {| nonce : ?string |}, children : Childr
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </head>
             <body>
-                <div class="preloader spinner">
-                    <style nonce={ nonce } innerHTML={ spinnerStyle } />
-
-                    <div class="spinWrap">
-                        <p class="spinnerImage" />
-                        <p class="loader" />
-                    </div>
-                </div>
+                <Spinner nonce={ nonce } />
                 { children }
             </body>
         </html>
