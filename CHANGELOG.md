@@ -1,3 +1,11 @@
+## <small>1.0.14 (2020-12-16)</small>
+
+* Add VenmoSpinnerPage ([f196f76](http://github.paypal.com/paypal/paypal-checkout/commit/f196f76))
+* Fix sdk test globals ([ebfb0d6](http://github.paypal.com/paypal/paypal-checkout/commit/ebfb0d6))
+* Lock flow version ([724b0c0](http://github.paypal.com/paypal/paypal-checkout/commit/724b0c0))
+
+
+
 ## <small>1.0.13 (2020-09-25)</small>
 
 * Adding autoresize and hideclosebutton for Overlay component (#14) ([3492b82](http://github.paypal.com/paypal/paypal-checkout/commit/3492b82)), closes [#14](http://github.paypal.com/paypal/paypal-checkout/issues/14)
