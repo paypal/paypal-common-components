@@ -76,12 +76,12 @@ export const fundingEligibility = {
 export const testGlobals = {
     __paypal_checkout__: {
         serverConfig: {
-            fundingEligibility: () => `window.__TEST_FUNDING_ELIGIBILITY__ || ${ JSON.stringify(fundingEligibility) }`
+            fundingEligibility: () : string => `window.__TEST_FUNDING_ELIGIBILITY__ || ${ JSON.stringify(fundingEligibility) }`
         }
     },
 
     __PAYPAL_CHECKOUT__: {
-        __REMEMBERED_FUNDING__: () => 'window.__TEST_REMEMBERED_FUNDING__ || []'
+        __REMEMBERED_FUNDING__: () : string => 'window.__TEST_REMEMBERED_FUNDING__ || []'
     },
 
     __PORT__:           8000,
