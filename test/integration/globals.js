@@ -70,6 +70,9 @@ window.__TEST_FUNDING_ELIGIBILITY__ = {
     },
     mercadopago: {
         eligible: false
+    },
+    verkkopankki: {
+        eligible: false
     }
 };
 
