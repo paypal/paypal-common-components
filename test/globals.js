@@ -70,7 +70,7 @@ export const fundingEligibility = {
     },
     mercadopago: {
         eligible: false
-    }, 
+    },
     verkkopankki: {
         eligible: false
     }
