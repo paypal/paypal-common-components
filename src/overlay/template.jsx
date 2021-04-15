@@ -2,7 +2,7 @@
 /** @jsx node */
 /* eslint max-lines: off, react/jsx-max-depth: off */
 
-import { isIos, animate, noop, destroyElement, uniqueID, supportsPopups, type EventEmitterType, toCSS } from 'belter/src';
+import { isIos, isFirefox, animate, noop, destroyElement, uniqueID, supportsPopups, type EventEmitterType, toCSS } from 'belter/src';
 import { EVENT, CONTEXT } from 'zoid/src';
 import { node, type ElementNode } from 'jsx-pragmatic/src';
 import { LOGO_COLOR, PPLogo, PayPalLogo } from '@paypal/sdk-logos/src';
@@ -46,6 +46,9 @@ export function Overlay({ context, close, focus, event, frame, prerenderFrame, c
         if (isIos()) {
             // eslint-disable-next-line no-alert
             window.alert('Please switch tabs to reactivate the PayPal window');
+        } else if (isFirefox()) {
+            // eslint-disable-next-line no-alert
+            window.alert('Firefox does not support re-focus with Continue link. Please tap on popup window to complete PayPal Checkout.');
         } else {
             focus();
         }
