@@ -48,7 +48,7 @@ export function Overlay({ context, close, focus, event, frame, prerenderFrame, c
             window.alert('Please switch tabs to reactivate the PayPal window');
         } else if (isFirefox()) {
             // eslint-disable-next-line no-alert
-            window.alert('Select "Window" in your toolbar to find "Log in to your PayPal account');
+            window.alert('Don\'t see the popup window?\n\nSelect "Window" in your toolbar to find "Log in to your PayPal account"');
         } else {
             focus();
         }
