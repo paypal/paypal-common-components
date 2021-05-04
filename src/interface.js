@@ -13,11 +13,9 @@ function protectedExport<T>(xport : T) : ?T {
 }
 
 export const ThreeDomainSecure = {
-    // $FlowFixMe
     __get__: () => protectedExport(getThreeDomainSecureComponent())
 };
 
 export const postRobot = {
-    // $FlowFixMe
     __get__: () => protectedExport(postRobotModule)
 };
