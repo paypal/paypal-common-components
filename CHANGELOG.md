@@ -1,3 +1,10 @@
+## <small>1.0.17 (2021-05-04)</small>
+
+* isFirefox Messaging (#19) ([c869745](http://github.paypal.com/paypal/paypal-checkout/commit/c869745)), closes [#19](http://github.paypal.com/paypal/paypal-checkout/issues/19)
+* Replace Travis CI with GitHub Actions (#16) ([e78a77c](http://github.paypal.com/paypal/paypal-checkout/commit/e78a77c)), closes [#16](http://github.paypal.com/paypal/paypal-checkout/issues/16)
+
+
+
 ## <small>1.0.16 (2020-12-16)</small>
 
 * Fix venmo spinner positioning ([9a4028e](http://github.paypal.com/paypal/paypal-checkout/commit/9a4028e))
