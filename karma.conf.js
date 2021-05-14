@@ -41,7 +41,7 @@ export default function configKarma(karma : Object) {
             'src/**/*.js':  [ 'sourcemap' ]
         },
 
-        coverageReporter = {
+        coverageReporter: {
             reporters: [
                 { type: 'lcov' }
             ]
