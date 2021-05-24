@@ -5,7 +5,7 @@
 import { node, dom } from 'jsx-pragmatic/src';
 import { create, type ZoidComponent } from 'zoid/src';
 import { inlineMemoize, noop } from 'belter/src';
-import { getSDKMeta, getClientID } from '@paypal/sdk-client/src';
+import { getSDKMeta, getClientID, getCSPNonce } from '@paypal/sdk-client/src';
 import { ZalgoPromise } from 'zalgo-promise/src';
 
 import { Overlay } from '../overlay';
@@ -23,25 +23,25 @@ export const USER_TYPE = {
 
 export type TDSProps = {|
     action : string,
-    xcomponent : string,
-    flow : string,
-    orderID : string,
-    onSuccess : (TDSResult) => void,
-    onError : (mixed) => void,
-    sdkMeta : string,
-    content? : void | {|
-        windowMessage? : string,
-        continueMessage? : string
-    |},
-    userType : ?$Values<typeof USER_TYPE>,
+        xcomponent : string,
+            flow : string,
+                orderID : string,
+                    onSuccess : (TDSResult) => void,
+                        onError : (mixed) => void,
+                            sdkMeta : string,
+                                content ? : void | {|
+                                    windowMessage ? : string,
+                                continueMessage ? : string
+                                    |},
+userType : ? $Values<typeof USER_TYPE>,
     nonce : string
-|};
+        |};
 
 export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
     return inlineMemoize(getThreeDomainSecureComponent, () => {
         const component = create({
-            tag:               'three-domain-secure',
-            url:               getThreeDomainSecureUrl,
+            tag: 'three-domain-secure',
+            url: getThreeDomainSecureUrl,
 
             attributes: {
                 iframe: {
@@ -119,8 +119,9 @@ export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
                     required: false
                 },
                 nonce: {
-                    type:     'string',
-                    required: true
+                    type:    'string',
+                    default: getCSPNonce
+
                 }
             }
         });
