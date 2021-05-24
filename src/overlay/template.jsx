@@ -23,7 +23,7 @@ export type OverlayProps = {|
     |},
     autoResize? : boolean,
     hideCloseButton? : boolean,
-    nonce : string
+    nonce? : string
 |};
 
 export function Overlay({ context, close, focus, event, frame, prerenderFrame, content = {}, autoResize, hideCloseButton, nonce } : OverlayProps) : ElementNode {

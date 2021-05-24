@@ -34,7 +34,7 @@ export type TDSProps = {|
         continueMessage? : string
     |},
     userType : ?$Values<typeof USER_TYPE>,
-    nonce : string
+    nonce? : string
 |};
 
 export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
@@ -119,7 +119,8 @@ export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
                     required: false
                 },
                 nonce: {
-                    type:    'string'
+                    type:     'string',
+                    required: false
                 }
             }
         });
