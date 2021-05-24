@@ -22,11 +22,11 @@ export type OverlayProps = {|
         continueMessage? : string
     |},
     autoResize? : boolean,
-    hideCloseButton? : boolean
+    hideCloseButton? : boolean,
+    nonce : string
 |};
 
-export function Overlay({ context, close, focus, event, frame, prerenderFrame, content = {}, autoResize, hideCloseButton } : OverlayProps) : ElementNode {
-
+export function Overlay({ context, close, focus, event, frame, prerenderFrame, content = {}, autoResize, hideCloseButton, nonce } : OverlayProps) : ElementNode {
     const uid = `paypal-overlay-${ uniqueID() }`;
 
     function closeCheckout(e) {
@@ -113,8 +113,7 @@ export function Overlay({ context, close, focus, event, frame, prerenderFrame, c
 
     return (
         <div id={ uid } onRender={ setupAnimations('container') } class="paypal-checkout-sandbox">
-            <style>{ getSandboxStyle({ uid }) }</style>
-
+            <style nonce={ nonce }>{ getSandboxStyle({ uid }) }</style>
             <iframe title="PayPal Checkout Overlay" name={ `__paypal_checkout_sandbox_${ uid }__` } scrolling="no" class="paypal-checkout-sandbox-iframe">
                 <html>
                     <body>
@@ -142,7 +141,7 @@ export function Overlay({ context, close, focus, event, frame, prerenderFrame, c
                                 { outlet }
                             </div>
 
-                            <style>{ getContainerStyle({ uid }) }</style>
+                            <style nonce={ nonce }>{ getContainerStyle({ uid }) }</style>
                         </div>
                     </body>
                 </html>

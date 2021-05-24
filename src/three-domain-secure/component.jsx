@@ -33,7 +33,8 @@ export type TDSProps = {|
         windowMessage? : string,
         continueMessage? : string
     |},
-    userType : ?$Values<typeof USER_TYPE>
+    userType : ?$Values<typeof USER_TYPE>,
+    nonce : string
 |};
 
 export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
@@ -58,6 +59,7 @@ export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
                         frame={ frame }
                         prerenderFrame={ prerenderFrame }
                         content={ props.content }
+                        nonce={ props.nonce }
                     />
                 ).render(dom({ doc }));
             },
@@ -115,6 +117,9 @@ export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
                 userType: {
                     type:     'string',
                     required: false
+                },
+                nonce: {
+                    type:    'string'
                 }
             }
         });
