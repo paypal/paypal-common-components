@@ -23,19 +23,19 @@ export const USER_TYPE = {
 
 export type TDSProps = {|
     action : string,
-        xcomponent : string,
-            flow : string,
-                orderID : string,
-                    onSuccess : (TDSResult) => void,
-                        onError : (mixed) => void,
-                            sdkMeta : string,
-                                content ? : void | {|
-                                    windowMessage ? : string,
-                                continueMessage ? : string
-                                    |},
-userType : ? $Values<typeof USER_TYPE>,
+    xcomponent : string,
+    flow : string,
+    orderID : string,
+    onSuccess : (TDSResult) => void,
+    onError : (mixed) => void,
+    sdkMeta : string,
+    content ? : void | {|
+        windowMessage ? : string,
+        continueMessage ? : string
+    |},
+    userType : ? $Values<typeof USER_TYPE>,
     nonce : string
-        |};
+|};
 
 export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
     return inlineMemoize(getThreeDomainSecureComponent, () => {
