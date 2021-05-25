@@ -1,3 +1,20 @@
+## <small>1.0.18 (2021-05-25)</small>
+
+* Add nonce prop to Overlay component (#23) ([c313019](http://github.paypal.com/paypal/paypal-checkout/commit/c313019)), closes [#23](http://github.paypal.com/paypal/paypal-checkout/issues/23)
+* Add VenmoSpinnerPage ([f196f76](http://github.paypal.com/paypal/paypal-checkout/commit/f196f76))
+* Export granular spinners ([59e0a16](http://github.paypal.com/paypal/paypal-checkout/commit/59e0a16))
+* Fix sdk test globals ([ebfb0d6](http://github.paypal.com/paypal/paypal-checkout/commit/ebfb0d6))
+* Fix venmo spinner positioning ([9a4028e](http://github.paypal.com/paypal/paypal-checkout/commit/9a4028e))
+* isFirefox Messaging (#19) ([c869745](http://github.paypal.com/paypal/paypal-checkout/commit/c869745)), closes [#19](http://github.paypal.com/paypal/paypal-checkout/issues/19)
+* Lock flow version ([724b0c0](http://github.paypal.com/paypal/paypal-checkout/commit/724b0c0))
+* Replace Travis CI with GitHub Actions (#16) ([e78a77c](http://github.paypal.com/paypal/paypal-checkout/commit/e78a77c)), closes [#16](http://github.paypal.com/paypal/paypal-checkout/issues/16)
+* chore(release): 1.0.14 :tada: ([f6387af](http://github.paypal.com/paypal/paypal-checkout/commit/f6387af))
+* chore(release): 1.0.15 :tada: ([a73fc5a](http://github.paypal.com/paypal/paypal-checkout/commit/a73fc5a))
+* chore(release): 1.0.16 :tada: ([f5a51a6](http://github.paypal.com/paypal/paypal-checkout/commit/f5a51a6))
+* chore(release): 1.0.17 :tada: ([acf4e7b](http://github.paypal.com/paypal/paypal-checkout/commit/acf4e7b))
+
+
+
 ## <small>1.0.17 (2021-05-04)</small>
 
 * isFirefox Messaging (#19) ([c869745](http://github.paypal.com/paypal/paypal-checkout/commit/c869745)), closes [#19](http://github.paypal.com/paypal/paypal-checkout/issues/19)
