@@ -5,7 +5,7 @@
 import { node, dom } from 'jsx-pragmatic/src';
 import { create, type ZoidComponent } from 'zoid/src';
 import { inlineMemoize, noop } from 'belter/src';
-import { getSDKMeta, getClientID } from '@paypal/sdk-client/src';
+import { getSDKMeta, getClientID, getCSPNonce } from '@paypal/sdk-client/src';
 import { ZalgoPromise } from 'zalgo-promise/src';
 
 import { Overlay } from '../overlay';
@@ -33,14 +33,15 @@ export type TDSProps = {|
         windowMessage? : string,
         continueMessage? : string
     |},
-    userType : ?$Values<typeof USER_TYPE>
+    userType : ?$Values<typeof USER_TYPE>,
+    nonce : string
 |};
 
 export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
     return inlineMemoize(getThreeDomainSecureComponent, () => {
         const component = create({
-            tag:               'three-domain-secure',
-            url:               getThreeDomainSecureUrl,
+            tag: 'three-domain-secure',
+            url: getThreeDomainSecureUrl,
 
             attributes: {
                 iframe: {
@@ -58,6 +59,7 @@ export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
                         frame={ frame }
                         prerenderFrame={ prerenderFrame }
                         content={ props.content }
+                        nonce={ props.nonce }
                     />
                 ).render(dom({ doc }));
             },
@@ -115,6 +117,11 @@ export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
                 userType: {
                     type:     'string',
                     required: false
+                },
+                nonce: {
+                    type:    'string',
+                    default: getCSPNonce
+
                 }
             }
         });
