@@ -64,7 +64,7 @@
     "mocketeer": "^0.3.0",
     "pixelmatch": "^4.0.2",
     "pngjs": "^3.3.0",
-    "serve": "^10.1.2",
+    "serve": "^11.0.0",
     "sync-browser-mocks": "^2.0.0"
   },
   "dependencies": {
