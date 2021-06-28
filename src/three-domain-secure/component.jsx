@@ -95,12 +95,14 @@ export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
                     type:     'function',
                     alias:    'onContingencyResult',
                     decorate: ({ value, onError }) => {
+                        // Helio's 3DS SDK sending "result" object as {success: false}
+                        // for 3DS fail cases.
                         return (err, result) => {
-                            if (err) {
+                            if (err || !result.success) {
                                 return onError(err);
                             }
 
-                            return value(result);
+                            return value(true);
                         };
                     }
                 },
