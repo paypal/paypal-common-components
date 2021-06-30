@@ -7,7 +7,7 @@
     "lint": "eslint --ext .js --ext .jsx src/ test/ *.js",
     "flow-typed": "rm -rf flow-typed && flow-typed install",
     "flow": "flow",
-    "karma": "cross-env NODE_ENV=test babel-node $(npm bin)/karma start",
+    "karma": "cross-env NODE_ENV=test babel-node $(npm bin)/karma start --debug --browsers Safari",
     "test": "npm run lint && npm run flow-typed && npm run flow && npm run karma",
     "build": "npm run test && npm run webpack",
     "release": "./scripts/publish.sh",
