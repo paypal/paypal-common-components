@@ -1,6 +1,5 @@
 /* @flow */
 /** @jsx node */
 
-const result = (window.xprops && window.xprops.getParent() && window.xprops.getParent().contingencyResult) || { success: true };
-console.log(`RESULT: ${ JSON.stringify(result) }`);
+const result = window.xprops.getParent().contingencyResult || { success: true };
 window.xprops.onContingencyResult(null, result);
