@@ -1,3 +1,11 @@
+## <small>1.0.19 (2021-06-30)</small>
+
+* Fix Build (#28) ([05c6f22](http://github.paypal.com/paypal/paypal-checkout/commit/05c6f22)), closes [#28](http://github.paypal.com/paypal/paypal-checkout/issues/28)
+* Fix code coverage badge (#22) ([ac8f6fd](http://github.paypal.com/paypal/paypal-checkout/commit/ac8f6fd)), closes [#22](http://github.paypal.com/paypal/paypal-checkout/issues/22)
+* Handle Inline Guest Failure Cases (#27) ([3d54b03](http://github.paypal.com/paypal/paypal-checkout/commit/3d54b03)), closes [#27](http://github.paypal.com/paypal/paypal-checkout/issues/27)
+
+
+
 ## <small>1.0.18 (2021-05-25)</small>
 
 * Add nonce prop to Overlay component (#23) ([c313019](http://github.paypal.com/paypal/paypal-checkout/commit/c313019)), closes [#23](http://github.paypal.com/paypal/paypal-checkout/issues/23)
