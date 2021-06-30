@@ -18,4 +18,21 @@ describe(`paypal 3ds component happy path`, () => {
             }).render('body');
         });
     });
+
+    it('should not render the 3ds component', () => {
+        return wrapPromise(({ expect, avoid }) => {
+            const nonce = '12345';
+            window.contingencyResult = {
+                success: false
+            };
+            return window.paypal.ThreeDomainSecure({
+                createOrder: () => 'XXXXXXXXXXXXXXXXX',
+                onSuccess:   avoid('onSuccess'),
+                onCancel:    avoid('onCancel'),
+                onError:     expect('onError'),
+                nonce
+
+            }).render('body');
+        });
+    });
 });
