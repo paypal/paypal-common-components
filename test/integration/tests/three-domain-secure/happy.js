@@ -8,9 +8,7 @@ describe(`paypal 3ds component happy path`, () => {
     it('should render the 3ds component', () => {
         return wrapPromise(({ expect, avoid }) => {
             const nonce = '12345';
-            window.contingencyResult = {
-                success: true
-            };
+
             return window.paypal.ThreeDomainSecure({
                 createOrder: () => 'XXXXXXXXXXXXXXXXX',
                 onSuccess:   expect('onSuccess'),

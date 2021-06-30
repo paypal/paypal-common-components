@@ -39,6 +39,7 @@ export const WEBPACK_CONFIG_TEST : WebpackConfig = getWebpackConfig({
     minify: true,
 
     vars: {
+        __TEST__: true,
         ...globals,
         ...testGlobals
     }
