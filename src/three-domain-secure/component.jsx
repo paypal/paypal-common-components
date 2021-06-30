@@ -96,11 +96,11 @@ export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
                     alias:    'onContingencyResult',
                     decorate: ({ value, onError }) => {
                         return (err, result) => {
-                            if (err) {
+                            if (err || (result && !result.success)) {
                                 return onError(err);
                             }
 
-                            return value(result);
+                            return value(true);
                         };
                     }
                 },
