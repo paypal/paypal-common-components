@@ -62,7 +62,7 @@
     "memory-fs": "^0.4.1",
     "mocha": "^4",
     "mocketeer": "^0.3.0",
-    "pixelmatch": "^4.0.2",
+    "pixelmatch": "^5.0.0",
     "pngjs": "^3.3.0",
     "serve": "^10.1.2",
     "sync-browser-mocks": "^2.0.0"
