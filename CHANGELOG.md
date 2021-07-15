@@ -1,3 +1,9 @@
+## <small>1.0.20 (2021-07-15)</small>
+
+* Upgrade flow to 135 ([e110000](https://github.paypal.com/paypal/paypal-checkout/commit/e110000))
+
+
+
 ## <small>1.0.19 (2021-06-30)</small>
 
 * Fix Build (#28) ([05c6f22](http://github.paypal.com/paypal/paypal-checkout/commit/05c6f22)), closes [#28](http://github.paypal.com/paypal/paypal-checkout/issues/28)
