@@ -37,7 +37,9 @@ export type TDSProps = {|
     nonce : string
 |};
 
-export function getThreeDomainSecureComponent() : ZoidComponent<TDSProps> {
+export type TDSComponent = ZoidComponent<TDSProps>;
+
+export function getThreeDomainSecureComponent() : TDSComponent {
     return inlineMemoize(getThreeDomainSecureComponent, () => {
         const component = create({
             tag: 'three-domain-secure',
