@@ -1,3 +1,10 @@
+## <small>1.0.21 (2021-09-16)</small>
+
+* Fix close button styling ([8e032e2](http://github.paypal.com/paypal/paypal-checkout/commit/8e032e2))
+* Flow Update ([2d7bd27](http://github.paypal.com/paypal/paypal-checkout/commit/2d7bd27))
+
+
+
 ## <small>1.0.20 (2021-07-15)</small>
 
 * Upgrade flow to 135 ([e110000](https://github.paypal.com/paypal/paypal-checkout/commit/e110000))
