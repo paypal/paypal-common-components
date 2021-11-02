@@ -12,7 +12,7 @@ import { Overlay } from '../overlay';
 import { getThreeDomainSecureUrl } from '../config';
 
 export type TDSResult = {|
-    
+
 |};
 
 export const USER_TYPE = {
@@ -102,7 +102,7 @@ export function getThreeDomainSecureComponent() : TDSComponent {
                                 return onError(err);
                             }
 
-                            return value(true);
+                            return value(err, result);
                         };
                     }
                 },
