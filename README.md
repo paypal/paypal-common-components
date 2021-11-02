@@ -21,8 +21,6 @@ Common components for the PayPal JavaScript SDK
 
 Please feel free to follow the [Contribution Guidelines](./CONTRIBUTING.md) to contribute to this repository. PRs are welcome, but for major changes please raise an issue first.
 
-Test
-
 ### Quick Setup
 
 Set up your env:
