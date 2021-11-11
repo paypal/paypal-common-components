@@ -5,9 +5,8 @@ const globals = require('./globals');
 
 module.exports = {
     common: {
-        automatic:       true,
-        entry:           './src/interface',
-        staticNamespace: '__paypal_common__',
+        automatic: true,
+        entry:     './src/interface',
         globals
     }
 };
