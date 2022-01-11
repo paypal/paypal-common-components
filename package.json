@@ -68,9 +68,9 @@
     "sync-browser-mocks": "^2.0.0"
   },
   "dependencies": {
-    "@paypal/sdk-client": "^4.0.0",
-    "@paypal/sdk-constants": "^1.0.1",
-    "@paypal/sdk-logos": "^1.0.1",
+    "@paypal/sdk-client": "^4.0.162",
+    "@paypal/sdk-constants": "^1.0.114",
+    "@paypal/sdk-logos": "^1.0.41",
     "belter": "^1.0.2",
     "jsx-pragmatic": "^2",
     "post-robot": "^10.0.0",

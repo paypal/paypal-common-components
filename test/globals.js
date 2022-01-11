@@ -70,6 +70,12 @@ export const fundingEligibility = {
     },
     mercadopago: {
         eligible: false
+    },
+    boleto: {
+        eligible: false
+    },
+    multiblanco: {
+        eligible: false
     }
 };
 
