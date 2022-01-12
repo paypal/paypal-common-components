@@ -32,4 +32,17 @@ describe(`paypal spinner component happy path`, () => {
             throw new Error(`Expected spinner to have child`);
         }
     });
+
+    it('should render the spinner component with nonce', () => {
+        const nonce = '12345';
+        const spinnerPage = (
+            <SpinnerPage nonce={ nonce } />
+        );
+
+        const domNode = spinnerPage.render(dom());
+
+        if (domNode.ownerDocument !== document) {
+            throw new Error(`Expected spinner component to be rendered to current dom`);
+        }
+    });
 });

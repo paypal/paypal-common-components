@@ -1,7 +1,5 @@
-/* @flow */
-/* eslint import/no-commonjs: off */
+/* eslint import/no-commonjs: off, flowtype/require-valid-file-annotation: off */
 
-// $FlowFixMe
 module.exports = {
 
 };

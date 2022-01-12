@@ -4,6 +4,7 @@
 .*/node_modules/npm
 .*/node_modules/jsonlint
 .*/node_modules/**/test
+.*/node_modules/resolve
 .*/dist/module
 [include]
 [libs]
@@ -17,6 +18,7 @@ test/declarations.js
 [options]
 module.name_mapper='^src\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 experimental.const_params=false
+esproposal.optional_chaining=enable
 esproposal.export_star_as=enable
 esproposal.decorators=ignore
 include_warnings=true

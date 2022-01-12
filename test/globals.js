@@ -73,6 +73,12 @@ export const fundingEligibility = {
     },
     verkkopankki: {
         eligible: false
+    },
+    boleto: {
+        eligible: false
+    },
+    multiblanco: {
+        eligible: false
     }
 };
 
