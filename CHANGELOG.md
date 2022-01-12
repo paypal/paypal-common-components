@@ -1,3 +1,9 @@
+## <small>1.0.22 (2022-01-12)</small>
+
+* Add github action for publishing (#39) ([7a02940](https://github.paypal.com/paypal/paypal-checkout/commit/7a02940)), closes [#39](https://github.paypal.com/paypal/paypal-checkout/issues/39)
+
+
+
 ## <small>1.0.21 (2021-09-16)</small>
 
 * Fix close button styling ([8e032e2](http://github.paypal.com/paypal/paypal-checkout/commit/8e032e2))
