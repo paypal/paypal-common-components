@@ -1,3 +1,9 @@
+## <small>1.0.23 (2022-01-12)</small>
+
+* Use https for npm registry ([a038fcf](https://github.paypal.com/paypal/paypal-checkout/commit/a038fcf))
+
+
+
 ## <small>1.0.22 (2022-01-12)</small>
 
 * Add github action for publishing (#39) ([7a02940](https://github.paypal.com/paypal/paypal-checkout/commit/7a02940)), closes [#39](https://github.paypal.com/paypal/paypal-checkout/issues/39)
