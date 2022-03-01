@@ -2,7 +2,7 @@
 
 import { isPayPalDomain } from '@paypal/sdk-client/src';
 // eslint-disable-next-line import/no-namespace
-import * as postRobotModule from 'post-robot/src';
+import * as postRobotModule from '@krakenjs/post-robot/src';
 
 import { getThreeDomainSecureComponent, type TDSComponent } from './three-domain-secure';
 

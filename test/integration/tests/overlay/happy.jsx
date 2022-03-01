@@ -1,8 +1,8 @@
 /* @flow */
 /** @jsx node */
 
-import { node, dom } from 'jsx-pragmatic/src';
-import { ZalgoPromise } from 'zalgo-promise/src';
+import { node, dom } from '@krakenjs/jsx-pragmatic/src';
+import { ZalgoPromise } from '@krakenjs/zalgo-promise/src';
 
 import { Overlay } from '../../../../src/overlay';
 
@@ -49,7 +49,7 @@ describe(`paypal overlay component happy path`, () => {
             nonce={ nonce }
             fullScreen={ fullScreen }
         />);
-    
+
     const addOverlayToDOM = (child) => {
         // $FlowFixMe
         document.body.appendChild(child);
@@ -124,7 +124,7 @@ describe(`paypal overlay component happy path`, () => {
     it('should be able to close the overlay using close button', () => {
         const domNode = getOverlay().render(dom());
         addOverlayToDOM(domNode);
-        
+
         getOverlayContainer(domNode).querySelector('.paypal-checkout-close').click();
 
         if (getOverlayContainer(domNode).querySelector('.paypal-checkout-sandbox')) {
@@ -135,7 +135,7 @@ describe(`paypal overlay component happy path`, () => {
     it('should be able to focus on the overlay by clicking on it', () => {
         const domNode = getOverlay().render(dom());
         addOverlayToDOM(domNode);
-        
+
         getOverlayContainer(domNode).querySelector('.paypal-checkout-overlay').click();
 
         if (!focussed) {

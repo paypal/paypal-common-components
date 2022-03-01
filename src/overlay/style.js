@@ -1,6 +1,6 @@
 /* @flow */
 
-import { CONTEXT } from 'zoid/src';
+import { CONTEXT } from '@krakenjs/zoid/src';
 
 export const CLASS = {
     OUTLET:          'outlet',

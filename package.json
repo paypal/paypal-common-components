@@ -68,13 +68,13 @@
     "sync-browser-mocks": "^2.0.0"
   },
   "dependencies": {
-    "@paypal/sdk-client": "^4.0.162",
+    "@paypal/sdk-client": "^4.0.166",
     "@paypal/sdk-constants": "^1.0.114",
-    "@paypal/sdk-logos": "^1.0.41",
-    "belter": "^1.0.2",
-    "jsx-pragmatic": "^2",
-    "post-robot": "^10.0.0",
-    "zalgo-promise": "^1.0.10",
-    "zoid": "^9.0.82"
+    "@paypal/sdk-logos": "^1.0.45",
+    "@krakenjs/belter": "^2.0.0",
+    "@krakenjs/jsx-pragmatic": "^3.0.0",
+    "@krakenjs/post-robot": "^11.0.0",
+    "@krakenjs/zalgo-promise": "^2.0.0",
+    "@krakenjs/zoid": "^10.0.0"
   }
 }

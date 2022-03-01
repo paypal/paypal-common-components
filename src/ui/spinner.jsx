@@ -1,7 +1,7 @@
 /* @flow */
 /** @jsx node */
 
-import { node, type ElementNode, type ChildrenType } from 'jsx-pragmatic/src';
+import { node, type ElementNode, type ChildrenType } from '@krakenjs/jsx-pragmatic/src';
 
 const spinnerStyle = `
 

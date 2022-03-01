@@ -1,7 +1,7 @@
 /* @flow */
 /* eslint max-lines: 0 */
 
-import { wrapPromise } from 'belter/src';
+import { wrapPromise } from '@krakenjs/belter/src';
 
 describe(`paypal 3ds component happy path`, () => {
 
