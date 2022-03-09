@@ -77,7 +77,7 @@ window.__TEST_FUNDING_ELIGIBILITY__ = {
     boleto: {
         eligible: false
     },
-    multiblanco: {
+    multibanco: {
         eligible: false
     }
 };
