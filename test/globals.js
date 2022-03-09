@@ -77,7 +77,7 @@ export const fundingEligibility = {
     boleto: {
         eligible: false
     },
-    multiblanco: {
+    multibanco: {
         eligible: false
     }
 };
