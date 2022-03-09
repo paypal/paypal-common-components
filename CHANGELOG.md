@@ -1,3 +1,9 @@
+## <small>1.0.24 (2022-03-09)</small>
+
+* chore: rename "multibanco" apm (#43) ([77bc02a](https://github.paypal.com/paypal/paypal-checkout/commit/77bc02a)), closes [#43](https://github.paypal.com/paypal/paypal-checkout/issues/43)
+
+
+
 ## <small>1.0.23 (2022-01-12)</small>
 
 * Use https for npm registry ([a038fcf](https://github.paypal.com/paypal/paypal-checkout/commit/a038fcf))
