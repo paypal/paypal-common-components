@@ -23,10 +23,11 @@ export type OverlayProps = {|
     |},
     autoResize? : boolean,
     hideCloseButton? : boolean,
-    nonce : string
+    nonce : string,
+    fullScreen? : boolean
 |};
 
-export function Overlay({ context, close, focus, event, frame, prerenderFrame, content = {}, autoResize, hideCloseButton, nonce } : OverlayProps) : ElementNode {
+export function Overlay({ context, close, focus, event, frame, prerenderFrame, content = {}, autoResize, hideCloseButton, nonce, fullScreen = false } : OverlayProps) : ElementNode {
     const uid = `paypal-overlay-${ uniqueID() }`;
 
     function closeCheckout(e) {
@@ -119,25 +120,25 @@ export function Overlay({ context, close, focus, event, frame, prerenderFrame, c
                     <body>
                         <div id={ uid } onClick={ focusCheckout } class={ `paypal-overlay-context-${ context } paypal-checkout-overlay` }>
                             { !hideCloseButton && <a href='#' class="paypal-checkout-close" onClick={ closeCheckout } aria-label="close" role="button" /> }
-                            <div class="paypal-checkout-modal">
-                                <div class="paypal-checkout-logo">
-                                    <PPLogo logoColor={ LOGO_COLOR.WHITE } />
-                                    <PayPalLogo logoColor={ LOGO_COLOR.WHITE } />
-                                </div>
-                                {content.windowMessage &&
-                                    <div class="paypal-checkout-message">
-                                        {content.windowMessage}
-                                    </div>}
-                                {content.continueMessage &&
-                                    <div class="paypal-checkout-continue">
-                                        <a onClick={ focus } href='#'>{content.continueMessage}</a>
-                                    </div>}
-                                <div class="paypal-checkout-loader">
-                                    <div class="paypal-spinner" />
-                                </div>
-                            </div>
-
-                            <div class="paypal-checkout-iframe-container">
+                            { !fullScreen &&
+                                <div class="paypal-checkout-modal">
+                                    <div class="paypal-checkout-logo">
+                                        <PPLogo logoColor={ LOGO_COLOR.WHITE } />
+                                        <PayPalLogo logoColor={ LOGO_COLOR.WHITE } />
+                                    </div>
+                                    {content.windowMessage &&
+                                        <div class="paypal-checkout-message">
+                                            {content.windowMessage}
+                                        </div>}
+                                    {content.continueMessage &&
+                                        <div class="paypal-checkout-continue">
+                                            <a onClick={ focus } href='#'>{content.continueMessage}</a>
+                                        </div>}
+                                    <div class="paypal-checkout-loader">
+                                        <div class="paypal-spinner" />
+                                    </div>
+                                </div>}
+                            <div class={ fullScreen ? 'paypal-checkout-iframe-container-full' : 'paypal-checkout-iframe-container' }>
                                 { outlet }
                             </div>
 

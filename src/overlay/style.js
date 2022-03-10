@@ -212,11 +212,23 @@ export function getContainerStyle({ uid } : {| uid : string |}) : string {
             max-width: 95vw;
         }
 
+        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full,
+        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full > .${ CLASS.OUTLET },
+        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full > .${ CLASS.OUTLET } > iframe {
+            height: 100vh;
+            width: 100vw;
+        }
+
         @media screen and (max-width: 470px) {
             #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container,
             #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container > .${ CLASS.OUTLET },
             #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container > .${ CLASS.OUTLET } > iframe {
                 max-height: 85vh;
+            }
+            #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full,
+            #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full > .${ CLASS.OUTLET },
+            #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full > .${ CLASS.OUTLET } > iframe {
+                height: 100vh;
             }
         }
 
