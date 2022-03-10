@@ -10,8 +10,13 @@ describe(`paypal overlay component happy path`, () => {
     const cancel = () => undefined;
 
     let context = 'popup';
+    let focussed;
+
     const close = () => ZalgoPromise.resolve();
-    const focus = () => ZalgoPromise.resolve();
+    const focus = () => {
+        focussed = true;
+        return ZalgoPromise.resolve();
+    };
     const event = {
         on:          () => ({ cancel }),
         once:        () => ({ cancel }),
@@ -112,5 +117,31 @@ describe(`paypal overlay component happy path`, () => {
         if (getOverlayContainer(domNode).querySelector('.paypal-checkout-close')) {
             throw new Error(`Expected close button to be hidden`);
         }
+
+        hideCloseButton = false; // reset
+    });
+
+    it('should be able to close the overlay using close button', () => {
+        const domNode = getOverlay().render(dom());
+        addOverlayToDOM(domNode);
+        
+        getOverlayContainer(domNode).querySelector('.paypal-checkout-close').click();
+
+        if (getOverlayContainer(domNode).querySelector('.paypal-checkout-sandbox')) {
+            throw new Error(`Expected overlay to be removed after closing`);
+        }
+    });
+
+    it('should be able to focus on the overlay by clicking on it', () => {
+        const domNode = getOverlay().render(dom());
+        addOverlayToDOM(domNode);
+        
+        getOverlayContainer(domNode).querySelector('.paypal-checkout-overlay').click();
+
+        if (!focussed) {
+            throw new Error(`Expected overlay to be focussed after clicking on it`);
+        }
+
+        focussed = null; // reset
     });
 });
