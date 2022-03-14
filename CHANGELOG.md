@@ -1,3 +1,9 @@
+## <small>1.0.25 (2022-03-14)</small>
+
+* Add fullScreen prop (#44) ([b64e595](https://github.paypal.com/paypal/paypal-checkout/commit/b64e595)), closes [#44](https://github.paypal.com/paypal/paypal-checkout/issues/44)
+
+
+
 ## <small>1.0.24 (2022-03-09)</small>
 
 * chore: rename "multibanco" apm (#43) ([77bc02a](https://github.paypal.com/paypal/paypal-checkout/commit/77bc02a)), closes [#43](https://github.paypal.com/paypal/paypal-checkout/issues/43)
