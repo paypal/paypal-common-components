@@ -1,3 +1,9 @@
+## <small>1.0.26 (2022-03-25)</small>
+
+* Fullscreen Styling (#45) ([d1a0b17](https://github.paypal.com/paypal/paypal-checkout/commit/d1a0b17)), closes [#45](https://github.paypal.com/paypal/paypal-checkout/issues/45)
+
+
+
 ## <small>1.0.25 (2022-03-14)</small>
 
 * Add fullScreen prop (#44) ([b64e595](https://github.paypal.com/paypal/paypal-checkout/commit/b64e595)), closes [#44](https://github.paypal.com/paypal/paypal-checkout/issues/44)
