@@ -216,6 +216,7 @@ export function getContainerStyle({ uid } : {| uid : string |}) : string {
         #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full > .${ CLASS.OUTLET },
         #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full > .${ CLASS.OUTLET } > iframe {
             height: 100vh;
+            max-width: 100vw;
             width: 100vw;
         }
 
