@@ -2,11 +2,11 @@
 /** @jsx node */
 /* eslint max-lines: 0 */
 
-import { node, dom } from 'jsx-pragmatic/src';
-import { create, type ZoidComponent } from 'zoid/src';
-import { inlineMemoize, noop } from 'belter/src';
+import { node, dom } from '@krakenjs/jsx-pragmatic/src';
+import { create, type ZoidComponent } from '@krakenjs/zoid/src';
+import { inlineMemoize, noop } from '@krakenjs/belter/src';
 import { getSDKMeta, getClientID, getCSPNonce } from '@paypal/sdk-client/src';
-import { ZalgoPromise } from 'zalgo-promise/src';
+import { ZalgoPromise } from '@krakenjs/zalgo-promise/src';
 
 import { Overlay } from '../overlay';
 import { getThreeDomainSecureUrl } from '../config';

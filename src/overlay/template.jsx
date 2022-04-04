@@ -2,11 +2,11 @@
 /** @jsx node */
 /* eslint max-lines: off, react/jsx-max-depth: off */
 
-import { isIos, isFirefox, animate, noop, destroyElement, uniqueID, supportsPopups, type EventEmitterType, toCSS } from 'belter/src';
-import { EVENT, CONTEXT } from 'zoid/src';
-import { node, type ElementNode } from 'jsx-pragmatic/src';
+import { isIos, isFirefox, animate, noop, destroyElement, uniqueID, supportsPopups, type EventEmitterType, toCSS } from '@krakenjs/belter/src';
+import { EVENT, CONTEXT } from '@krakenjs/zoid/src';
+import { node, type ElementNode } from '@krakenjs/jsx-pragmatic/src';
 import { LOGO_COLOR, PPLogo, PayPalLogo } from '@paypal/sdk-logos/src';
-import type { ZalgoPromise } from 'zalgo-promise/src';
+import type { ZalgoPromise } from '@krakenjs/zalgo-promise/src';
 
 import { getContainerStyle, getSandboxStyle, CLASS } from './style';
 

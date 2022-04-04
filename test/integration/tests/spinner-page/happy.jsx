@@ -1,7 +1,7 @@
 /* @flow */
 /** @jsx node */
 
-import { node, dom } from 'jsx-pragmatic/src';
+import { node, dom } from '@krakenjs/jsx-pragmatic/src';
 
 import { SpinnerPage } from '../../../../src/ui';
 
