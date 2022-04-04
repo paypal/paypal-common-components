@@ -1,3 +1,9 @@
+## <small>1.0.27 (2022-04-04)</small>
+
+* chore: update packages to krakenjs scope (#42) ([3ad7ca1](https://github.paypal.com/paypal/paypal-checkout/commit/3ad7ca1)), closes [#42](https://github.paypal.com/paypal/paypal-checkout/issues/42)
+
+
+
 ## <small>1.0.26 (2022-03-25)</small>
 
 * Fullscreen Styling (#45) ([d1a0b17](https://github.paypal.com/paypal/paypal-checkout/commit/d1a0b17)), closes [#45](https://github.paypal.com/paypal/paypal-checkout/issues/45)
