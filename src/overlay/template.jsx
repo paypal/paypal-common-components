@@ -115,7 +115,7 @@ export function Overlay({ context, close, focus, event, frame, prerenderFrame, c
     return (
         <div id={ uid } onRender={ setupAnimations('container') } class="paypal-checkout-sandbox">
             <style nonce={ nonce }>{ getSandboxStyle({ uid }) }</style>
-            <iframe title="PayPal Checkout Overlay" name={ `__paypal_checkout_sandbox_${ uid }__` } scrolling="no" class="paypal-checkout-sandbox-iframe">
+            <iframe title="PayPal Checkout Overlay" name={ `__paypal_checkout_sandbox_${ uid }__` } scrolling="no" class={ `paypal-checkout-sandbox-iframe${ fullScreen ? '-full' : '' }` }>
                 <html>
                     <body>
                         <div id={ uid } onClick={ focusCheckout } class={ `paypal-overlay-context-${ context } paypal-checkout-overlay` }>

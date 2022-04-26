@@ -44,6 +44,10 @@ export function getSandboxStyle({ uid } : {| uid : string |}) : string {
             height: 100%;
         }
 
+        #${ uid }.paypal-checkout-sandbox .paypal-checkout-sandbox-iframe-full {
+            border: 0;
+        }
+
         @keyframes show-container {
             from {
                 opacity: 0;
