@@ -1,3 +1,10 @@
+## <small>1.0.28 (2022-04-26)</small>
+
+* No border for fullscreen iframe (#49) ([dec4169](https://github.paypal.com/paypal/paypal-checkout/commit/dec4169)), closes [#49](https://github.paypal.com/paypal/paypal-checkout/issues/49)
+* chore: move devDependencies to @krakenjs scope (#47) ([bfd22e6](https://github.paypal.com/paypal/paypal-checkout/commit/bfd22e6)), closes [#47](https://github.paypal.com/paypal/paypal-checkout/issues/47)
+
+
+
 ## <small>1.0.27 (2022-04-04)</small>
 
 * chore: update packages to krakenjs scope (#42) ([3ad7ca1](https://github.paypal.com/paypal/paypal-checkout/commit/3ad7ca1)), closes [#42](https://github.paypal.com/paypal/paypal-checkout/issues/42)
