@@ -1,3 +1,9 @@
+## <small>1.0.30 (2022-05-05)</small>
+
+* chore(release): 1.0.29 🎉 ([1de6927](https://github.paypal.com/paypal/paypal-checkout/commit/1de6927))
+
+
+
 ## <small>1.0.29 (2022-05-04)</small>
 
 * Fix iframe size of InlineXO (#51) ([2a611e3](https://github.paypal.com/paypal/paypal-checkout/commit/2a611e3)), closes [#51](https://github.paypal.com/paypal/paypal-checkout/issues/51)
