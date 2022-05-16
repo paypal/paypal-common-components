@@ -1,3 +1,9 @@
+## <small>1.0.31 (2022-05-16)</small>
+
+* fix: add boletobancario (#52) ([928f23a](https://github.paypal.com/paypal/paypal-checkout/commit/928f23a)), closes [#52](https://github.paypal.com/paypal/paypal-checkout/issues/52)
+
+
+
 ## <small>1.0.30 (2022-05-05)</small>
 
 * chore(release): 1.0.29 🎉 ([1de6927](https://github.paypal.com/paypal/paypal-checkout/commit/1de6927))
