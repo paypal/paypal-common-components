@@ -1,3 +1,9 @@
+## <small>1.0.32 (2022-06-16)</small>
+
+* Fix fullscreen iframe height (#54) ([9d6a3f8](https://github.paypal.com/paypal/paypal-checkout/commit/9d6a3f8)), closes [#54](https://github.paypal.com/paypal/paypal-checkout/issues/54)
+
+
+
 ## <small>1.0.31 (2022-05-16)</small>
 
 * fix: add boletobancario (#52) ([928f23a](https://github.paypal.com/paypal/paypal-checkout/commit/928f23a)), closes [#52](https://github.paypal.com/paypal/paypal-checkout/issues/52)
