@@ -1,18 +1,18 @@
 /* @flow */
 
-import { CONTEXT } from '@krakenjs/zoid/src';
+import { CONTEXT } from "@krakenjs/zoid/src";
 
 export const CLASS = {
-    OUTLET:          'outlet',
-    VISIBLE:         'visible',
-    INVISIBLE:       'invisible',
-    COMPONENT_FRAME: 'component-frame',
-    PRERENDER_FRAME: 'prerender-frame'
+  OUTLET: "outlet",
+  VISIBLE: "visible",
+  INVISIBLE: "invisible",
+  COMPONENT_FRAME: "component-frame",
+  PRERENDER_FRAME: "prerender-frame",
 };
 
-export function getSandboxStyle({ uid } : {| uid : string |}) : string {
-    return `
-        #${ uid }.paypal-checkout-sandbox {
+export function getSandboxStyle({ uid }: {| uid: string |}): string {
+  return `
+        #${uid}.paypal-checkout-sandbox {
             display: block;
             position: fixed;
             top: 0;
@@ -35,7 +35,7 @@ export function getSandboxStyle({ uid } : {| uid : string |}) : string {
             opacity: 0;
         }
 
-        #${ uid }.paypal-checkout-sandbox .paypal-checkout-sandbox-iframe {
+        #${uid}.paypal-checkout-sandbox .paypal-checkout-sandbox-iframe {
             display: block;
             position: absolute;
             top: 0;
@@ -44,7 +44,7 @@ export function getSandboxStyle({ uid } : {| uid : string |}) : string {
             height: 100%;
         }
 
-        #${ uid }.paypal-checkout-sandbox .paypal-checkout-sandbox-iframe-full {
+        #${uid}.paypal-checkout-sandbox .paypal-checkout-sandbox-iframe-full {
             border: 0;
             height: 100%;
             width: 100vw;
@@ -76,9 +76,9 @@ export function getSandboxStyle({ uid } : {| uid : string |}) : string {
     `;
 }
 
-export function getContainerStyle({ uid } : {| uid : string |}) : string {
-    return `
-        #${ uid } {
+export function getContainerStyle({ uid }: {| uid: string |}): string {
+  return `
+        #${uid} {
             position: absolute;
             z-index: 2147483647;
             top: 0;
@@ -95,24 +95,24 @@ export function getContainerStyle({ uid } : {| uid : string |}) : string {
             color: #fff;
         }
 
-        #${ uid } a {
+        #${uid} a {
             color: #fff;
         }
 
-        #${ uid } .paypal-checkout-close:before,
-        #${ uid } .paypal-checkout-close:after {
+        #${uid} .paypal-checkout-close:before,
+        #${uid} .paypal-checkout-close:after {
             background-color: #fff;
         }
 
-        #${ uid }.paypal-overlay-context-${ CONTEXT.POPUP } {
+        #${uid}.paypal-overlay-context-${CONTEXT.POPUP} {
             cursor: pointer;
         }
 
-        #${ uid } a {
+        #${uid} a {
             text-decoration: none;
         }
 
-        #${ uid } .paypal-checkout-modal {
+        #${uid} .paypal-checkout-modal {
             font-family: "HelveticaNeue", "HelveticaNeue-Light", "Helvetica Neue Light", helvetica, arial, sans-serif;
             font-size: 14px;
             text-align: center;
@@ -127,7 +127,7 @@ export function getContainerStyle({ uid } : {| uid : string |}) : string {
             text-align: center;
         }
 
-        #${ uid }.paypal-overlay-loading .paypal-checkout-message, #${ uid }.paypal-overlay-loading .paypal-checkout-continue {
+        #${uid}.paypal-overlay-loading .paypal-checkout-message, #${uid}.paypal-overlay-loading .paypal-checkout-continue {
             display: none;
         }
 
@@ -135,46 +135,46 @@ export function getContainerStyle({ uid } : {| uid : string |}) : string {
             display: none;
         }
 
-        #${ uid }.paypal-overlay-loading .paypal-checkout-loader {
+        #${uid}.paypal-overlay-loading .paypal-checkout-loader {
             display: block;
         }
 
-        #${ uid } .paypal-checkout-modal .paypal-checkout-logo {
+        #${uid} .paypal-checkout-modal .paypal-checkout-logo {
             cursor: pointer;
             margin-bottom: 30px;
             display: inline-block;
         }
 
-        #${ uid } .paypal-checkout-modal .paypal-checkout-logo img {
+        #${uid} .paypal-checkout-modal .paypal-checkout-logo img {
             height: 36px;
         }
 
-        #${ uid } .paypal-checkout-modal .paypal-checkout-logo img.paypal-checkout-logo-pp {
+        #${uid} .paypal-checkout-modal .paypal-checkout-logo img.paypal-checkout-logo-pp {
             margin-right: 10px;
         }
 
-        #${ uid } .paypal-checkout-modal .paypal-checkout-message {
+        #${uid} .paypal-checkout-modal .paypal-checkout-message {
             font-size: 15px;
             line-height: 1.5;
             padding: 10px 0;
         }
 
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-message, #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-continue {
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-message, #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-continue {
             display: none;
         }
 
-        #${ uid } .paypal-checkout-modal .paypal-checkout-continue {
+        #${uid} .paypal-checkout-modal .paypal-checkout-continue {
             font-size: 15px;
             line-height: 1.35;
             padding: 10px 0;
             font-weight: bold;
         }
 
-        #${ uid } .paypal-checkout-modal .paypal-checkout-continue a {
+        #${uid} .paypal-checkout-modal .paypal-checkout-continue a {
             border-bottom: 1px solid white;
         }
 
-        #${ uid } .paypal-checkout-close {
+        #${uid} .paypal-checkout-close {
             position: absolute;
             right: 16px;
             top: 16px;
@@ -183,15 +183,15 @@ export function getContainerStyle({ uid } : {| uid : string |}) : string {
             opacity: 0.6;
         }
 
-        #${ uid }.paypal-overlay-loading .paypal-checkout-close {
+        #${uid}.paypal-overlay-loading .paypal-checkout-close {
             display: none;
         }
 
-        #${ uid } .paypal-checkout-close:hover {
+        #${uid} .paypal-checkout-close:hover {
             opacity: 1;
         }
 
-        #${ uid } .paypal-checkout-close:before, .paypal-checkout-close:after {
+        #${uid} .paypal-checkout-close:before, .paypal-checkout-close:after {
             position: absolute;
             left: 8px;
             content: ' ';
@@ -199,47 +199,47 @@ export function getContainerStyle({ uid } : {| uid : string |}) : string {
             width: 2px;
         }
 
-        #${ uid } .paypal-checkout-close:before {
+        #${uid} .paypal-checkout-close:before {
             transform: rotate(45deg);
         }
 
-        #${ uid } .paypal-checkout-close:after {
+        #${uid} .paypal-checkout-close:after {
             transform: rotate(-45deg);
         }
 
-        #${ uid } .paypal-checkout-iframe-container {
+        #${uid} .paypal-checkout-iframe-container {
             display: none;
         }
 
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container,
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container > .${ CLASS.OUTLET },
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container > .${ CLASS.OUTLET } > iframe {
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container,
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container > .${CLASS.OUTLET},
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container > .${CLASS.OUTLET} > iframe {
             max-height: 95vh;
             max-width: 95vw;
         }
 
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full,
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full > .${ CLASS.OUTLET },
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full > .${ CLASS.OUTLET } > iframe {
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container-full,
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container-full > .${CLASS.OUTLET},
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container-full > .${CLASS.OUTLET} > iframe {
             height: 100vh;
             max-width: 100vw;
             width: 100vw;
         }
 
         @media screen and (max-width: 470px) {
-            #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container,
-            #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container > .${ CLASS.OUTLET },
-            #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container > .${ CLASS.OUTLET } > iframe {
+            #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container,
+            #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container > .${CLASS.OUTLET},
+            #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container > .${CLASS.OUTLET} > iframe {
                 max-height: 85vh;
             }
-            #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full,
-            #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full > .${ CLASS.OUTLET },
-            #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container-full > .${ CLASS.OUTLET } > iframe {
+            #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container-full,
+            #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container-full > .${CLASS.OUTLET},
+            #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container-full > .${CLASS.OUTLET} > iframe {
                 height: 100vh;
             }
         }
 
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container {
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container {
 
             display: block;
 
@@ -257,7 +257,7 @@ export function getContainerStyle({ uid } : {| uid : string |}) : string {
             overflow: hidden;
         }
 
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .${ CLASS.OUTLET } {
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .${CLASS.OUTLET} {
 
             position: relative;
 
@@ -280,35 +280,35 @@ export function getContainerStyle({ uid } : {| uid : string |}) : string {
             -webkit-overflow-scrolling: touch;
         }
 
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .${ CLASS.OUTLET } > iframe {
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .${CLASS.OUTLET} > iframe {
             position: absolute;
             top: 0;
             left: 0;
             transition: opacity .4s ease-in-out;
         }
 
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .${ CLASS.OUTLET } > iframe.${ CLASS.COMPONENT_FRAME } {
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .${CLASS.OUTLET} > iframe.${CLASS.COMPONENT_FRAME} {
             z-index: 100;
         }
 
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .${ CLASS.OUTLET } > iframe.${ CLASS.PRERENDER_FRAME } {
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .${CLASS.OUTLET} > iframe.${CLASS.PRERENDER_FRAME} {
             z-index: 200;
         }
 
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .${ CLASS.OUTLET } > iframe.${ CLASS.VISIBLE } {
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .${CLASS.OUTLET} > iframe.${CLASS.VISIBLE} {
             opacity: 1;
             z-index: 200;
         }
 
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .${ CLASS.OUTLET } > iframe.${ CLASS.INVISIBLE } {
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .${CLASS.OUTLET} > iframe.${CLASS.INVISIBLE} {
             opacity: 0;
             z-index: 100;
         }
 
         @media screen and (max-width: 470px) {
 
-            #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .paypal-checkout-iframe-container,
-            #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .${ CLASS.OUTLET } {
+            #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-iframe-container,
+            #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .${CLASS.OUTLET} {
                 min-width: 100%;
                 min-width: calc(100% - 20px);
 
@@ -317,7 +317,7 @@ export function getContainerStyle({ uid } : {| uid : string |}) : string {
             }
         }
 
-        #${ uid }.paypal-overlay-context-${ CONTEXT.IFRAME } .${ CLASS.OUTLET } iframe {
+        #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .${CLASS.OUTLET} iframe {
             width: 1px;
             min-width: 100%;
             height: 100%;

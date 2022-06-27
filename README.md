@@ -1,5 +1,4 @@
-PayPal Common Components
-------------------------
+## PayPal Common Components
 
 [![build status][build-badge]][build]
 [![code coverage][coverage-badge]][coverage]
@@ -42,13 +41,14 @@ npm run dev
 ```
 
 ## Test Tasks
+
 ```
 npm test
 ```
 
-| Flags  | Description |
-| ------------- | ------------- |
-| --clear-cache | Clear Babel Loader and PhantomJS cache |
-| --debug | Debug mode.  PhantomJS, Karma, and CheckoutJS  |
-| --quick | Fastest testing.  Minimal output, no coverage |
-| --browser | Choose Browser |
+| Flags         | Description                                  |
+| ------------- | -------------------------------------------- |
+| --clear-cache | Clear Babel Loader and PhantomJS cache       |
+| --debug       | Debug mode. PhantomJS, Karma, and CheckoutJS |
+| --quick       | Fastest testing. Minimal output, no coverage |
+| --browser     | Choose Browser                               |

@@ -1,7 +1,13 @@
 /* @flow */
 /** @jsx node */
 
-import { node, Fragment, type ElementNode, type ChildrenType, type ComponentNode } from '@krakenjs/jsx-pragmatic/src';
+import {
+  node,
+  Fragment,
+  type ElementNode,
+  type ChildrenType,
+  type ComponentNode,
+} from "@krakenjs/jsx-pragmatic/src";
 
 const spinnerStyle = `
     body {
@@ -97,40 +103,47 @@ const spinnerStyle = `
     }
 `;
 
-export function VenmoSpinner({ nonce } : {| nonce : ?string |}) : ComponentNode<{||}> {
-    return (
-        <Fragment>
-            <style nonce={ nonce } innerHTML={ spinnerStyle } />
+export function VenmoSpinner({
+  nonce,
+}: {|
+  nonce: ?string,
+|}): ComponentNode<{||}> {
+  return (
+    <Fragment>
+      <style nonce={nonce} innerHTML={spinnerStyle} />
 
-            <div class="spinner">
-                <div />
-                <div />
-                <div />
-                <div />
-                <div />
-                <div />
-                <div />
-                <div />
-                <div />
-                <div />
-                <div />
-                <div />
-            </div>
-        </Fragment>
-    );
+      <div class="spinner">
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+      </div>
+    </Fragment>
+  );
 }
 
-export function VenmoSpinnerPage({ nonce } : {| nonce : ?string |}, children : ChildrenType) : ElementNode {
-    return (
-        <html>
-            <head>
-                <title>Venmo</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-            </head>
-            <body>
-                <VenmoSpinner nonce={ nonce } />
-                { children }
-            </body>
-        </html>
-    );
+export function VenmoSpinnerPage(
+  { nonce }: {| nonce: ?string |},
+  children: ChildrenType
+): ElementNode {
+  return (
+    <html>
+      <head>
+        <title>Venmo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body>
+        <VenmoSpinner nonce={nonce} />
+        {children}
+      </body>
+    </html>
+  );
 }

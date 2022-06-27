@@ -1,42 +1,41 @@
 /* @flow */
 
-import { insertMockSDKScript } from '@paypal/sdk-client/src';
+import { insertMockSDKScript } from "@paypal/sdk-client/src";
 
-import './tests';
+import "./tests";
 
-window.mockDomain = 'mock://www.merchant-site.com';
+window.mockDomain = "mock://www.merchant-site.com";
 
 let originalUserAgent;
 
 beforeEach(() => {
-    // eslint-disable-next-line unicorn/prefer-add-event-listener
-    window.onerror = () => {
-        // pass
-    };
+  // eslint-disable-next-line unicorn/prefer-add-event-listener
+  window.onerror = () => {
+    // pass
+  };
 
-    window.__CACHE_START_TIME__ = Date.now();
-    originalUserAgent = window.navigator.userAgent;
+  window.__CACHE_START_TIME__ = Date.now();
+  originalUserAgent = window.navigator.userAgent;
 
-    insertMockSDKScript();
+  insertMockSDKScript();
 
-    delete window.__test__;
+  delete window.__test__;
 });
 
 afterEach(() => {
-    window.localStorage.clear();
-    delete window.__paypal_storage__;
-    delete window.__paypal_global__;
+  window.localStorage.clear();
+  delete window.__paypal_storage__;
+  delete window.__paypal_global__;
 
-    window.location.hash = '';
+  window.location.hash = "";
 
-    Object.defineProperty(window.navigator, 'userAgent', {
-        value:        originalUserAgent,
-        configurable: true
-    });
+  Object.defineProperty(window.navigator, "userAgent", {
+    value: originalUserAgent,
+    configurable: true,
+  });
 
-    delete window.navigator.mockUserAgent;
-    delete window.document.documentMode;
+  delete window.navigator.mockUserAgent;
+  delete window.document.documentMode;
 
-    // return window.paypal.destroyAll();
+  // return window.paypal.destroyAll();
 });
-

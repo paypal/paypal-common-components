@@ -1,17 +1,15 @@
 /* @flow */
 
-import { getPayPalDomain } from '@paypal/sdk-client/src';
+import { getPayPalDomain } from "@paypal/sdk-client/src";
 
 const URI = __TEST__
-
-    ? {
-        THREEDOMAINSECURE: `/base/test/integration/windows/helios/index.htm`
+  ? {
+      THREEDOMAINSECURE: `/base/test/integration/windows/helios/index.htm`,
     }
-
-    : {
-        THREEDOMAINSECURE: `/webapps/helios`
+  : {
+      THREEDOMAINSECURE: `/webapps/helios`,
     };
 
-export function getThreeDomainSecureUrl() : string {
-    return `${ getPayPalDomain() }${ URI.THREEDOMAINSECURE }`;
+export function getThreeDomainSecureUrl(): string {
+  return `${getPayPalDomain()}${URI.THREEDOMAINSECURE}`;
 }

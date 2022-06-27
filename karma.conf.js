@@ -1,44 +1,43 @@
 /* @flow */
 /* eslint import/no-default-export: off */
 
-import { getKarmaConfig } from '@krakenjs/grumbler-scripts/config/karma.conf';
+import { getKarmaConfig } from "@krakenjs/grumbler-scripts/config/karma.conf";
 
-import { WEBPACK_CONFIG_TEST } from './webpack.config';
+import { WEBPACK_CONFIG_TEST } from "./webpack.config";
 
-export default function configKarma(karma : Object) {
+export default function configKarma(karma: Object) {
+  const karmaConfig = getKarmaConfig(karma, {
+    basePath: __dirname,
+    testDir: "test",
+    windowDir: "test/integration/windows",
+    entry: "test/integration/index.js",
+    webpack: WEBPACK_CONFIG_TEST,
+  });
 
-    const karmaConfig = getKarmaConfig(karma, {
-        basePath:  __dirname,
-        testDir:   'test',
-        windowDir: 'test/integration/windows',
-        entry:     'test/integration/index.js',
-        webpack:   WEBPACK_CONFIG_TEST
-    });
+  karma.set({
+    ...karmaConfig,
 
-    karma.set({
-        ...karmaConfig,
+    files: [
+      {
+        pattern: "test/integration/globals.js",
+        included: true,
+        served: true,
+      },
 
-        files: [
-            {
-                pattern:  'test/integration/globals.js',
-                included: true,
-                served:   true
-            },
+      {
+        pattern: "test/paypal.js",
+        included: true,
+        served: true,
+      },
 
-            {
-                pattern:  'test/paypal.js',
-                included: true,
-                served:   true
-            },
+      ...karmaConfig.files,
+    ],
 
-            ...karmaConfig.files
-        ],
+    preprocessors: {
+      ...karmaConfig.preprocessors,
 
-        preprocessors: {
-            ...karmaConfig.preprocessors,
-
-            'src/index.js': [ 'webpack', 'sourcemap' ],
-            'src/**/*.js':  [ 'sourcemap' ]
-        }
-    });
+      "src/index.js": ["webpack", "sourcemap"],
+      "src/**/*.js": ["sourcemap"],
+    },
+  });
 }
