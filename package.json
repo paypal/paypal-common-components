@@ -71,7 +71,7 @@
     "pixelmatch": "^4.0.2",
     "pngjs": "^3.3.0",
     "prettier": "2.7.1",
-    "serve": "^10.1.2"
+    "serve": "^13.0.0"
   },
   "dependencies": {
     "@paypal/sdk-client": "^4.0.166",
