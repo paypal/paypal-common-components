@@ -1,7 +1,11 @@
 /* @flow */
 /** @jsx node */
 
-import { node, type ElementNode, type ChildrenType } from '@krakenjs/jsx-pragmatic/src';
+import {
+  node,
+  type ElementNode,
+  type ChildrenType,
+} from "@krakenjs/jsx-pragmatic/src";
 
 const spinnerStyle = `
 
@@ -69,30 +73,33 @@ const spinnerStyle = `
     }
 `;
 
-export function Spinner({ nonce } : {| nonce : ?string |}) : ElementNode {
-    return (
-        <div class="preloader spinner">
-            <style nonce={ nonce } innerHTML={ spinnerStyle } />
+export function Spinner({ nonce }: {| nonce: ?string |}): ElementNode {
+  return (
+    <div class="preloader spinner">
+      <style nonce={nonce} innerHTML={spinnerStyle} />
 
-            <div class="spinWrap">
-                <p class="spinnerImage" />
-                <p class="loader" />
-            </div>
-        </div>
-    );
+      <div class="spinWrap">
+        <p class="spinnerImage" />
+        <p class="loader" />
+      </div>
+    </div>
+  );
 }
 
-export function SpinnerPage({ nonce } : {| nonce : ?string |}, children : ChildrenType) : ElementNode {
-    return (
-        <html>
-            <head>
-                <title>PayPal</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-            </head>
-            <body>
-                <Spinner nonce={ nonce } />
-                { children }
-            </body>
-        </html>
-    );
+export function SpinnerPage(
+  { nonce }: {| nonce: ?string |},
+  children: ChildrenType
+): ElementNode {
+  return (
+    <html>
+      <head>
+        <title>PayPal</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body>
+        <Spinner nonce={nonce} />
+        {children}
+      </body>
+    </html>
+  );
 }

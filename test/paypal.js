@@ -1,16 +1,16 @@
 /* @flow */
 
-import { setupSDK, insertMockSDKScript } from '@paypal/sdk-client/src';
+import { setupSDK, insertMockSDKScript } from "@paypal/sdk-client/src";
 
-import * as paypalCheckout from '../src/interface'; // eslint-disable-line import/no-namespace
+import * as paypalCheckout from "../src/interface"; // eslint-disable-line import/no-namespace
 
 insertMockSDKScript();
 
-window.mockDomain = 'mock://www.paypal.com';
+window.mockDomain = "mock://www.paypal.com";
 
 setupSDK([
-    {
-        name:     'paypal-checkout',
-        requirer: () => paypalCheckout
-    }
+  {
+    name: "paypal-checkout",
+    requirer: () => paypalCheckout,
+  },
 ]);
