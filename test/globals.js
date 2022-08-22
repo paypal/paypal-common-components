@@ -83,6 +83,12 @@ export const fundingEligibility = {
   multibanco: {
     eligible: false,
   },
+  grabpay: {
+    eligible: false,
+  },
+  paidy: {
+    eligible: false,
+  },
 };
 
 export const testGlobals = {
