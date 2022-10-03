@@ -1,3 +1,9 @@
+## <small>1.0.33 (2022-10-03)</small>
+
+* Bump version of sdk-logos (#59) ([043dfce](https://github.paypal.com/paypal/paypal-checkout/commit/043dfce)), closes [#59](https://github.paypal.com/paypal/paypal-checkout/issues/59)
+
+
+
 ## <small>1.0.32 (2022-06-16)</small>
 
 * Fix fullscreen iframe height (#54) ([9d6a3f8](https://github.paypal.com/paypal/paypal-checkout/commit/9d6a3f8)), closes [#54](https://github.paypal.com/paypal/paypal-checkout/issues/54)
