@@ -83,9 +83,6 @@ window.__TEST_FUNDING_ELIGIBILITY__ = {
   multibanco: {
     eligible: false,
   },
-  grabpay: {
-    eligible: false,
-  },
   paidy: {
     eligible: false,
   },
