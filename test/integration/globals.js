@@ -83,6 +83,12 @@ window.__TEST_FUNDING_ELIGIBILITY__ = {
   multibanco: {
     eligible: false,
   },
+  alipay: {
+    eligible: false,
+  },
+  satispay: {
+    eligible: false,
+  },
 };
 
 window.__TEST_REMEMBERED_FUNDING__ = [];
