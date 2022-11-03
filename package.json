@@ -76,7 +76,7 @@
   "dependencies": {
     "@paypal/sdk-client": "^4.0.166",
     "@paypal/sdk-constants": "^1.0.127",
-    "@paypal/sdk-logos": "^2.0.1",
+    "@paypal/sdk-logos": "^2.0.2",
     "@krakenjs/belter": "^2.0.0",
     "@krakenjs/jsx-pragmatic": "^3.0.0",
     "@krakenjs/post-robot": "^11.0.0",
