@@ -83,6 +83,9 @@ export const fundingEligibility = {
   multibanco: {
     eligible: false,
   },
+  satispay: {
+    eligible: false,
+  },
 };
 
 export const testGlobals = {
