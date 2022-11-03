@@ -1,3 +1,9 @@
+## <small>1.0.34 (2022-11-03)</small>
+
+* Add satispay (#60) ([c873df4](https://github.paypal.com/paypal/paypal-checkout/commit/c873df4)), closes [#60](https://github.paypal.com/paypal/paypal-checkout/issues/60)
+
+
+
 ## <small>1.0.33 (2022-10-03)</small>
 
 * Bump version of sdk-logos (#59) ([043dfce](https://github.paypal.com/paypal/paypal-checkout/commit/043dfce)), closes [#59](https://github.paypal.com/paypal/paypal-checkout/issues/59)
