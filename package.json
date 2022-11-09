@@ -55,7 +55,7 @@
   "license": "Apache-2.0",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "@krakenjs/grumbler-scripts": "^8.0.1",
+    "@krakenjs/grumbler-scripts": "^8.0.3",
     "@krakenjs/sync-browser-mocks": "^3.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "conventional-changelog-cli": "^2.0.11",
