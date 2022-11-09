@@ -19,6 +19,14 @@ module.exports = {
     __HOST__: true,
     __PATH__: true,
     __COMPONENTS__: true,
+    document: true,
+    performance: true,
+    assert: true,
+    beforeAll: true,
+    afterAll: true,
+    test: true,
+    jest: true,
+    page: true,
   },
 
   rules: {
@@ -29,5 +37,9 @@ module.exports = {
     "react/display-name": "off",
     "react/require-default-props": "off",
     "react/forbid-component-props": "off",
+    "compat/compat": "off",
+    "max-lines": "off",
+    "no-restricted-globals": "off",
+    "promise/no-native": "off",
   },
 };
