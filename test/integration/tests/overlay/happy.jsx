@@ -52,17 +52,16 @@ describe(`paypal overlay component happy path`, () => {
   );
 
   const addOverlayToDOM = (child) => {
-    // $FlowFixMe
+    // $FlowFixMe[incompatible-use]
     document.body.appendChild(child);
   };
 
   const getOverlayContainer = (domNode) => {
-    // $FlowFixMe
     return domNode.querySelector("iframe").contentWindow.document;
   };
 
   beforeEach(() => {
-    // $FlowFixMe
+    // $FlowFixMe[incompatible-use]
     document.body.innerHTML = "";
   });
 
