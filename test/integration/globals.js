@@ -86,6 +86,9 @@ window.__TEST_FUNDING_ELIGIBILITY__ = {
   satispay: {
     eligible: false,
   },
+  payuponinvoice: {
+    eligible: false,
+  },
 };
 
 window.__TEST_REMEMBERED_FUNDING__ = [];

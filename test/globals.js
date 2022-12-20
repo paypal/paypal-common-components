@@ -86,6 +86,9 @@ export const fundingEligibility = {
   satispay: {
     eligible: false,
   },
+  payuponinvoice: {
+    eligible: false,
+  },
 };
 
 export const testGlobals = {
