@@ -72,7 +72,7 @@
     "mocha": "^4.1.0",
     "mocketeer": "^0.3.0",
     "pixelmatch": "^4.0.2",
-    "pngjs": "^3.3.0",
+    "pngjs": "^6.0.0",
     "prettier": "2.7.1",
     "serve": "^10.1.2"
   },
