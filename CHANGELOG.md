@@ -1,3 +1,9 @@
+## <small>1.0.35 (2023-01-17)</small>
+
+* Adding Paidy  (#58) ([dc0a689](https://github.paypal.com/paypal/paypal-checkout/commit/dc0a689)), closes [#58](https://github.paypal.com/paypal/paypal-checkout/issues/58)
+
+
+
 ## <small>1.0.34 (2022-11-03)</small>
 
 * Add satispay (#60) ([c873df4](https://github.paypal.com/paypal/paypal-checkout/commit/c873df4)), closes [#60](https://github.paypal.com/paypal/paypal-checkout/issues/60)
