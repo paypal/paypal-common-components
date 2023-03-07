@@ -65,15 +65,6 @@ window.__TEST_FUNDING_ELIGIBILITY__ = {
   wechatpay: {
     eligible: false,
   },
-  zimpler: {
-    eligible: false,
-  },
-  mercadopago: {
-    eligible: false,
-  },
-  verkkopankki: {
-    eligible: false,
-  },
   boleto: {
     eligible: false,
   },

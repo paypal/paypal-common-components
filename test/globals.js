@@ -65,15 +65,6 @@ export const fundingEligibility = {
   wechatpay: {
     eligible: false,
   },
-  zimpler: {
-    eligible: false,
-  },
-  mercadopago: {
-    eligible: false,
-  },
-  verkkopankki: {
-    eligible: false,
-  },
   boleto: {
     eligible: false,
   },
