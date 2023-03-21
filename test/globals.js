@@ -65,6 +65,9 @@ export const fundingEligibility = {
   wechatpay: {
     eligible: false,
   },
+  mercadopago: {
+    eligible: false,
+  },
   boleto: {
     eligible: false,
   },
