@@ -1,3 +1,9 @@
+## <small>1.0.36 (2023-04-19)</small>
+
+* chore: update 3ds onSuccess callback signature (#75) ([5522686](https://github.paypal.com/paypal/paypal-checkout/commit/5522686)), closes [#75](https://github.paypal.com/paypal/paypal-checkout/issues/75)
+
+
+
 ## <small>1.0.35 (2023-01-17)</small>
 
 * Adding Paidy  (#58) ([dc0a689](https://github.paypal.com/paypal/paypal-checkout/commit/dc0a689)), closes [#58](https://github.paypal.com/paypal/paypal-checkout/issues/58)
