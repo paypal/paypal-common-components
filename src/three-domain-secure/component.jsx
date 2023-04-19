@@ -109,7 +109,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
                 return onError(err);
               }
 
-              return value(true);
+              return value(true, result);
             };
           },
         },

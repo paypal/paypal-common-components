@@ -36,4 +36,30 @@ describe(`paypal 3ds component happy path`, () => {
         .render("body");
     });
   });
+
+  it("should render the 3ds component with contingecy object", () => {
+    return wrapPromise(({ expect, avoid }) => {
+      const nonce = "12345";
+      window.contingencyResult = {
+        success: true,
+        liability_shift: "POSSIBLE",
+        status: "YES",
+        authentication_status_reason: "ERROR",
+        authentication_flow: "STEPUP",
+      };
+      return window.paypal
+        .ThreeDomainSecure({
+          createOrder: () => "XXXXXXXXXXXXXXXXX",
+          onSuccess: expect("onSuccess", (_err, result) => {
+            if (!result.liability_shift) {
+              throw new Error("missing liability_shift in result");
+            }
+          }),
+          onCancel: avoid("onCancel"),
+          onError: avoid("onError"),
+          nonce,
+        })
+        .render("body");
+    });
+  });
 });
