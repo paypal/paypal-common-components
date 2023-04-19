@@ -50,7 +50,7 @@ describe(`paypal 3ds component happy path`, () => {
       return window.paypal
         .ThreeDomainSecure({
           createOrder: () => "XXXXXXXXXXXXXXXXX",
-          onSuccess: expect("onSuccess", (_err, result) => {
+          onSuccess: expect("onSuccess", (result) => {
             if (!result.liability_shift) {
               throw new Error("missing liability_shift in result");
             }
