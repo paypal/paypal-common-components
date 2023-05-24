@@ -89,17 +89,19 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           queryParam: true,
           value: () => "3ds",
         },
-        // createOrder: {
-        //   type: "function",
-        //   queryParam: "cart_id",
-        //   // $FlowFixMe[incompatible-call]
-        //   queryValue: ({ value }) => ZalgoPromise.try(value),
-        // },
+        createOrder: {
+          type: "function",
+          queryParam: "cart_id",
+          // $FlowFixMe[incompatible-call]
+          queryValue: ({ value }) => ZalgoPromise.try(value),
+          required: false,
+        },
         createVaultSetupToken: {
           type: "function",
           queryParam: "token",
           // $FlowFixMe[incompatible-call]
           queryValue: ({ value }) => ZalgoPromise.try(value),
+          required: false,
         },
         clientID: {
           type: "string",
