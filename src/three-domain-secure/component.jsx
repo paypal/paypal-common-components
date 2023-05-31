@@ -76,8 +76,8 @@ export function getThreeDomainSecureComponent(): TDSComponent {
       props: {
         action: {
           type: "string",
-          queryParam: true,
-          value: () => "authenticate",
+          queryParam: "action" ||"true",
+          queryValue: ({value}) => value || "verify",
         },
         xcomponent: {
           type: "string",
@@ -96,11 +96,11 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           queryValue: ({ value }) => ZalgoPromise.try(value),
           required: false,
         },
-        createVaultSetupToken: {
-          type: "function",
+        vaultToken: {
+          type: "string",
           queryParam: "token",
           // $FlowFixMe[incompatible-call]
-          queryValue: ({ value }) => ZalgoPromise.try(value),
+          queryValue: ({value} ) => value,
           required: false,
         },
         clientID: {
