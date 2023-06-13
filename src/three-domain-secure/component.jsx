@@ -76,8 +76,10 @@ export function getThreeDomainSecureComponent(): TDSComponent {
       props: {
         action: {
           type: "string",
-          queryParam: "action" ||"true",
-          queryValue: ({value}) => value || "verify",
+          // $FlowFixMe[incompatible-call]
+          queryParam: ({ value }) => (value ? "action" : true),
+          queryValue: ({ value }) => (value ? value : "verify"),
+          required: false,
         },
         xcomponent: {
           type: "string",
@@ -99,8 +101,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         vaultToken: {
           type: "string",
           queryParam: "token",
-          // $FlowFixMe[incompatible-call]
-          queryValue: ({value} ) => value,
+          queryValue: ({ value }) => value,
           required: false,
         },
         clientID: {
