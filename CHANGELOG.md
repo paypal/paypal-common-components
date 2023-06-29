@@ -1,9 +1,3 @@
-## <small>1.0.37 (2023-06-13)</small>
-
-* fix test, lint, errors ([ffb5f2c](https://github.paypal.com/paypal/paypal-checkout/commit/ffb5f2c))
-
-
-
 ## <small>1.0.36 (2023-04-19)</small>
 
 * chore: update 3ds onSuccess callback signature (#75) ([5522686](https://github.paypal.com/paypal/paypal-checkout/commit/5522686)), closes [#75](https://github.paypal.com/paypal/paypal-checkout/issues/75)

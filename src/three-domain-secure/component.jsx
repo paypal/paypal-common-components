@@ -76,8 +76,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
       props: {
         action: {
           type: "string",
-          // $FlowFixMe[incompatible-call]
-          queryParam: ({ value }) => (value ? "action" : true),
+          queryParam: true,
           queryValue: ({ value }) => (value ? value : "verify"),
           required: false,
         },
