@@ -1,3 +1,9 @@
+## <small>1.0.38 (2023-06-29)</small>
+
+* chore(release): 1.0.37 🎉 ([ee8c433](https://github.paypal.com/paypal/paypal-checkout/commit/ee8c433))
+
+
+
 ## <small>1.0.37 (2023-06-29)</small>
 
 * [feat]3ds Vault setup for new HCF (#77) ([502c457](https://github.paypal.com/paypal/paypal-checkout/commit/502c457)), closes [#77](https://github.paypal.com/paypal/paypal-checkout/issues/77)
