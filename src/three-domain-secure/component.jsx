@@ -77,8 +77,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         action: {
           type: "string",
           queryParam: true,
-          queryValue: ({ value }) => (value ? value : "verify"),
-          required: false,
+          value: () => "verify",
         },
         xcomponent: {
           type: "string",
@@ -95,13 +94,6 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           queryParam: "cart_id",
           // $FlowFixMe[incompatible-call]
           queryValue: ({ value }) => ZalgoPromise.try(value),
-          required: false,
-        },
-        vaultToken: {
-          type: "string",
-          queryParam: "token",
-          queryValue: ({ value }) => value,
-          required: false,
         },
         clientID: {
           type: "string",
