@@ -1,3 +1,9 @@
+## <small>1.0.39 (2023-07-05)</small>
+
+* Revert "[feat]3ds Vault setup for new HCF (#77)" (#79) ([6cd18b7](https://github.paypal.com/paypal/paypal-checkout/commit/6cd18b7)), closes [#77](https://github.paypal.com/paypal/paypal-checkout/issues/77) [#79](https://github.paypal.com/paypal/paypal-checkout/issues/79)
+
+
+
 ## <small>1.0.38 (2023-06-29)</small>
 
 * chore(release): 1.0.37 🎉 ([ee8c433](https://github.paypal.com/paypal/paypal-checkout/commit/ee8c433))
