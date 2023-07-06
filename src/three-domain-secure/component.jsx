@@ -77,7 +77,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         action: {
           type: "string",
           queryParam: true,
-          value: () => "verify",
+          value: (data) => (data.props.action ? data.props.action : "verify"),
         },
         xcomponent: {
           type: "string",
