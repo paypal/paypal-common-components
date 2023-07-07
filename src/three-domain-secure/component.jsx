@@ -94,6 +94,13 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           queryParam: "cart_id",
           // $FlowFixMe[incompatible-call]
           queryValue: ({ value }) => ZalgoPromise.try(value),
+          required: false,
+        },
+        vaultToken: {
+          type: "string",
+          queryParam: "token",
+          queryValue: ({ value }) => value,
+          required: false,
         },
         clientID: {
           type: "string",
