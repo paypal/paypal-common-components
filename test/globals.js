@@ -98,7 +98,7 @@ export const testGlobals = {
   },
 
   __PORT__: 8000,
-  __STAGE_HOST__: "msmaster.qa.paypal.com",
+  __STAGE_HOST__: "sandbox.paypal.com",
   __HOST__: "test.paypal.com",
   __HOSTNAME__: "test.paypal.com",
   __SDK_HOST__: "test.paypal.com",

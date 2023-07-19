@@ -84,4 +84,4 @@ window.__TEST_FUNDING_ELIGIBILITY__ = {
 
 window.__TEST_REMEMBERED_FUNDING__ = [];
 window.__PAYPAL_DOMAIN__ = "mock://www.paypal.com";
-window.__PAYPAL_API_DOMAIN__ = "mock://msmaster.qa.paypal.com";
+window.__PAYPAL_API_DOMAIN__ = "mock://sandbox.paypal.com";
