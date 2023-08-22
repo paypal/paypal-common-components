@@ -77,7 +77,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         action: {
           type: "string",
           queryParam: true,
-          value: () => "verify",
+          value: (data) => (data.props.action ? data.props.action : "verify"),
         },
         xcomponent: {
           type: "string",
@@ -94,6 +94,16 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           queryParam: "cart_id",
           // $FlowFixMe[incompatible-call]
           queryValue: ({ value }) => ZalgoPromise.try(value),
+          required: false,
+        },
+        vaultToken: {
+          type: "string",
+          queryParam: "token",
+          // We do not need to add queryValue here.
+          // This code has gone through E2E approval and so we are keeping it as a safeguard
+          // Refer zoid documentation for further clarity.
+          queryValue: ({ value }) => value,
+          required: false,
         },
         clientID: {
           type: "string",
