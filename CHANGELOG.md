@@ -1,3 +1,9 @@
+## <small>1.0.40 (2023-08-22)</small>
+
+* use value from prop and set verify as default 3ds action (#81) ([7d8ff0e](https://github.paypal.com/paypal/paypal-checkout/commit/7d8ff0e)), closes [#81](https://github.paypal.com/paypal/paypal-checkout/issues/81)
+
+
+
 ## <small>1.0.39 (2023-07-05)</small>
 
 * Revert "[feat]3ds Vault setup for new HCF (#77)" (#79) ([6cd18b7](https://github.paypal.com/paypal/paypal-checkout/commit/6cd18b7)), closes [#77](https://github.paypal.com/paypal/paypal-checkout/issues/77) [#79](https://github.paypal.com/paypal/paypal-checkout/issues/79)
