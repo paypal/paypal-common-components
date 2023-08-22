@@ -99,6 +99,9 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         vaultToken: {
           type: "string",
           queryParam: "token",
+          // We do not need to add queryValue here.
+          // This code has gone through E2E approval and so we are keeping it as a safeguard
+          // Refer zoid documentation for further clarity.
           queryValue: ({ value }) => value,
           required: false,
         },
