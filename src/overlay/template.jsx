@@ -3,8 +3,6 @@
 /* eslint max-lines: off, react/jsx-max-depth: off */
 
 import {
-  isIos,
-  isFirefox,
   animate,
   noop,
   destroyElement,
