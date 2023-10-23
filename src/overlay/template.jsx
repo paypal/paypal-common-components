@@ -66,17 +66,7 @@ export function Overlay({
       return;
     }
 
-    if (isIos()) {
-      // eslint-disable-next-line no-alert
-      window.alert("Please switch tabs to reactivate the PayPal window");
-    } else if (isFirefox()) {
-      // eslint-disable-next-line no-alert
-      window.alert(
-        'Don\'t see the popup window?\n\nSelect "Window" in your toolbar to find "Log in to your PayPal account"'
-      );
-    } else {
-      focus();
-    }
+    focus();
   }
 
   const setupAnimations = (name) => {
