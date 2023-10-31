@@ -42,6 +42,7 @@ export type OverlayProps = {|
     windowMessage?: string,
     continueMessage?: string,
     cancelMessage?: string,
+    interrogativeMessage?: string,
   |},
   autoResize?: boolean,
   hideCloseButton?: boolean,
@@ -343,6 +344,11 @@ export function VenmoOverlay({
                   <div class="venmo-checkout-logo">
                     <VenmoLogo logoColor={LOGO_COLOR.WHITE} />
                   </div>
+                  {content.interrogativeMessage && (
+                    <div class="venmo-interrogative-message">
+                      {content.interrogativeMessage}
+                    </div>
+                  )}
                   {content.windowMessage && (
                     <div class="venmo-checkout-message">
                       {content.windowMessage}
@@ -356,7 +362,7 @@ export function VenmoOverlay({
                     </div>
                   )}
                   {content.cancelMessage && (
-                    <div class="venmo-checkout-continue">
+                    <div class="venmo-checkout-close">
                       <a href="#" onClick={closeCheckout} aria-label="close">
                         {content.cancelMessage}
                       </a>
