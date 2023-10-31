@@ -462,11 +462,6 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
             color: #fff;
         }
 
-        #${uid} .venmo-checkout-close:before,
-        #${uid} .venmo-checkout-close:after {
-            background-color: #fff;
-        }
-
         #${uid}.venmo-overlay-context-${CONTEXT.POPUP} {
             cursor: pointer;
         }
@@ -476,18 +471,24 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .venmo-checkout-modal {
-            font-family: "HelveticaNeue", "HelveticaNeue-Light", "Helvetica Neue Light", helvetica, arial, sans-serif;
-            font-size: 14px;
-            text-align: center;
-
             box-sizing: border-box;
-            max-width: 350px;
+            max-width: 400px;
             top: 50%;
             left: 50%;
             position: absolute;
             transform: translateX(-50%) translateY(-50%);
             cursor: pointer;
             text-align: center;
+        }
+
+        #${uid} .venmo-checkout-modal .venmo-interrogative-message {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 32px;
+            text-align: center;
+            color: #FFFFFF;
+            margin-top: 32px;
         }
 
         #${uid}.venmo-overlay-loading .venmo-checkout-message, #${uid}.venmo-overlay-loading .venmo-checkout-continue {
@@ -504,12 +505,10 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
 
         #${uid} .venmo-checkout-modal .venmo-checkout-logo {
             cursor: pointer;
-            margin-bottom: 30px;
-            display: inline-block;
         }
 
         #${uid} .venmo-checkout-modal .venmo-checkout-logo img {
-            height: 36px;
+            height: 46px;
         }
 
         #${uid} .venmo-checkout-modal .venmo-checkout-logo img.venmo-checkout-logo-pp {
@@ -517,9 +516,15 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .venmo-checkout-modal .venmo-checkout-message {
-            font-size: 15px;
-            line-height: 1.5;
-            padding: 10px 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center;
+            color: #FFFFFF;
+            margin-top: 16px;
+            width: 400px;
         }
 
         #${uid}.venmo-overlay-context-${CONTEXT.IFRAME} .venmo-checkout-message, #${uid}.venmo-overlay-context-${CONTEXT.IFRAME} .venmo-checkout-continue {
@@ -527,47 +532,40 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .venmo-checkout-modal .venmo-checkout-continue {
-            font-size: 15px;
-            line-height: 1.35;
-            padding: 10px 0;
-            font-weight: bold;
+            width: 400px;
+            height: 50px;
+            background: #0074DE;
+            border-radius: 24px;
+            border: none;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 18px;
+            color: #FFFFFF;
+            margin-top: 44px;
         }
 
         #${uid} .venmo-checkout-modal .venmo-checkout-continue a {
-            border-bottom: 1px solid white;
+            line-height: 50px;
         }
 
         #${uid} .venmo-checkout-close {
-            position: absolute;
-            right: 16px;
-            top: 16px;
-            width: 16px;
-            height: 16px;
-            opacity: 0.6;
+            height: 24px;
+            width: 400px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 24px;
+            text-align: center;
+            background-color: transparent;
+            border: none;
+            color: #FFFFFF;
+            margin-top: 28px;
         }
 
         #${uid}.venmo-overlay-loading .venmo-checkout-close {
             display: none;
-        }
-
-        #${uid} .venmo-checkout-close:hover {
-            opacity: 1;
-        }
-
-        #${uid} .venmo-checkout-close:before, .venmo-checkout-close:after {
-            position: absolute;
-            left: 8px;
-            content: ' ';
-            height: 16px;
-            width: 2px;
-        }
-
-        #${uid} .venmo-checkout-close:before {
-            transform: rotate(45deg);
-        }
-
-        #${uid} .venmo-checkout-close:after {
-            transform: rotate(-45deg);
         }
 
         #${uid} .venmo-checkout-iframe-container {
