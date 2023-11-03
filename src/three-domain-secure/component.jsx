@@ -30,6 +30,8 @@ export type TDSProps = {|
   content?: void | {|
     windowMessage?: string,
     continueMessage?: string,
+    cancelMessage?: string,
+    interrogativeMessage?: string,
   |},
   userType: ?$Values<typeof USER_TYPE>,
   nonce: string,
