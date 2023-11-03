@@ -361,7 +361,7 @@ export function VenmoOverlay({
                       </a>
                     </div>
                   )}
-                  {content.cancelMessage && (
+                  {content.cancelMessage && !hideCloseButton && (
                     <div class="venmo-checkout-close">
                       <a href="#" onClick={closeCheckout} aria-label="close">
                         {content.cancelMessage}
