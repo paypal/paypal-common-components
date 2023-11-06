@@ -120,6 +120,8 @@ describe(`paypal overlay component happy path`, () => {
     ) {
       throw new Error(`Expected overlay to be full screen`);
     }
+
+    fullScreen = false; // reset
   });
 
   it("should hide the overlay close button", () => {
@@ -282,6 +284,8 @@ describe(`venmo overlay component happy path`, () => {
     ) {
       throw new Error(`Expected overlay to be full screen`);
     }
+
+    fullScreen = false; // reset
   });
 
   it("should hide the overlay close button", () => {
@@ -297,7 +301,7 @@ describe(`venmo overlay component happy path`, () => {
     hideCloseButton = false; // reset
   });
 
-  it.skip("should be able to close the overlay using close button", () => {
+  it("should be able to close the overlay using close button", () => {
     const domNode = getOverlay().render(dom());
     addOverlayToDOM(domNode);
 
