@@ -1,3 +1,9 @@
+## <small>1.0.41 (2023-11-07)</small>
+
+* Venmo overlay (#84) ([e23fb02](https://github.paypal.com/paypal/paypal-checkout/commit/e23fb02)), closes [#84](https://github.paypal.com/paypal/paypal-checkout/issues/84)
+
+
+
 ## <small>1.0.40 (2023-08-22)</small>
 
 * use value from prop and set verify as default 3ds action (#81) ([7d8ff0e](https://github.paypal.com/paypal/paypal-checkout/commit/7d8ff0e)), closes [#81](https://github.paypal.com/paypal/paypal-checkout/issues/81)
