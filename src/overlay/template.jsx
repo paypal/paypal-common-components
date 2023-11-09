@@ -3,6 +3,8 @@
 /* eslint max-lines: off, react/jsx-max-depth: off */
 
 import {
+  isIos,
+  isFirefox,
   animate,
   noop,
   destroyElement,
@@ -64,6 +66,16 @@ export function Overlay({
       return;
     }
 
+    if (isIos()) {
+      // eslint-disable-next-line no-alert
+      window.alert("Please switch tabs to reactivate the PayPal window");
+    } else if (isFirefox()) {
+      //
+      // eslint-disable-next-line no-alert
+      window.alert(
+        'Don\'t see the popup window after clicking "OK"?\n\nSelect "Window" in your toolbar to find "Log in to your PayPal account"'
+      );
+    }
     focus();
   }
 
@@ -166,7 +178,10 @@ export function Overlay({
                   )}
                   {content.continueMessage && (
                     <div class="paypal-checkout-continue">
-                      <a onClick={focus} href="#">
+                      {/* This handler should be guarded with e.stopPropagation. 
+                          This will stop the event from bubbling up to the overlay click handler
+                          and causing unexpected behavior. */}
+                      <a onClick={focusCheckout} href="#">
                         {content.continueMessage}
                       </a>
                     </div>
