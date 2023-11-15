@@ -1,3 +1,9 @@
+## <small>1.0.42 (2023-11-15)</small>
+
+* Tweak Venmo overlay (#85) ([598e3c1](https://github.paypal.com/paypal/paypal-checkout/commit/598e3c1)), closes [#85](https://github.paypal.com/paypal/paypal-checkout/issues/85)
+
+
+
 ## <small>1.0.41 (2023-11-07)</small>
 
 * Venmo overlay (#84) ([e23fb02](https://github.paypal.com/paypal/paypal-checkout/commit/e23fb02)), closes [#84](https://github.paypal.com/paypal/paypal-checkout/issues/84)
