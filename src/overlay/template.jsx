@@ -252,17 +252,17 @@ export function VenmoOverlay({
       return;
     }
 
+    // Note: alerts block the event loop until they are closed.
     if (isIos()) {
       // eslint-disable-next-line no-alert
       window.alert("Please switch tabs to reactivate the Venmo window");
     } else if (isFirefox()) {
       // eslint-disable-next-line no-alert
       window.alert(
-        'Don\'t see the popup window?\n\nSelect "Window" in your toolbar to find "Log in to your Venmo account"'
+        'Don\'t see the popup window after clicking "OK"?\n\nSelect "Window" in your toolbar to find "Log in to your Venmo account"'
       );
-    } else {
-      focus();
     }
+    focus();
   }
 
   const setupAnimations = (name) => {
@@ -359,7 +359,10 @@ export function VenmoOverlay({
                   )}
                   {content.continueMessage && (
                     <div class="venmo-checkout-continue">
-                      <a onClick={focus} href="#">
+                      {/* This handler should be guarded with e.stopPropagation. 
+                          This will stop the event from bubbling up to the overlay click handler
+                          and causing unexpected behavior. */}
+                      <a onClick={focusCheckout} href="#">
                         {content.continueMessage}
                       </a>
                     </div>

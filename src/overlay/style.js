@@ -452,7 +452,7 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
             transform: translate3d(0, 0, 0);
 
             background-color: black;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.8);
             background: radial-gradient(50% 50%, ellipse closest-corner, rgba(0,0,0,0.6) 1%, rgba(0,0,0,0.8) 100%);
 
             color: #fff;
