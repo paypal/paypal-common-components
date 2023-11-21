@@ -263,12 +263,12 @@ export function VenmoOverlay({
 
     // Note: alerts block the event loop until they are closed.
     if (isIos()) {
-      showAlert("Please switch tabs to reactivate the PayPal window").then(() =>
+      showAlert("Please switch tabs to reactivate the Venmo window").then(() =>
         focus()
       );
     } else if (isFirefox()) {
       showAlert(
-        'Don\'t see the popup window after clicking "OK"?\n\nSelect "Window" in your toolbar to find "Log in to your PayPal account"'
+        'Don\'t see the popup window after clicking "OK"?\n\nSelect "Window" in your toolbar to find "Log in to your Venmo account"'
       ).then(() => focus());
     } else {
       focus();
