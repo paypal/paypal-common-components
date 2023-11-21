@@ -51,7 +51,7 @@ export type OverlayProps = {|
 |};
 
 function showAlert(message): Promise<void> {
-  return new Promise((resolve) => {
+  return new ZalgoPromise((resolve) => {
     // eslint-disable-next-line no-alert
     window.alert(message);
     resolve();
