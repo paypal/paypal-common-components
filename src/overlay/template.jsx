@@ -21,7 +21,7 @@ import {
   PayPalLogo,
   VenmoLogo,
 } from "@paypal/sdk-logos/src";
-import type { ZalgoPromise } from "@krakenjs/zalgo-promise/src";
+import { ZalgoPromise } from "@krakenjs/zalgo-promise/src";
 
 import {
   getContainerStyle,
