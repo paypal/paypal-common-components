@@ -65,6 +65,14 @@ export function Overlay({
 }: OverlayProps): ElementNode {
   const uid = `paypal-overlay-${uniqueID()}`;
 
+  function showAlert(message) {
+    return new Promise(function (resolve) {
+      // eslint-disable-next-line no-alert
+      window.alert(message);
+      resolve();
+    });
+  }
+
   function closeCheckout(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -81,15 +89,16 @@ export function Overlay({
 
     // Note: alerts block the event loop until they are closed.
     if (isIos()) {
-      // eslint-disable-next-line no-alert
-      window.alert("Please switch tabs to reactivate the PayPal window");
-    } else if (isFirefox()) {
-      // eslint-disable-next-line no-alert
-      window.alert(
-        'Don\'t see the popup window after clicking "OK"?\n\nSelect "Window" in your toolbar to find "Log in to your PayPal account"'
+      showAlert("Please switch tabs to reactivate the PayPal window").then(() =>
+        focus()
       );
+    } else if (isFirefox()) {
+      showAlert(
+        'Don\'t see the popup window after clicking "OK"?\n\nSelect "Window" in your toolbar to find "Log in to your PayPal account"'
+      ).then(() => focus());
+    } else {
+      focus();
     }
-    focus();
   }
 
   const setupAnimations = (name) => {
