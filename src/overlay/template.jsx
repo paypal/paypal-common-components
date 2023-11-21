@@ -50,8 +50,8 @@ export type OverlayProps = {|
   fullScreen?: boolean,
 |};
 
-function showAlert(message): Promise<void> {
-  return new Promise((resolve) => {
+function showAlert(message): ZalgoPromise<void> {
+  return new ZalgoPromise((resolve) => {
     // eslint-disable-next-line no-alert
     window.alert(message);
     resolve();
