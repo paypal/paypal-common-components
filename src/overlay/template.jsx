@@ -50,7 +50,7 @@ export type OverlayProps = {|
   fullScreen?: boolean,
 |};
 
-function showAlert(message) {
+function showAlert(message): Promise<void> {
   return new Promise((resolve) => {
     // eslint-disable-next-line no-alert
     window.alert(message);
