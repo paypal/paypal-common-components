@@ -51,7 +51,7 @@ export type OverlayProps = {|
 |};
 
 function showAlert(message) {
-  return new Promise(function (resolve) {
+  return new Promise((resolve) => {
     // eslint-disable-next-line no-alert
     window.alert(message);
     resolve();
