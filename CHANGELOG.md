@@ -1,3 +1,9 @@
+## <small>1.0.43 (2023-12-06)</small>
+
+* Ensure alerts are acknowledged before focusing popup (#86) ([6e29b48](https://github.paypal.com/paypal/paypal-checkout/commit/6e29b48)), closes [#86](https://github.paypal.com/paypal/paypal-checkout/issues/86)
+
+
+
 ## <small>1.0.42 (2023-11-15)</small>
 
 * Tweak Venmo overlay (#85) ([598e3c1](https://github.paypal.com/paypal/paypal-checkout/commit/598e3c1)), closes [#85](https://github.paypal.com/paypal/paypal-checkout/issues/85)
