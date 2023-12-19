@@ -83,7 +83,7 @@ export function Overlay({
     if (!warningElement) {
       return;
     }
-    warningElement.innerText = `Still can\'t see it? Select "Window" in your toolbar to find "Log in to your PayPal account"`;
+    warningElement.innerText = `Still can't see it? Select "Window" in your toolbar to find "Log in to your PayPal account"`;
   }
 
   function focusCheckout(e) {
@@ -268,7 +268,7 @@ export function VenmoOverlay({
     if (!warningElement) {
       return;
     }
-    warningElement.innerText = `Still can\'t see it? Select "Window" in your toolbar to find "Log in to your Venmo account"`;
+    warningElement.innerText = `Still can't see it? Select "Window" in your toolbar to find "Log in to your Venmo account"`;
   }
 
   function focusCheckout(e) {
