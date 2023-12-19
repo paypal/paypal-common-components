@@ -72,6 +72,19 @@ export function Overlay({
     close();
   }
 
+  function displayFocusWarning() {
+    const overlayIframe: HTMLIFrameElement | undefined =
+      document.getElementsByName(overlayIframeName)?.[0];
+    const iframeDocument = overlayIframe?.contentWindow.document;
+    const warningElement = iframeDocument?.getElementsByClassName(
+      "paypal-checkout-focus-warning"
+    )?.[0];
+
+    if (!warningElement) return;
+
+    warningElement.innerText = `Still can\'t see it? Select "Window" in your toolbar to find "Log in to your PayPal account"`;
+  }
+
   function focusCheckout(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -87,19 +100,6 @@ export function Overlay({
       displayFocusWarning();
     }
     focus();
-  }
-
-  function displayFocusWarning() {
-    const overlayIframe: HTMLIFrameElement | undefined =
-      document.getElementsByName(overlayIframeName)?.[0];
-    const iframeDocument = overlayIframe?.contentWindow.document;
-    const warningElement = iframeDocument?.getElementsByClassName(
-      "paypal-checkout-focus-warning"
-    )?.[0];
-
-    if (!warningElement) return;
-
-    warningElement.innerText = `Still can\'t see it? Select "Window" in your toolbar to find "Log in to your PayPal account"`;
   }
 
   const setupAnimations = (name) => {
@@ -256,6 +256,19 @@ export function VenmoOverlay({
     close();
   }
 
+  function displayFocusWarning() {
+    const overlayIframe: HTMLIFrameElement | undefined =
+      document.getElementsByName(overlayIframeName)?.[0];
+    const iframeDocument = overlayIframe?.contentWindow.document;
+    const warningElement = iframeDocument?.getElementsByClassName(
+      "paypal-checkout-focus-warning"
+    )?.[0];
+
+    if (!warningElement) return;
+
+    warningElement.innerText = `Still can\'t see it? Select "Window" in your toolbar to find "Log in to your Venmo account"`;
+  }
+
   function focusCheckout(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -271,19 +284,6 @@ export function VenmoOverlay({
       displayFocusWarning();
     }
     focus();
-  }
-
-  function displayFocusWarning() {
-    const overlayIframe: HTMLIFrameElement | undefined =
-      document.getElementsByName(overlayIframeName)?.[0];
-    const iframeDocument = overlayIframe?.contentWindow.document;
-    const warningElement = iframeDocument?.getElementsByClassName(
-      "paypal-checkout-focus-warning"
-    )?.[0];
-
-    if (!warningElement) return;
-
-    warningElement.innerText = `Still can\'t see it? Select "Window" in your toolbar to find "Log in to your Venmo account"`;
   }
 
   const setupAnimations = (name) => {
