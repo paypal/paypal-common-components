@@ -96,6 +96,7 @@ export function Overlay({
 
     if (isIos()) {
       // Note: alerts block the event loop until they are closed.
+      // eslint-disable-next-line no-alert
       window.alert("Please switch tabs to reactivate the PayPal window");
     } else if (isFirefox()) {
       displayFocusWarning();
@@ -281,6 +282,7 @@ export function VenmoOverlay({
 
     if (isIos()) {
       // Note: alerts block the event loop until they are closed.
+      // eslint-disable-next-line no-alert
       window.alert("Please switch tabs to reactivate the Venmo window");
     } else if (isFirefox()) {
       displayFocusWarning();
