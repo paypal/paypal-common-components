@@ -73,7 +73,8 @@ export function Overlay({
   }
 
   function displayFocusWarning() {
-    const overlayIframe: HTMLIFrameElement | undefined =
+    const overlayIframe: ?HTMLIFrameElement =
+      //$FlowFixMe
       document.getElementsByName(overlayIframeName)?.[0];
     const iframeDocument = overlayIframe?.contentWindow.document;
     const warningElement = iframeDocument?.getElementsByClassName(
@@ -259,7 +260,8 @@ export function VenmoOverlay({
   }
 
   function displayFocusWarning() {
-    const overlayIframe: HTMLIFrameElement | undefined =
+    const overlayIframe: ?HTMLIFrameElement =
+      //$FlowFixMe
       document.getElementsByName(overlayIframeName)?.[0];
     const iframeDocument = overlayIframe?.contentWindow.document;
     const warningElement = iframeDocument?.getElementsByClassName(
