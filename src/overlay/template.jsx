@@ -21,7 +21,7 @@ import {
   PayPalLogo,
   VenmoLogo,
 } from "@paypal/sdk-logos/src";
-import { ZalgoPromise } from "@krakenjs/zalgo-promise/src";
+import { type ZalgoPromise } from "@krakenjs/zalgo-promise/src";
 
 import {
   getContainerStyle,
@@ -50,14 +50,6 @@ export type OverlayProps = {|
   fullScreen?: boolean,
 |};
 
-function showAlert(message): ZalgoPromise<void> {
-  return new ZalgoPromise((resolve) => {
-    // eslint-disable-next-line no-alert
-    window.alert(message);
-    resolve();
-  });
-}
-
 export function Overlay({
   context,
   close,
@@ -72,11 +64,27 @@ export function Overlay({
   fullScreen = false,
 }: OverlayProps): ElementNode {
   const uid = `paypal-overlay-${uniqueID()}`;
+  const overlayIframeName = `__paypal_checkout_sandbox_${uid}__`;
 
   function closeCheckout(e) {
     e.preventDefault();
     e.stopPropagation();
     close();
+  }
+
+  function displayFocusWarning() {
+    const overlayIframe: ?HTMLIFrameElement =
+      //  $FlowFixMe
+      document.getElementsByName(overlayIframeName)?.[0];
+    const iframeDocument = overlayIframe?.contentWindow.document;
+    const warningElement = iframeDocument?.getElementsByClassName(
+      "paypal-checkout-focus-warning"
+    )?.[0];
+
+    if (!warningElement) {
+      return;
+    }
+    warningElement.innerText = `Still can't see it? Select "Window" in your toolbar to find "Log in to your PayPal account"`;
   }
 
   function focusCheckout(e) {
@@ -87,18 +95,14 @@ export function Overlay({
       return;
     }
 
-    // Note: alerts block the event loop until they are closed.
     if (isIos()) {
-      showAlert("Please switch tabs to reactivate the PayPal window").then(() =>
-        focus()
-      );
+      // Note: alerts block the event loop until they are closed.
+      // eslint-disable-next-line no-alert
+      window.alert("Please switch tabs to reactivate the PayPal window");
     } else if (isFirefox()) {
-      showAlert(
-        'Don\'t see the popup window after clicking "OK"?\n\nSelect "Window" in your toolbar to find "Log in to your PayPal account"'
-      ).then(() => focus());
-    } else {
-      focus();
+      displayFocusWarning();
     }
+    focus();
   }
 
   const setupAnimations = (name) => {
@@ -167,7 +171,7 @@ export function Overlay({
       <style nonce={nonce}>{getSandboxStyle({ uid })}</style>
       <iframe
         title="PayPal Checkout Overlay"
-        name={`__paypal_checkout_sandbox_${uid}__`}
+        name={overlayIframeName}
         scrolling="no"
         class={`paypal-checkout-sandbox-iframe${fullScreen ? "-full" : ""}`}
       >
@@ -198,6 +202,7 @@ export function Overlay({
                       {content.windowMessage}
                     </div>
                   )}
+                  <div class="paypal-checkout-focus-warning" />
                   {content.continueMessage && (
                     <div class="paypal-checkout-continue">
                       {/* This handler should be guarded with e.stopPropagation. 
@@ -246,11 +251,27 @@ export function VenmoOverlay({
   fullScreen = false,
 }: OverlayProps): ElementNode {
   const uid = `venmo-overlay-${uniqueID()}`;
+  const overlayIframeName = `__venmo_checkout_sandbox_${uid}__`;
 
   function closeCheckout(e) {
     e.preventDefault();
     e.stopPropagation();
     close();
+  }
+
+  function displayFocusWarning() {
+    const overlayIframe: ?HTMLIFrameElement =
+      // $FlowFixMe
+      document.getElementsByName(overlayIframeName)?.[0];
+    const iframeDocument = overlayIframe?.contentWindow.document;
+    const warningElement = iframeDocument?.getElementsByClassName(
+      "paypal-checkout-focus-warning"
+    )?.[0];
+
+    if (!warningElement) {
+      return;
+    }
+    warningElement.innerText = `Still can't see it? Select "Window" in your toolbar to find "Log in to your Venmo account"`;
   }
 
   function focusCheckout(e) {
@@ -261,18 +282,14 @@ export function VenmoOverlay({
       return;
     }
 
-    // Note: alerts block the event loop until they are closed.
     if (isIos()) {
-      showAlert("Please switch tabs to reactivate the Venmo window").then(() =>
-        focus()
-      );
+      // Note: alerts block the event loop until they are closed.
+      // eslint-disable-next-line no-alert
+      window.alert("Please switch tabs to reactivate the Venmo window");
     } else if (isFirefox()) {
-      showAlert(
-        'Don\'t see the popup window after clicking "OK"?\n\nSelect "Window" in your toolbar to find "Log in to your Venmo account"'
-      ).then(() => focus());
-    } else {
-      focus();
+      displayFocusWarning();
     }
+    focus();
   }
 
   const setupAnimations = (name) => {
@@ -341,7 +358,7 @@ export function VenmoOverlay({
       <style nonce={nonce}>{getVenmoSandboxStyle({ uid })}</style>
       <iframe
         title="Venmo Checkout Overlay"
-        name={`__venmo_checkout_sandbox_${uid}__`}
+        name={overlayIframeName}
         scrolling="no"
         class={`venmo-checkout-sandbox-iframe${fullScreen ? "-full" : ""}`}
       >
@@ -362,6 +379,7 @@ export function VenmoOverlay({
                       {content.interrogativeMessage}
                     </div>
                   )}
+                  <div class="paypal-checkout-focus-warning" />
                   {content.windowMessage && (
                     <div class="venmo-checkout-message">
                       {content.windowMessage}

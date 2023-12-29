@@ -207,6 +207,12 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
             transform: rotate(-45deg);
         }
 
+        #${uid} .paypal-checkout-focus-warning {
+            font-size: 14px;
+            line-height: 1.35;
+            padding: 10px 0;
+        }
+
         #${uid} .paypal-checkout-iframe-container {
             display: none;
         }
