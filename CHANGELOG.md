@@ -1,3 +1,9 @@
+## <small>1.0.44 (2024-01-04)</small>
+
+* Fix alert blocking li 25798 (#89) ([00dbeba](https://github.paypal.com/paypal/paypal-checkout/commit/00dbeba)), closes [#89](https://github.paypal.com/paypal/paypal-checkout/issues/89)
+
+
+
 ## <small>1.0.43 (2023-12-06)</small>
 
 * Ensure alerts are acknowledged before focusing popup (#86) ([6e29b48](https://github.paypal.com/paypal/paypal-checkout/commit/6e29b48)), closes [#86](https://github.paypal.com/paypal/paypal-checkout/issues/86)
