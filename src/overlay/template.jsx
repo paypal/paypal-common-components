@@ -4,6 +4,7 @@
 
 import {
   isIos,
+  isIpadOs,
   isFirefox,
   animate,
   noop,
@@ -95,7 +96,7 @@ export function Overlay({
       return;
     }
 
-    if (isIos()) {
+    if (isIos() || isIpadOs()) {
       // Note: alerts block the event loop until they are closed.
       // eslint-disable-next-line no-alert
       window.alert("Please switch tabs to reactivate the PayPal window");
