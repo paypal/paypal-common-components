@@ -178,6 +178,7 @@ export function Overlay({
         <html>
           <body>
             <div
+              dir="auto"
               id={uid}
               onClick={focusCheckout}
               class={`paypal-overlay-context-${context} paypal-checkout-overlay`}
