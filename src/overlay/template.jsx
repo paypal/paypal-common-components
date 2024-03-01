@@ -179,6 +179,7 @@ export function Overlay({
         <html>
           <body>
             <div
+              dir="auto"
               id={uid}
               onClick={focusCheckout}
               class={`paypal-overlay-context-${context} paypal-checkout-overlay`}
@@ -194,7 +195,7 @@ export function Overlay({
               )}
               {!fullScreen && (
                 <div class="paypal-checkout-modal">
-                  <div class="paypal-checkout-logo">
+                  <div class="paypal-checkout-logo" dir="ltr">
                     <PPLogo logoColor={LOGO_COLOR.WHITE} />
                     <PayPalLogo logoColor={LOGO_COLOR.WHITE} />
                   </div>
