@@ -5,6 +5,7 @@
 .*/node_modules/jsonlint
 .*/node_modules/**/test
 .*/node_modules/resolve
+.*/node_modules/es-abstract
 .*/dist/module
 [include]
 [libs]
