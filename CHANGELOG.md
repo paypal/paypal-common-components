@@ -1,3 +1,9 @@
+## <small>1.0.45 (2024-03-06)</small>
+
+* fix flow-typed install error (#94) ([1596c8c](https://github.paypal.com/paypal/paypal-checkout/commit/1596c8c)), closes [#94](https://github.paypal.com/paypal/paypal-checkout/issues/94)
+
+
+
 ## <small>1.0.44 (2024-01-04)</small>
 
 * Fix alert blocking li 25798 (#89) ([00dbeba](https://github.paypal.com/paypal/paypal-checkout/commit/00dbeba)), closes [#89](https://github.paypal.com/paypal/paypal-checkout/issues/89)
