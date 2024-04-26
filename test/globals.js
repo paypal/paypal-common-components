@@ -95,6 +95,12 @@ export const testGlobals = {
   __PAYPAL_CHECKOUT__: {
     __REMEMBERED_FUNDING__: (): string =>
       "window.__TEST_REMEMBERED_FUNDING__ || []",
+    __ZOID__: {
+      __SCRIPT_NAMESPACE__: false,
+    },
+    __POST_ROBOT__: {
+      __SCRIPT_NAMESPACE__: false,
+    },
   },
 
   __PORT__: 8000,
