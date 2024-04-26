@@ -1,4 +1,5 @@
 /* @flow */
+import { __ZOID__, __POST_ROBOT__ } from "../globals";
 
 export const fundingEligibility = {
   bancontact: {
@@ -92,17 +93,19 @@ export const testGlobals = {
     },
   },
 
-  __PAYPAL_CHECKOUT__: {
-    __REMEMBERED_FUNDING__: (): string =>
-      "window.__TEST_REMEMBERED_FUNDING__ || []",
-  },
-
   __ZOID__: {
+    ...__ZOID__,
     __SCRIPT_NAMESPACE__: false,
   },
 
   __POST_ROBOT__: {
+    ...__POST_ROBOT__,
     __SCRIPT_NAMESPACE__: false,
+  },
+
+  __PAYPAL_CHECKOUT__: {
+    __REMEMBERED_FUNDING__: (): string =>
+      "window.__TEST_REMEMBERED_FUNDING__ || []",
   },
 
   __PORT__: 8000,
