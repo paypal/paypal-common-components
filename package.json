@@ -1,6 +1,6 @@
 {
   "name": "@paypal/common-components",
-  "version": "1.0.46",
+  "version": "1.0.47",
   "description": "PayPal common components, for integrating checkout products.",
   "main": "dist/ui.js",
   "scripts": {

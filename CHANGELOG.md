@@ -1,3 +1,9 @@
+## <small>1.0.47 (2024-04-26)</small>
+
+* Update publish to NPM script (#96) ([5ea93af](https://github.paypal.com/paypal/paypal-checkout/commit/5ea93af)), closes [#96](https://github.paypal.com/paypal/paypal-checkout/issues/96)
+
+
+
 ## <small>1.0.46 (2024-04-26)</small>
 
 * Update SECURITY.md on guidance from security team ([b0f7258](https://github.paypal.com/paypal/paypal-checkout/commit/b0f7258))
