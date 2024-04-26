@@ -1,3 +1,9 @@
+## <small>1.0.46 (2024-04-26)</small>
+
+* Update SECURITY.md on guidance from security team ([b0f7258](https://github.paypal.com/paypal/paypal-checkout/commit/b0f7258))
+
+
+
 ## <small>1.0.45 (2024-03-06)</small>
 
 * fix flow-typed install error (#94) ([1596c8c](https://github.paypal.com/paypal/paypal-checkout/commit/1596c8c)), closes [#94](https://github.paypal.com/paypal/paypal-checkout/issues/94)
