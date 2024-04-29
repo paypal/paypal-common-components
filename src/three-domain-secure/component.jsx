@@ -117,7 +117,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           alias: "onContingencyResult",
           decorate: ({ value, onError }) => {
             return (err, result) => {
-              if (err || (result && !result.success)) {
+              if (err) {
                 return onError(err);
               }
 
