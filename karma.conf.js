@@ -33,6 +33,8 @@ export default function configKarma(karma: Object) {
       ...karmaConfig.files,
     ],
 
+    exclude: ["test/globals.js"],
+
     preprocessors: {
       ...karmaConfig.preprocessors,
 
