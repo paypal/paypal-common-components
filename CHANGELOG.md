@@ -1,3 +1,9 @@
+## <small>1.0.48 (2024-05-01)</small>
+
+* (fix) add eslint-config-grumbler to resolve plugin install issue (#99) ([01e13c4](https://github.paypal.com/paypal/paypal-checkout/commit/01e13c4)), closes [#99](https://github.paypal.com/paypal/paypal-checkout/issues/99)
+
+
+
 ## <small>1.0.47 (2024-04-26)</small>
 
 * Update publish to NPM script (#96) ([5ea93af](https://github.paypal.com/paypal/paypal-checkout/commit/5ea93af)), closes [#96](https://github.paypal.com/paypal/paypal-checkout/issues/96)
