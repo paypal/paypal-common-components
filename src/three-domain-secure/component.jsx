@@ -123,7 +123,8 @@ export function getThreeDomainSecureComponent(): TDSComponent {
 
               const hasError = isCardFieldFlow
                 ? err
-                : err || result?.success === false;
+                : // $FlowFixMe[incompatible-use]
+                  err || result?.success === false;
 
               if (hasError) {
                 return onError(err);
