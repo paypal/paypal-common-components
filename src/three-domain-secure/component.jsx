@@ -117,7 +117,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           alias: "onContingencyResult",
           decorate: ({ props, value, onError }) => {
             return (err, result) => {
-              const isCardFieldFlow = props.userType === "UNBRANDED_GUEST";
+              const isCardFieldFlow = props?.userType === "UNBRANDED_GUEST";
 
               // HostedFields ONLY rejects when the err object is not null. The below implementation ensures that CardFields follows the same pattern.
 
