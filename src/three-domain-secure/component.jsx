@@ -118,7 +118,9 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           decorate: ({ props, value, onError }) => {
             return (err, result) => {
               const isCardFieldFlow = props?.userType === "UNBRANDED_GUEST";
+              // eslint-disable-next-line no-console
               console.log("Seb userType", { userType: props?.userType });
+              // eslint-disable-next-line no-console
               console.log("Seb cardFieldFlow", { isCardFieldFlow });
               // HostedFields ONLY rejects when the err object is not null. The below implementation ensures that CardFields follows the same pattern.
 
@@ -126,8 +128,11 @@ export function getThreeDomainSecureComponent(): TDSComponent {
                 ? err
                 : // $FlowFixMe[incompatible-use]
                   err || result?.success === false;
+              // eslint-disable-next-line no-console
               console.log("Seb err", { err });
+              // eslint-disable-next-line no-console
               console.log("Seb result", { result });
+              // eslint-disable-next-line no-console
               console.log("Seb hasError", { hasError });
               if (hasError) {
                 return onError(err);
