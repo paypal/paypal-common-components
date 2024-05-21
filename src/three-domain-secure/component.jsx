@@ -61,6 +61,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         event,
         props,
       }) => {
+        console.log("$$$$ props", props);
         return (
           <Overlay
             context={context}
@@ -112,6 +113,10 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           value: getClientID,
           queryParam: true,
         },
+        onCancel: {
+          type: "function",
+          required: false,
+        },
         onSuccess: {
           type: "function",
           alias: "onContingencyResult",
@@ -156,6 +161,8 @@ export function getThreeDomainSecureComponent(): TDSComponent {
     });
 
     if (component.isChild()) {
+      // eslint-disable-next-line no-console
+      console.log("### Something", component.xprops);
       window.xchild = {
         props: component.xprops,
         close: noop,
