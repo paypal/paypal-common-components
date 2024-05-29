@@ -1,3 +1,9 @@
+## <small>1.0.49 (2024-05-29)</small>
+
+* Commit flow typed folder (#100) ([25b9e5d](https://github.paypal.com/paypal/paypal-checkout/commit/25b9e5d)), closes [#100](https://github.paypal.com/paypal/paypal-checkout/issues/100)
+
+
+
 ## <small>1.0.48 (2024-05-01)</small>
 
 * (fix) add eslint-config-grumbler to resolve plugin install issue (#99) ([01e13c4](https://github.paypal.com/paypal/paypal-checkout/commit/01e13c4)), closes [#99](https://github.paypal.com/paypal/paypal-checkout/issues/99)
