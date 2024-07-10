@@ -1,3 +1,9 @@
+## <small>1.0.50 (2024-07-10)</small>
+
+* chore(release): 1.0.49 🎉 ([bfb5a26](https://github.paypal.com/paypal/paypal-checkout/commit/bfb5a26))
+
+
+
 ## <small>1.0.49 (2024-05-29)</small>
 
 * Commit flow typed folder (#100) ([25b9e5d](https://github.paypal.com/paypal/paypal-checkout/commit/25b9e5d)), closes [#100](https://github.paypal.com/paypal/paypal-checkout/issues/100)
