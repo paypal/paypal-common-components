@@ -5,19 +5,19 @@
 import { node, dom } from "@krakenjs/jsx-pragmatic/src";
 import { create, type ZoidComponent } from "@krakenjs/zoid/src";
 import { inlineMemoize, noop } from "@krakenjs/belter/src";
-import { getSDKMeta, getClientID, getCSPNonce } from "@paypal/sdk-client/src";
+import {
+  getSDKMeta,
+  getClientID,
+  getCSPNonce,
+  getPayPalDomainRegex,
+} from "@paypal/sdk-client/src";
 import { ZalgoPromise } from "@krakenjs/zalgo-promise/src";
 
 import { Overlay } from "../overlay";
 import { getThreeDomainSecureUrl } from "../config";
+import { USER_TYPE } from "../constants";
 
 export type TDSResult = {||};
-
-export const USER_TYPE = {
-  BRANDED_GUEST: ("BRANDED_GUEST": "BRANDED_GUEST"), // inline guest flow
-  UNBRANDED_GUEST: ("UNBRANDED_GUEST": "UNBRANDED_GUEST"), // UCC
-  MEMBER: ("MEMBER": "MEMBER"),
-};
 
 export type TDSProps = {|
   action: string,
@@ -27,6 +27,7 @@ export type TDSProps = {|
   onSuccess: (TDSResult) => void,
   onError: (mixed) => void,
   sdkMeta: string,
+  go_to: string,
   content?: void | {|
     windowMessage?: string,
     continueMessage?: string,
@@ -74,6 +75,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           />
         ).render(dom({ doc }));
       },
+      domain: getPayPalDomainRegex(),
 
       props: {
         action: {
@@ -85,11 +87,6 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           type: "string",
           queryParam: true,
           value: () => "1",
-        },
-        flow: {
-          type: "string",
-          queryParam: true,
-          value: () => "3ds",
         },
         createOrder: {
           type: "function",
@@ -117,8 +114,10 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           alias: "onContingencyResult",
           decorate: ({ props, value, onError }) => {
             return (err, result) => {
+              if (props?.userType === "FASTLANE") {
+                return value(result);
+              }
               const isCardFieldFlow = props?.userType === "UNBRANDED_GUEST";
-
               // HostedFields ONLY rejects when the err object is not null. The below implementation ensures that CardFields follows the same pattern.
 
               const hasError = isCardFieldFlow
@@ -142,6 +141,13 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         },
         content: {
           type: "object",
+          required: false,
+        },
+        go_to: {
+          type: "string",
+          queryParam: true,
+          // $FlowFixMe
+          value: ({ value }) => value,
           required: false,
         },
         userType: {
