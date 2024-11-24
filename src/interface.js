@@ -27,7 +27,7 @@ function protectedExport<T>(xport: T): ?T {
 // $FlowIssue
 export const devEnvOnlyExport = (unprotectedExport) => {
   const env = getEnv();
-  if (env === ENV.LOCAL || env === ENV.STAGE) {
+  if (env === ENV.LOCAL || env === ENV.STAGE || env === ENV.TEST) {
     return unprotectedExport;
   } else {
     return undefined;
