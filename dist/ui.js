@@ -216,37 +216,39 @@ module.exports = function(modules) {
             var child = firstChild.render(function(opts) {
                 void 0 === opts && (opts = {});
                 var _opts$doc = opts.doc, doc = void 0 === _opts$doc ? document : _opts$doc;
-                return function domRenderer(node) {
-                    if ("component" === node.type) return node.renderComponent(domRenderer);
+                var _xmlNamespaceDomRenderer = function(node, xmlNamespace) {
+                    if ("component" === node.type) return node.renderComponent((function(childNode) {
+                        return _xmlNamespaceDomRenderer(childNode, xmlNamespace);
+                    }));
                     if ("text" === node.type) return createTextElement(doc, node);
                     if ("element" === node.type) {
-                        var xmlNamespace = ELEMENT_DEFAULT_XML_NAMESPACE[node.name.toLowerCase()];
-                        if (xmlNamespace) return function xmlNamespaceDomRenderer(node, xmlNamespace) {
-                            if ("component" === node.type) return node.renderComponent((function(childNode) {
-                                return xmlNamespaceDomRenderer(childNode, xmlNamespace);
-                            }));
-                            if ("text" === node.type) return createTextElement(doc, node);
-                            if ("element" === node.type) {
-                                var el = function(doc, node, xmlNamespace) {
-                                    return doc.createElementNS(xmlNamespace, node.name);
-                                }(doc, node, xmlNamespace);
-                                addProps(el, node);
-                                addChildren(el, node, doc, (function(childNode) {
-                                    return xmlNamespaceDomRenderer(childNode, xmlNamespace);
-                                }));
-                                return el;
-                            }
-                            throw new TypeError("Unhandleable node");
-                        }(node, xmlNamespace);
-                        var el = function(doc, node) {
-                            return node.props.el ? node.props.el : doc.createElement(node.name);
-                        }(doc, node);
+                        var el = function(doc, node, xmlNamespace) {
+                            return doc.createElementNS(xmlNamespace, node.name);
+                        }(doc, node, xmlNamespace);
                         addProps(el, node);
-                        addChildren(el, node, doc, domRenderer);
+                        addChildren(el, node, doc, (function(childNode) {
+                            return _xmlNamespaceDomRenderer(childNode, xmlNamespace);
+                        }));
                         return el;
                     }
                     throw new TypeError("Unhandleable node");
                 };
+                var _domRenderer = function(node) {
+                    if ("component" === node.type) return node.renderComponent(_domRenderer);
+                    if ("text" === node.type) return createTextElement(doc, node);
+                    if ("element" === node.type) {
+                        var xmlNamespace = ELEMENT_DEFAULT_XML_NAMESPACE[node.name.toLowerCase()];
+                        if (xmlNamespace) return _xmlNamespaceDomRenderer(node, xmlNamespace);
+                        var el = function(doc, node) {
+                            return node.props.el ? node.props.el : doc.createElement(node.name);
+                        }(doc, node);
+                        addProps(el, node);
+                        addChildren(el, node, doc, _domRenderer);
+                        return el;
+                    }
+                    throw new TypeError("Unhandleable node");
+                };
+                return _domRenderer;
             }({
                 doc: doc
             }));
