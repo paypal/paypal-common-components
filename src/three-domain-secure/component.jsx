@@ -115,7 +115,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         onSuccess: {
           type: "function",
           alias: "onContingencyResult",
-          decorate: ({ props, value, onError}) => {
+          decorate: ({ props, value, onError }) => {
             return (err, result) => {
               const isCardFieldFlow = props?.userType === "UNBRANDED_GUEST";
 
