@@ -137,9 +137,6 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         onCancel: {
           type: "function",
           alias: "onCancel",
-          decorate: ({ props }) => {
-            return props.onClose();
-          },
         },
         sdkMeta: {
           type: "string",
