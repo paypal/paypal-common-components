@@ -121,11 +121,6 @@ export function getThreeDomainSecureComponent(): TDSComponent {
 
               // HostedFields ONLY rejects when the err object is not null. The below implementation ensures that CardFields follows the same pattern.
 
-              // $FlowFixMe[incompatible-type]
-              if (isCardFieldFlow === true && result?.success !== true) {
-                return props.onClose();
-              }
-
               const hasError = isCardFieldFlow
                 ? Boolean(err)
                 : // $FlowFixMe[incompatible-use]
@@ -137,6 +132,13 @@ export function getThreeDomainSecureComponent(): TDSComponent {
 
               return value(result);
             };
+          },
+        },
+        onCancel: {
+          type: "function",
+          alias: "onCancel",
+          decorate: ({ props }) => {
+            return props.onClose();
           },
         },
         sdkMeta: {
