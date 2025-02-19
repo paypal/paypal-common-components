@@ -1,3 +1,9 @@
+## <small>1.0.51 (2025-02-19)</small>
+
+* 3ds - onClose (#103) ([14fdc05](https://github.paypal.com/paypal/paypal-checkout/commit/14fdc05)), closes [#103](https://github.paypal.com/paypal/paypal-checkout/issues/103)
+
+
+
 ## <small>1.0.50 (2024-07-10)</small>
 
 * chore(release): 1.0.49 🎉 ([bfb5a26](https://github.paypal.com/paypal/paypal-checkout/commit/bfb5a26))
