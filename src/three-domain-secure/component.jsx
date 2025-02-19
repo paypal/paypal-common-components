@@ -134,6 +134,10 @@ export function getThreeDomainSecureComponent(): TDSComponent {
             };
           },
         },
+        onCancel: {
+          type: "function",
+          alias: "onCancel",
+        },
         sdkMeta: {
           type: "string",
           queryParam: true,
