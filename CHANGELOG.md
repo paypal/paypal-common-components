@@ -1,3 +1,9 @@
+## <small>1.0.52 (2025-02-20)</small>
+
+* mark onCancel as not required (#104) ([9530b23](https://github.paypal.com/paypal/paypal-checkout/commit/9530b23)), closes [#104](https://github.paypal.com/paypal/paypal-checkout/issues/104)
+
+
+
 ## <small>1.0.51 (2025-02-19)</small>
 
 * 3ds - onClose (#103) ([14fdc05](https://github.paypal.com/paypal/paypal-checkout/commit/14fdc05)), closes [#103](https://github.paypal.com/paypal/paypal-checkout/issues/103)
