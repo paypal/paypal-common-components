@@ -65,6 +65,9 @@ window.__TEST_FUNDING_ELIGIBILITY__ = {
   wechatpay: {
     eligible: false,
   },
+  mercadopago: {
+    eligible: false,
+  },
   boleto: {
     eligible: false,
   },
