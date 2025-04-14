@@ -1,0 +1,8 @@
+/* @flow */
+
+export const USER_TYPE = {
+  BRANDED_GUEST: ("BRANDED_GUEST": "BRANDED_GUEST"), // inline guest flow
+  UNBRANDED_GUEST: ("UNBRANDED_GUEST": "UNBRANDED_GUEST"), // UCC
+  MEMBER: ("MEMBER": "MEMBER"),
+  FASTLANE: ("FASTLANE": "FASTLANE"),
+};
