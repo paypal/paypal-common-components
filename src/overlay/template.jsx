@@ -19,7 +19,7 @@ import { node, type ElementNode } from "@krakenjs/jsx-pragmatic/src";
 import {
   LOGO_COLOR,
   PayPalRebrandLogo,
-  VenmoRebrandLogo,
+  VenmoLogo,
 } from "@paypal/sdk-logos/src";
 import { type ZalgoPromise } from "@krakenjs/zalgo-promise/src";
 
@@ -374,7 +374,7 @@ export function VenmoOverlay({
               {!fullScreen && (
                 <div class="venmo-checkout-modal">
                   <div class="venmo-checkout-logo">
-                    <VenmoRebrandLogo logoColor={LOGO_COLOR.WHITE} />
+                    <VenmoLogo logoColor={LOGO_COLOR.WHITE} />
                   </div>
                   {content.interrogativeMessage && (
                     <div class="venmo-interrogative-message">
