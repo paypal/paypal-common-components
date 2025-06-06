@@ -259,13 +259,13 @@ export function VenmoOverlay({
     close();
   }
 
-  function displayFocusWarning() {
+  function displayFocusWarningVenmo() {
     const overlayIframe: ?HTMLIFrameElement =
       // $FlowFixMe
       document.getElementsByName(overlayIframeName)?.[0];
     const iframeDocument = overlayIframe?.contentWindow.document;
     const warningElement = iframeDocument?.getElementsByClassName(
-      "paypal-checkout-focus-warning-hidden"
+      "venmo-checkout-focus-warning-hidden"
     )?.[0];
 
     if (!warningElement) {
@@ -273,7 +273,7 @@ export function VenmoOverlay({
     }
 
     warningElement.innerText = `Still can't see it? Select "Window" in your toolbar to find "Log in to your Venmo account"`;
-    warningElement.classList.remove("paypal-checkout-focus-warning-hidden");
+    warningElement.classList.remove("venmo-checkout-focus-warning-hidden");
   }
 
   function focusCheckout(e) {
@@ -289,7 +289,7 @@ export function VenmoOverlay({
       // eslint-disable-next-line no-alert
       window.alert("Please switch tabs to reactivate the Venmo window");
     } else if (isFirefox()) {
-      displayFocusWarning();
+      displayFocusWarningVenmo();
     }
     focus();
   }
@@ -381,7 +381,7 @@ export function VenmoOverlay({
                       {content.interrogativeMessage}
                     </div>
                   )}
-                  <div class="paypal-checkout-focus-warning paypal-checkout-focus-warning-hidden" />
+                  <div class="venmo-checkout-focus-warning venmo-checkout-focus-warning-hidden" />
                   {content.windowMessage && (
                     <div class="venmo-checkout-message">
                       {content.windowMessage}

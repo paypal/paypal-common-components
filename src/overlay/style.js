@@ -212,7 +212,9 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .paypal-checkout-focus-warning {
+            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-size: 14px;
+            font-weight: 400;
             line-height: 1.35;
             padding: 8px 0;
             display: block;
@@ -573,6 +575,19 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid}.venmo-overlay-loading .venmo-checkout-close {
+            display: none;
+        }
+
+        #${uid} .venmo-checkout-focus-warning {
+            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.35;
+            margin-top: 16px;
+            display: block;
+        }
+        
+        #${uid} .venmo-checkout-focus-warning-hidden {
             display: none;
         }
 
