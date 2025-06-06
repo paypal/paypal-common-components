@@ -215,7 +215,7 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
             font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-size: 14px;
             font-weight: 400;
-            line-height: 1.35;
+            line-height: 18px;
             padding: 8px 0;
             display: block;
         }
@@ -580,9 +580,11 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
 
         #${uid} .venmo-checkout-focus-warning {
             font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
-            font-size: 16px;
+           font-style: normal;
             font-weight: 400;
-            line-height: 1.35;
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center;
             margin-top: 16px;
             display: block;
         }
