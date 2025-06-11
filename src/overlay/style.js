@@ -90,7 +90,7 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
 
             background-color: black;
             background-color: rgba(0, 0, 0, 0.8);
-            background: radial-gradient(50% 50%, ellipse closest-corner, rgba(0,0,0,0.6) 1%, rgba(0,0,0,0.8) 100%);
+            background: radial-gradient(84.48% 50% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.75) 100%);
 
             color: #fff;
         }
@@ -113,18 +113,19 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .paypal-checkout-modal {
-            font-family: "HelveticaNeue", "HelveticaNeue-Light", "Helvetica Neue Light", helvetica, arial, sans-serif;
+            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-size: 14px;
             text-align: center;
 
             box-sizing: border-box;
             max-width: 350px;
+            width: 100%;
             top: 50%;
             left: 50%;
             position: absolute;
             transform: translateX(-50%) translateY(-50%);
             cursor: pointer;
-            text-align: center;
+            padding: 0 48px
         }
 
         #${uid}.paypal-overlay-loading .paypal-checkout-message, #${uid}.paypal-overlay-loading .paypal-checkout-continue {
@@ -141,12 +142,13 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
 
         #${uid} .paypal-checkout-modal .paypal-checkout-logo {
             cursor: pointer;
-            margin-bottom: 30px;
+            margin-bottom: 8px;
+            padding: 4px;
             display: inline-block;
         }
 
         #${uid} .paypal-checkout-modal .paypal-checkout-logo img {
-            height: 36px;
+            height: 38px;
         }
 
         #${uid} .paypal-checkout-modal .paypal-checkout-logo img.paypal-checkout-logo-pp {
@@ -154,9 +156,10 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .paypal-checkout-modal .paypal-checkout-message {
-            font-size: 15px;
-            line-height: 1.5;
-            padding: 10px 0;
+            font-size: 14px;
+            line-height: 18px;
+            padding: 8px 0;
+            font-weight: 400;
         }
 
         #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-message, #${uid}.paypal-overlay-context-${CONTEXT.IFRAME} .paypal-checkout-continue {
@@ -164,10 +167,10 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .paypal-checkout-modal .paypal-checkout-continue {
-            font-size: 15px;
-            line-height: 1.35;
-            padding: 10px 0;
-            font-weight: bold;
+            font-size: 14px;
+            line-height: 18px;
+            padding: 8px 0;
+            font-weight: 500;
         }
 
         #${uid} .paypal-checkout-modal .paypal-checkout-continue a {
@@ -175,12 +178,12 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .paypal-checkout-close {
+            cursor: pointer;
             position: absolute;
             right: 16px;
             top: 16px;
-            width: 16px;
-            height: 16px;
-            opacity: 0.6;
+            width: 24px;
+            height: 24px;
         }
 
         #${uid}.paypal-overlay-loading .paypal-checkout-close {
@@ -193,9 +196,10 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
 
         #${uid} .paypal-checkout-close:before, .paypal-checkout-close:after {
             position: absolute;
-            left: 8px;
+            left: 11px;
+            top: 2px;
             content: ' ';
-            height: 16px;
+            height: 20px;
             width: 2px;
         }
 
@@ -208,9 +212,16 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .paypal-checkout-focus-warning {
+            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-size: 14px;
-            line-height: 1.35;
-            padding: 10px 0;
+            font-weight: 400;
+            line-height: 18px;
+            padding: 8px 0;
+            display: block;
+        }
+        
+        #${uid} .paypal-checkout-focus-warning-hidden {
+            display: none;
         }
 
         #${uid} .paypal-checkout-iframe-container {
@@ -459,7 +470,7 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
 
             background-color: black;
             background-color: rgba(0, 0, 0, 0.8);
-            background: radial-gradient(50% 50%, ellipse closest-corner, rgba(0,0,0,0.6) 1%, rgba(0,0,0,0.8) 100%);
+            background: radial-gradient(84.48% 50% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.75) 100%);
 
             color: #fff;
         }
@@ -490,7 +501,7 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .venmo-checkout-modal .venmo-interrogative-message {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-style: normal;
             font-size: 24px;
             line-height: 32px;
@@ -520,7 +531,7 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .venmo-checkout-modal .venmo-checkout-message {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
@@ -538,7 +549,7 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
             background: #0074DE;
             border-radius: 24px;
             border: none;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-style: normal;
             font-weight: 700;
             font-size: 18px;
@@ -551,7 +562,7 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .venmo-checkout-close {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-style: normal;
             font-weight: 700;
             font-size: 18px;
@@ -564,6 +575,21 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid}.venmo-overlay-loading .venmo-checkout-close {
+            display: none;
+        }
+
+        #${uid} .venmo-checkout-focus-warning {
+            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
+           font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center;
+            margin-top: 16px;
+            display: block;
+        }
+        
+        #${uid} .venmo-checkout-focus-warning-hidden {
             display: none;
         }
 

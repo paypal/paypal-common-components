@@ -18,8 +18,7 @@ import { EVENT, CONTEXT } from "@krakenjs/zoid/src";
 import { node, type ElementNode } from "@krakenjs/jsx-pragmatic/src";
 import {
   LOGO_COLOR,
-  PPLogo,
-  PayPalLogo,
+  PayPalRebrandLogo,
   VenmoLogo,
 } from "@paypal/sdk-logos/src";
 import { type ZalgoPromise } from "@krakenjs/zalgo-promise/src";
@@ -79,13 +78,14 @@ export function Overlay({
       document.getElementsByName(overlayIframeName)?.[0];
     const iframeDocument = overlayIframe?.contentWindow.document;
     const warningElement = iframeDocument?.getElementsByClassName(
-      "paypal-checkout-focus-warning"
+      "paypal-checkout-focus-warning-hidden"
     )?.[0];
 
     if (!warningElement) {
       return;
     }
     warningElement.innerText = `Still can't see it? Select "Window" in your toolbar to find "Log in to your PayPal account"`;
+    warningElement.classList.remove("paypal-checkout-focus-warning-hidden");
   }
 
   function focusCheckout(e) {
@@ -162,7 +162,6 @@ export function Overlay({
       </div>
     );
   }
-
   return (
     <div
       id={uid}
@@ -196,15 +195,14 @@ export function Overlay({
               {!fullScreen && (
                 <div class="paypal-checkout-modal">
                   <div class="paypal-checkout-logo" dir="ltr">
-                    <PPLogo logoColor={LOGO_COLOR.WHITE} />
-                    <PayPalLogo logoColor={LOGO_COLOR.WHITE} />
+                    <PayPalRebrandLogo logoColor={LOGO_COLOR.WHITE} />
                   </div>
                   {content.windowMessage && (
                     <div class="paypal-checkout-message">
                       {content.windowMessage}
                     </div>
                   )}
-                  <div class="paypal-checkout-focus-warning" />
+                  <div class="paypal-checkout-focus-warning paypal-checkout-focus-warning-hidden" />
                   {content.continueMessage && (
                     <div class="paypal-checkout-continue">
                       {/* This handler should be guarded with e.stopPropagation. 
@@ -261,19 +259,21 @@ export function VenmoOverlay({
     close();
   }
 
-  function displayFocusWarning() {
+  function displayFocusWarningVenmo() {
     const overlayIframe: ?HTMLIFrameElement =
       // $FlowFixMe
       document.getElementsByName(overlayIframeName)?.[0];
     const iframeDocument = overlayIframe?.contentWindow.document;
     const warningElement = iframeDocument?.getElementsByClassName(
-      "paypal-checkout-focus-warning"
+      "venmo-checkout-focus-warning-hidden"
     )?.[0];
 
     if (!warningElement) {
       return;
     }
+
     warningElement.innerText = `Still can't see it? Select "Window" in your toolbar to find "Log in to your Venmo account"`;
+    warningElement.classList.remove("venmo-checkout-focus-warning-hidden");
   }
 
   function focusCheckout(e) {
@@ -289,7 +289,7 @@ export function VenmoOverlay({
       // eslint-disable-next-line no-alert
       window.alert("Please switch tabs to reactivate the Venmo window");
     } else if (isFirefox()) {
-      displayFocusWarning();
+      displayFocusWarningVenmo();
     }
     focus();
   }
@@ -381,7 +381,7 @@ export function VenmoOverlay({
                       {content.interrogativeMessage}
                     </div>
                   )}
-                  <div class="paypal-checkout-focus-warning" />
+                  <div class="venmo-checkout-focus-warning venmo-checkout-focus-warning-hidden" />
                   {content.windowMessage && (
                     <div class="venmo-checkout-message">
                       {content.windowMessage}

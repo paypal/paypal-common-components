@@ -7,7 +7,7 @@
     "lint": "eslint --ext .js --ext .jsx src/ test/ *.js",
     "flow-typed": "rm -rf flow-typed && flow-typed install",
     "flow": "flow",
-    "karma": "cross-env NODE_ENV=test babel-node $(npm bin)/karma start",
+    "karma": "cross-env NODE_ENV=test babel-node ./node_modules/.bin/karma start",
     "format": "prettier --write --ignore-unknown .",
     "format:check": "prettier --check .",
     "test": "npm run format:check && npm run lint && npm run flow && npm run karma",
@@ -80,7 +80,7 @@
   "dependencies": {
     "@paypal/sdk-client": "^4.0.166",
     "@paypal/sdk-constants": "^1.0.128",
-    "@paypal/sdk-logos": "^2.1.0",
+    "@paypal/sdk-logos": "^2.2.12",
     "@krakenjs/belter": "^2.0.0",
     "@krakenjs/jsx-pragmatic": "^3.0.0",
     "@krakenjs/post-robot": "^11.0.0",
