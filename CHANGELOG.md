@@ -1,3 +1,9 @@
+## <small>1.0.53 (2025-06-11)</small>
+
+* Update Overlay with New Branding (#105) ([8df67a9](https://github.paypal.com/paypal/paypal-checkout/commit/8df67a9)), closes [#105](https://github.paypal.com/paypal/paypal-checkout/issues/105)
+
+
+
 ## <small>1.0.52 (2025-02-20)</small>
 
 * mark onCancel as not required (#104) ([9530b23](https://github.paypal.com/paypal/paypal-checkout/commit/9530b23)), closes [#104](https://github.paypal.com/paypal/paypal-checkout/issues/104)
