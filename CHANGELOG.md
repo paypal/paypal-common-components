@@ -1,3 +1,9 @@
+## <small>1.0.54 (2025-06-24)</small>
+
+* pass a new prop integrationType for 3ds component (#106) ([b922c6a](https://github.paypal.com/paypal/paypal-checkout/commit/b922c6a)), closes [#106](https://github.paypal.com/paypal/paypal-checkout/issues/106)
+
+
+
 ## <small>1.0.53 (2025-06-11)</small>
 
 * Update Overlay with New Branding (#105) ([8df67a9](https://github.paypal.com/paypal/paypal-checkout/commit/8df67a9)), closes [#105](https://github.paypal.com/paypal/paypal-checkout/issues/105)
