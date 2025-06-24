@@ -156,6 +156,11 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           type: "string",
           default: getCSPNonce,
         },
+        integrationType: {
+          type: "string",
+          required: false,
+          queryParam: true,
+        },
       },
     });
 
