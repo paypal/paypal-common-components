@@ -161,6 +161,11 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           required: false,
           queryParam: true,
         },
+        go_to: {
+          type: "string",
+          required: false,
+          queryParam: true,
+        },
       },
     });
 
