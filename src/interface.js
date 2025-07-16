@@ -6,10 +6,12 @@ import * as postRobotModule from "@krakenjs/post-robot/src";
 
 import {
   getThreeDomainSecureComponent,
-  getCaptchaComponent,
-  type CaptchaComponent,
   type TDSComponent,
 } from "./three-domain-secure";
+import {
+  getCaptchaComponent,
+  type CaptchaComponent,
+} from "./captcha/component";
 
 export type LazyExport<T> = {|
   __get__: () => T,

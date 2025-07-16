@@ -115,17 +115,19 @@ export function getCaptchaComponent(): CaptchaComponent {
         onApprove: {
           type: "function",
           alias: "onContingencyResult",
-          decorate: ({ props, value }) => {
+          decorate: ({ props, value, onError }) => {
             return (err, result) => {
               const isCardFieldFlow = props?.userType === "UNBRANDED_GUEST";
-        
+
               const hasError = isCardFieldFlow
                 ? Boolean(err)
                 : Boolean(err) || result?.success === false;
-              
+
               if (hasError) {
                 if (onError) {
-                  return onError(err || new Error('CAPTCHA verification failed'));
+                  return onError(
+                    err || new Error("CAPTCHA verification failed")
+                  );
                 }
                 return;
               }

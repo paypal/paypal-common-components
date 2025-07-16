@@ -8,7 +8,7 @@ const URI = __TEST__
     }
   : {
       THREEDOMAINSECURE: `/webapps/helios`,
-      CAPTCHA: `/heliosnext`
+      CAPTCHA: `/heliosnext`,
     };
 
 export function getThreeDomainSecureUrl(): string {
