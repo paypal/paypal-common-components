@@ -1,0 +1,174 @@
+/* @flow */
+/** @jsx node */
+/* eslint max-lines: 0 */
+
+import { node, dom } from "@krakenjs/jsx-pragmatic/src";
+import { create, type ZoidComponent } from "@krakenjs/zoid/src";
+import { inlineMemoize, noop } from "@krakenjs/belter/src";
+import { getSDKMeta, getClientID, getCSPNonce } from "@paypal/sdk-client/src";
+import { ZalgoPromise } from "@krakenjs/zalgo-promise/src";
+
+import { Overlay } from "../overlay";
+import { getCaptchaUrl } from "../config";
+
+export type CaptchaResult = {||};
+
+export const USER_TYPE = {
+  BRANDED_GUEST: ("BRANDED_GUEST": "BRANDED_GUEST"), // inline guest flow
+  UNBRANDED_GUEST: ("UNBRANDED_GUEST": "UNBRANDED_GUEST"), // UCC
+  MEMBER: ("MEMBER": "MEMBER"),
+};
+
+export type CaptchaProps = {|
+  action: string,
+  xcomponent: string,
+  flow: string,
+  orderID: string,
+  onApprove: (CaptchaResult) => void,
+  onError: (mixed) => void,
+  sdkMeta: string,
+  content?: void | {|
+    windowMessage?: string,
+    continueMessage?: string,
+    cancelMessage?: string,
+    interrogativeMessage?: string,
+  |},
+  userType: ?$Values<typeof USER_TYPE>,
+  nonce: string,
+|};
+
+export type CaptchaComponent = ZoidComponent<CaptchaProps>;
+
+export function getCaptchaComponent(): CaptchaComponent {
+  return inlineMemoize(getCaptchaComponent, () => {
+    const component = create({
+      tag: "captcha",
+      url: getCaptchaUrl,
+
+      attributes: {
+        iframe: {
+          scrolling: "no",
+        },
+      },
+
+      containerTemplate: ({
+        context,
+        focus,
+        close,
+        frame,
+        prerenderFrame,
+        doc,
+        event,
+        props,
+      }) => {
+        return (
+          <Overlay
+            context={context}
+            close={close}
+            focus={focus}
+            event={event}
+            frame={frame}
+            prerenderFrame={prerenderFrame}
+            content={props.content}
+            nonce={props.nonce}
+          />
+        ).render(dom({ doc }));
+      },
+
+      props: {
+        action: {
+          type: "string",
+          queryParam: true,
+          value: (data) => (data.props.action ? data.props.action : "verify"),
+        },
+        xcomponent: {
+          type: "string",
+          queryParam: true,
+          value: () => "1",
+        },
+        flow: {
+          type: "string",
+          queryParam: true,
+          value: () => "captcha",
+        },
+        createOrder: {
+          type: "function",
+          queryParam: "cart_id",
+          queryValue: ({ value }) => ZalgoPromise.try(value),
+          required: false,
+        },
+        token: {
+          type: "string",
+          queryParam: "token",
+          queryValue: ({ value }) => value,
+          required: false,
+        },
+        clientID: {
+          type: "string",
+          value: getClientID,
+          queryParam: true,
+        },
+        onError: {
+          type: "function",
+          required: false,
+        },
+        onApprove: {
+          type: "function",
+          alias: "onContingencyResult",
+          decorate: ({ props, value }) => {
+            return (err, result) => {
+              const isCardFieldFlow = props?.userType === "UNBRANDED_GUEST";
+        
+              const hasError = isCardFieldFlow
+                ? Boolean(err)
+                : Boolean(err) || result?.success === false;
+              
+              if (hasError) {
+                if (onError) {
+                  return onError(err || new Error('CAPTCHA verification failed'));
+                }
+                return;
+              }
+
+              return value(result);
+            };
+          },
+        },
+        onCancel: {
+          type: "function",
+          required: false,
+        },
+        sdkMeta: {
+          type: "string",
+          queryParam: true,
+          sendToChild: false,
+          value: getSDKMeta,
+        },
+        content: {
+          type: "object",
+          required: false,
+        },
+        userType: {
+          type: "string",
+          required: false,
+        },
+        nonce: {
+          type: "string",
+          default: getCSPNonce,
+        },
+        integrationType: {
+          type: "string",
+          required: false,
+          queryParam: true,
+        },
+      },
+    });
+    if (component.isChild()) {
+      window.xchild = {
+        props: component.xprops,
+        close: noop,
+      };
+    }
+    return component;
+  });
+}
