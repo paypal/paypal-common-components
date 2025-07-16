@@ -89,11 +89,12 @@ export function getCaptchaComponent(): CaptchaComponent {
         flow: {
           type: "string",
           queryParam: true,
-          value: () => "captcha",
+          value: () => "rca",
         },
         createOrder: {
           type: "function",
           queryParam: "cart_id",
+          // $FlowFixMe[incompatible-call]
           queryValue: ({ value }) => ZalgoPromise.try(value),
           required: false,
         },
@@ -121,7 +122,8 @@ export function getCaptchaComponent(): CaptchaComponent {
 
               const hasError = isCardFieldFlow
                 ? Boolean(err)
-                : Boolean(err) || result?.success === false;
+                : // $FlowFixMe[incompatible-use]
+                  Boolean(err) || result?.success === false;
 
               if (hasError) {
                 if (onError) {
