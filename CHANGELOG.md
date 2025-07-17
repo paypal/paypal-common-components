@@ -1,3 +1,9 @@
+## <small>1.0.55 (2025-07-09)</small>
+
+* pass a new prop go_to for 3ds component (#107) ([abcd77e](https://github.paypal.com/paypal/paypal-checkout/commit/abcd77e)), closes [#107](https://github.paypal.com/paypal/paypal-checkout/issues/107)
+
+
+
 ## <small>1.0.54 (2025-06-24)</small>
 
 * pass a new prop integrationType for 3ds component (#106) ([b922c6a](https://github.paypal.com/paypal/paypal-checkout/commit/b922c6a)), closes [#106](https://github.paypal.com/paypal/paypal-checkout/issues/106)
