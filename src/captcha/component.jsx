@@ -24,7 +24,7 @@ export type CaptchaProps = {|
   xcomponent: string,
   flow: string,
   orderID: string,
-  onApprove: (CaptchaResult) => void,
+  onSuccess: (CaptchaResult) => void,
   onError: (mixed) => void,
   sdkMeta: string,
   content?: void | {|
@@ -79,7 +79,7 @@ export function getCaptchaComponent(): CaptchaComponent {
         action: {
           type: "string",
           queryParam: true,
-          value: (data) => (data.props.action ? data.props.action : "verify"),
+          value: (data) => (data.props.action ? data.props.action : "rca"),
         },
         xcomponent: {
           type: "string",
@@ -113,7 +113,7 @@ export function getCaptchaComponent(): CaptchaComponent {
           type: "function",
           required: false,
         },
-        onApprove: {
+        onSuccess: {
           type: "function",
           alias: "onContingencyResult",
           decorate: ({ props, value, onError }) => {
