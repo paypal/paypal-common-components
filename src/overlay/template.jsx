@@ -143,7 +143,14 @@ export function Overlay({
     prerenderFrame.classList.add(CLASS.VISIBLE);
     frame.classList.add(CLASS.INVISIBLE);
 
+    // eslint-disable-next-line no-console
+    console.log("Event object inside template:", event);
+    // eslint-disable-next-line no-console
+    console.log("Event object inside template:", EVENT.RENDERED);
+
     event.on(EVENT.RENDERED, () => {
+      // eslint-disable-next-line no-console
+      console.log("EVENT.RENDERED received in parent");
       prerenderFrame.classList.remove(CLASS.VISIBLE);
       prerenderFrame.classList.add(CLASS.INVISIBLE);
 
@@ -161,6 +168,8 @@ export function Overlay({
         <node el={prerenderFrame} />
       </div>
     );
+    // eslint-disable-next-line no-console
+    console.log("outlet inside template:", outlet);
   }
   return (
     <div
@@ -316,6 +325,8 @@ export function VenmoOverlay({
   };
 
   const outletOnRender = (el) => {
+    // eslint-disable-next-line no-console
+    console.log("outletOnRender called", el);
     setupAnimations("component")(el);
     if (autoResize) {
       setupAutoResize(el);
@@ -331,12 +342,7 @@ export function VenmoOverlay({
     prerenderFrame.classList.add(CLASS.VISIBLE);
     frame.classList.add(CLASS.INVISIBLE);
 
-    // eslint-disable-next-line no-console
-    console.log("Event object inside template:", event);
-
     event.on(EVENT.RENDERED, () => {
-      // eslint-disable-next-line no-console
-      console.log("EVENT.RENDERED received in parent");
       prerenderFrame.classList.remove(CLASS.VISIBLE);
       prerenderFrame.classList.add(CLASS.INVISIBLE);
 
