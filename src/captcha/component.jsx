@@ -40,6 +40,9 @@ export type CaptchaProps = {|
 export type CaptchaComponent = ZoidComponent<CaptchaProps>;
 
 export function getCaptchaComponent(): CaptchaComponent {
+  // eslint-disable-next-line no-console
+  console.log("CAPTCHA iframe URL:", getCaptchaUrl);
+
   return inlineMemoize(getCaptchaComponent, () => {
     const component = create({
       tag: "captcha",
@@ -61,6 +64,13 @@ export function getCaptchaComponent(): CaptchaComponent {
         event,
         props,
       }) => {
+        // eslint-disable-next-line no-console
+        console.log("Container template initialized");
+        // eslint-disable-next-line no-console
+        console.log("Event object:", event);
+        // eslint-disable-next-line no-console
+        console.log("Doc object:", doc);
+
         return (
           <Overlay
             context={context}

@@ -331,7 +331,12 @@ export function VenmoOverlay({
     prerenderFrame.classList.add(CLASS.VISIBLE);
     frame.classList.add(CLASS.INVISIBLE);
 
+    // eslint-disable-next-line no-console
+    console.log("Event object inside template:", event);
+
     event.on(EVENT.RENDERED, () => {
+      // eslint-disable-next-line no-console
+      console.log("EVENT.RENDERED received in parent");
       prerenderFrame.classList.remove(CLASS.VISIBLE);
       prerenderFrame.classList.add(CLASS.INVISIBLE);
 
