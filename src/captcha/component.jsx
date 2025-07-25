@@ -42,8 +42,13 @@ export type CaptchaComponent = ZoidComponent<CaptchaProps>;
 export function getCaptchaComponent(): CaptchaComponent {
   // eslint-disable-next-line no-console
   console.log("CAPTCHA iframe URL:", getCaptchaUrl);
+  // eslint-disable-next-line no-console
+  console.log("Before inlineMemoize");
 
   return inlineMemoize(getCaptchaComponent, () => {
+    // eslint-disable-next-line no-console
+    console.log("Inside inlineMemoize callback - starting");
+
     const component = create({
       tag: "captcha",
       url: getCaptchaUrl,

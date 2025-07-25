@@ -8,10 +8,7 @@ import {
   getThreeDomainSecureComponent,
   type TDSComponent,
 } from "./three-domain-secure";
-import {
-  getCaptchaComponent,
-  type CaptchaComponent,
-} from "./captcha/component";
+import { getCaptchaComponent, type CaptchaComponent } from "./captcha";
 
 export type LazyExport<T> = {|
   __get__: () => T,
