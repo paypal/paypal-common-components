@@ -3,7 +3,7 @@
 /* eslint max-lines: 0 */
 
 import { node, dom } from "@krakenjs/jsx-pragmatic/src";
-import { create, type ZoidComponent } from "@krakenjs/zoid/src";
+import { create, EVENT, type ZoidComponent } from "@krakenjs/zoid/src";
 import { inlineMemoize, noop } from "@krakenjs/belter/src";
 import { getSDKMeta, getClientID, getCSPNonce } from "@paypal/sdk-client/src";
 import { ZalgoPromise } from "@krakenjs/zalgo-promise/src";
@@ -177,11 +177,23 @@ export function getCaptchaComponent(): CaptchaComponent {
         },
       },
     });
+
+    // eslint-disable-next-line no-console
+    console.log("Component created:", component);
+
     if (component.isChild()) {
+      // eslint-disable-next-line no-console
+      console.log("Component.isChild():", window);
       window.xchild = {
         props: component.xprops,
         close: noop,
       };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.xprops && window.xprops.event) {
+          window.xprops.event.emit(EVENT.RENDERED);
+        }
+      });
     }
     return component;
   });
