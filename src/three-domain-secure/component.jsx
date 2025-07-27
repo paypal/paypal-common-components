@@ -176,6 +176,9 @@ export function getThreeDomainSecureComponent(): TDSComponent {
       },
     });
 
+    // eslint-disable-next-line no-console
+    console.log(component);
+
     if (component.isChild()) {
       window.xchild = {
         props: component.xprops,
