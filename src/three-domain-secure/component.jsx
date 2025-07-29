@@ -100,7 +100,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         },
         createOrder: {
           type: "function",
-          queryParam: "cart_id",
+          queryParam: "token",
           // $FlowFixMe[incompatible-call]
           queryValue: ({ value }) => ZalgoPromise.try(value),
           required: false,
