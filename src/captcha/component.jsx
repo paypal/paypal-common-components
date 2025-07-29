@@ -94,7 +94,7 @@ export function getCaptchaComponent(): CaptchaComponent {
         action: {
           type: "string",
           queryParam: true,
-          value: (data) => (data.props.action ? data.props.action : "rca"),
+          value: (data) => (data.props.action ? data.props.action : "verify"),
         },
         xcomponent: {
           type: "string",
@@ -189,8 +189,6 @@ export function getCaptchaComponent(): CaptchaComponent {
     console.log(component);
 
     if (component.isChild()) {
-      // eslint-disable-next-line no-console
-      console.log("Component.isChild():", window);
       window.xchild = {
         props: component.xprops,
         close: noop,
