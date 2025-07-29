@@ -41,8 +41,6 @@ export type TDSComponent = ZoidComponent<TDSProps>;
 
 export function getThreeDomainSecureComponent(): TDSComponent {
   return inlineMemoize(getThreeDomainSecureComponent, () => {
-    // eslint-disable-next-line no-console
-    console.log("3DS iframe URL:", getThreeDomainSecureUrl);
     const component = create({
       tag: "three-domain-secure",
       url: getThreeDomainSecureUrl,
@@ -63,11 +61,6 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         event,
         props,
       }) => {
-        // eslint-disable-next-line no-console
-        console.log("3DS Event object:", event);
-        // eslint-disable-next-line no-console
-        console.log("3DS doc object:", doc);
-
         return (
           <Overlay
             context={context}
@@ -100,7 +93,7 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         },
         createOrder: {
           type: "function",
-          queryParam: "token",
+          queryParam: "cart_id",
           // $FlowFixMe[incompatible-call]
           queryValue: ({ value }) => ZalgoPromise.try(value),
           required: false,
@@ -168,16 +161,8 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           required: false,
           queryParam: true,
         },
-        go_to: {
-          type: "string",
-          required: false,
-          queryParam: true,
-        },
       },
     });
-
-    // eslint-disable-next-line no-console
-    console.log(component);
 
     if (component.isChild()) {
       window.xchild = {

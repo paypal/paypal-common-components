@@ -48,6 +48,8 @@ export type OverlayProps = {|
   hideCloseButton?: boolean,
   nonce: string,
   fullScreen?: boolean,
+  // eslint-disable-next-line react/no-unused-prop-types
+  isCaptcha?: boolean,
 |};
 
 export function Overlay({
@@ -62,6 +64,7 @@ export function Overlay({
   hideCloseButton,
   nonce,
   fullScreen = false,
+  isCaptcha,
 }: OverlayProps): ElementNode {
   const uid = `paypal-overlay-${uniqueID()}`;
   const overlayIframeName = `__paypal_checkout_sandbox_${uid}__`;
@@ -140,27 +143,35 @@ export function Overlay({
     frame.classList.add(CLASS.COMPONENT_FRAME);
     prerenderFrame.classList.add(CLASS.PRERENDER_FRAME);
 
-    prerenderFrame.classList.add(CLASS.VISIBLE);
-    frame.classList.add(CLASS.INVISIBLE);
+    if (isCaptcha) {
+      // Do not render the prerender frame for Captcha
+      prerenderFrame.classList.add(CLASS.VISIBLE);
+      frame.classList.add(CLASS.INVISIBLE);
 
-    // eslint-disable-next-line no-console
-    console.log("Event object inside template:", event);
-    // eslint-disable-next-line no-console
-    console.log("Event object inside template:", EVENT.RENDERED);
+      // Wait for the Captcha iframe to load
+      frame.addEventListener("load", () => {
+        prerenderFrame.classList.remove(CLASS.VISIBLE);
+        prerenderFrame.classList.add(CLASS.INVISIBLE);
 
-    event.on(EVENT.RENDERED, () => {
-      // eslint-disable-next-line no-console
-      console.log("EVENT.RENDERED received in parent");
-      prerenderFrame.classList.remove(CLASS.VISIBLE);
-      prerenderFrame.classList.add(CLASS.INVISIBLE);
+        frame.classList.remove(CLASS.INVISIBLE);
+        frame.classList.add(CLASS.VISIBLE);
+      });
+    } else {
+      prerenderFrame.classList.add(CLASS.VISIBLE);
+      frame.classList.add(CLASS.INVISIBLE);
 
-      frame.classList.remove(CLASS.INVISIBLE);
-      frame.classList.add(CLASS.VISIBLE);
+      event.on(EVENT.RENDERED, () => {
+        prerenderFrame.classList.remove(CLASS.VISIBLE);
+        prerenderFrame.classList.add(CLASS.INVISIBLE);
 
-      setTimeout(() => {
-        destroyElement(prerenderFrame);
-      }, 1);
-    });
+        frame.classList.remove(CLASS.INVISIBLE);
+        frame.classList.add(CLASS.VISIBLE);
+
+        setTimeout(() => {
+          destroyElement(prerenderFrame);
+        }, 1);
+      });
+    }
 
     outlet = (
       <div class={CLASS.OUTLET} onRender={outletOnRender}>
@@ -168,8 +179,6 @@ export function Overlay({
         <node el={prerenderFrame} />
       </div>
     );
-    // eslint-disable-next-line no-console
-    console.log("outlet inside template:", outlet);
   }
   return (
     <div

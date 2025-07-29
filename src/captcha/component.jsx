@@ -40,15 +40,7 @@ export type CaptchaProps = {|
 export type CaptchaComponent = ZoidComponent<CaptchaProps>;
 
 export function getCaptchaComponent(): CaptchaComponent {
-  // eslint-disable-next-line no-console
-  console.log("CAPTCHA iframe URL:", getCaptchaUrl);
-  // eslint-disable-next-line no-console
-  console.log("Before inlineMemoize");
-
   return inlineMemoize(getCaptchaComponent, () => {
-    // eslint-disable-next-line no-console
-    console.log("Inside inlineMemoize callback - starting");
-
     const component = create({
       tag: "captcha",
       url: getCaptchaUrl,
@@ -69,13 +61,6 @@ export function getCaptchaComponent(): CaptchaComponent {
         event,
         props,
       }) => {
-        // eslint-disable-next-line no-console
-        console.log("Container template initialized");
-        // eslint-disable-next-line no-console
-        console.log("Event object:", event);
-        // eslint-disable-next-line no-console
-        console.log("Doc object:", doc);
-
         return (
           <Overlay
             context={context}
@@ -86,6 +71,7 @@ export function getCaptchaComponent(): CaptchaComponent {
             prerenderFrame={prerenderFrame}
             content={props.content}
             nonce={props.nonce}
+            isCaptcha={true}
           />
         ).render(dom({ doc }));
       },
@@ -108,7 +94,7 @@ export function getCaptchaComponent(): CaptchaComponent {
         },
         createOrder: {
           type: "function",
-          queryParam: "cart_id",
+          queryParam: "token",
           // $FlowFixMe[incompatible-call]
           queryValue: ({ value }) => ZalgoPromise.try(value),
           required: false,
@@ -182,11 +168,6 @@ export function getCaptchaComponent(): CaptchaComponent {
         },
       },
     });
-
-    // eslint-disable-next-line no-console
-    console.log("Component created:");
-    // eslint-disable-next-line no-console
-    console.log(component);
 
     if (component.isChild()) {
       window.xchild = {
