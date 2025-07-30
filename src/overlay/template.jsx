@@ -144,18 +144,16 @@ export function Overlay({
     prerenderFrame.classList.add(CLASS.PRERENDER_FRAME);
 
     if (isCaptcha) {
-      // Do not render the prerender frame for Captcha
-      prerenderFrame.classList.add(CLASS.VISIBLE);
-      frame.classList.add(CLASS.INVISIBLE);
-
-      // Wait for the Captcha iframe to load
-      frame.addEventListener("load", () => {
+      // Replace event.on with a 5-second timer
+      setTimeout(() => {
         prerenderFrame.classList.remove(CLASS.VISIBLE);
         prerenderFrame.classList.add(CLASS.INVISIBLE);
 
         frame.classList.remove(CLASS.INVISIBLE);
         frame.classList.add(CLASS.VISIBLE);
-      });
+
+        destroyElement(prerenderFrame);
+      }, 5000);
     } else {
       prerenderFrame.classList.add(CLASS.VISIBLE);
       frame.classList.add(CLASS.INVISIBLE);
