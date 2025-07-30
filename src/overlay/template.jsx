@@ -144,7 +144,10 @@ export function Overlay({
     prerenderFrame.classList.add(CLASS.PRERENDER_FRAME);
 
     if (isCaptcha) {
-      // Replace event.on with a 5-second timer
+      prerenderFrame.classList.add(CLASS.VISIBLE);
+      frame.classList.add(CLASS.INVISIBLE);
+
+      // Replace event.on with a 3-second timer
       setTimeout(() => {
         prerenderFrame.classList.remove(CLASS.VISIBLE);
         prerenderFrame.classList.add(CLASS.INVISIBLE);
@@ -153,7 +156,7 @@ export function Overlay({
         frame.classList.add(CLASS.VISIBLE);
 
         destroyElement(prerenderFrame);
-      }, 5000);
+      }, 3000);
     } else {
       prerenderFrame.classList.add(CLASS.VISIBLE);
       frame.classList.add(CLASS.INVISIBLE);
