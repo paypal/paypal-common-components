@@ -335,8 +335,6 @@ export function VenmoOverlay({
   };
 
   const outletOnRender = (el) => {
-    // eslint-disable-next-line no-console
-    console.log("outletOnRender called", el);
     setupAnimations("component")(el);
     if (autoResize) {
       setupAutoResize(el);
