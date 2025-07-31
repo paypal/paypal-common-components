@@ -48,6 +48,8 @@ export type OverlayProps = {|
   hideCloseButton?: boolean,
   nonce: string,
   fullScreen?: boolean,
+  // eslint-disable-next-line react/no-unused-prop-types
+  isCaptcha?: boolean,
 |};
 
 export function Overlay({
@@ -62,6 +64,7 @@ export function Overlay({
   hideCloseButton,
   nonce,
   fullScreen = false,
+  isCaptcha,
 }: OverlayProps): ElementNode {
   const uid = `paypal-overlay-${uniqueID()}`;
   const overlayIframeName = `__paypal_checkout_sandbox_${uid}__`;
@@ -140,20 +143,36 @@ export function Overlay({
     frame.classList.add(CLASS.COMPONENT_FRAME);
     prerenderFrame.classList.add(CLASS.PRERENDER_FRAME);
 
-    prerenderFrame.classList.add(CLASS.VISIBLE);
-    frame.classList.add(CLASS.INVISIBLE);
+    if (isCaptcha) {
+      prerenderFrame.classList.add(CLASS.VISIBLE);
+      frame.classList.add(CLASS.INVISIBLE);
 
-    event.on(EVENT.RENDERED, () => {
-      prerenderFrame.classList.remove(CLASS.VISIBLE);
-      prerenderFrame.classList.add(CLASS.INVISIBLE);
-
-      frame.classList.remove(CLASS.INVISIBLE);
-      frame.classList.add(CLASS.VISIBLE);
-
+      // Replace event.on with a 3-second timer
       setTimeout(() => {
+        prerenderFrame.classList.remove(CLASS.VISIBLE);
+        prerenderFrame.classList.add(CLASS.INVISIBLE);
+
+        frame.classList.remove(CLASS.INVISIBLE);
+        frame.classList.add(CLASS.VISIBLE);
+
         destroyElement(prerenderFrame);
-      }, 1);
-    });
+      }, 3000);
+    } else {
+      prerenderFrame.classList.add(CLASS.VISIBLE);
+      frame.classList.add(CLASS.INVISIBLE);
+
+      event.on(EVENT.RENDERED, () => {
+        prerenderFrame.classList.remove(CLASS.VISIBLE);
+        prerenderFrame.classList.add(CLASS.INVISIBLE);
+
+        frame.classList.remove(CLASS.INVISIBLE);
+        frame.classList.add(CLASS.VISIBLE);
+
+        setTimeout(() => {
+          destroyElement(prerenderFrame);
+        }, 1);
+      });
+    }
 
     outlet = (
       <div class={CLASS.OUTLET} onRender={outletOnRender}>
