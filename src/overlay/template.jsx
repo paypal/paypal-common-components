@@ -136,7 +136,7 @@ export function Overlay({
     }
   };
 
-  function forceRenderAfterTimeout(frameEl, prerenderFrameEl, timeout = 2000) {
+  function forceRenderAfterTimeout(frameEl, prerenderFrameEl, timeout = 3000) {
     setTimeout(() => {
       prerenderFrameEl.classList.remove(CLASS.VISIBLE);
       prerenderFrameEl.classList.add(CLASS.INVISIBLE);
