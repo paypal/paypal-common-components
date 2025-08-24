@@ -62,7 +62,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "conventional-changelog-cli": "^2.0.11",
     "cross-env": "^7.0.3",
-    "flow-bin": "0.135.0",
+    "flow-bin": "0.214.0",
     "flow-typed": "^3.8.0",
     "fs-extra": "^4.0.2",
     "husky": "^8.0.1",
