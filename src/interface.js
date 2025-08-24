@@ -1,8 +1,9 @@
 /* @flow */
 
-import { isPayPalDomain } from "@paypal/sdk-client/src";
+import { isPayPalDomain, getEnv } from "@paypal/sdk-client/src";
 // eslint-disable-next-line import/no-namespace
 import * as postRobotModule from "@krakenjs/post-robot/src";
+import { ENV } from "@paypal/sdk-constants/src";
 
 import {
   getThreeDomainSecureComponent,
@@ -23,8 +24,18 @@ function protectedExport<T>(xport: T): ?T {
   }
 }
 
+// $FlowIssue
+export const devEnvOnlyExport = (unprotectedExport) => {
+  const env = getEnv();
+  if (env === ENV.LOCAL || env === ENV.STAGE || env === ENV.TEST) {
+    return unprotectedExport;
+  } else {
+    return undefined;
+  }
+};
+
 export const ThreeDomainSecure: LazyProtectedExport<TDSComponent> = {
-  __get__: () => protectedExport(getThreeDomainSecureComponent()),
+  __get__: () => devEnvOnlyExport(getThreeDomainSecureComponent()),
 };
 
 export const postRobot: LazyProtectedExport<typeof postRobotModule> = {
