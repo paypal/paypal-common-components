@@ -71,7 +71,6 @@ export function getCaptchaComponent(): CaptchaComponent {
             prerenderFrame={prerenderFrame}
             content={props.content}
             nonce={props.nonce}
-            isCaptcha={true}
           />
         ).render(dom({ doc }));
       },
