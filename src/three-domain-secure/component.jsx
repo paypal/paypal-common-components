@@ -5,7 +5,12 @@
 import { node, dom } from "@krakenjs/jsx-pragmatic/src";
 import { create, type ZoidComponent } from "@krakenjs/zoid/src";
 import { inlineMemoize, noop } from "@krakenjs/belter/src";
-import { getSDKMeta, getClientID, getCSPNonce } from "@paypal/sdk-client/src";
+import {
+  getLocale,
+  getSDKMeta,
+  getClientID,
+  getCSPNonce,
+} from "@paypal/sdk-client/src";
 import { ZalgoPromise } from "@krakenjs/zalgo-promise/src";
 
 import { Overlay } from "../overlay";
@@ -133,6 +138,13 @@ export function getThreeDomainSecureComponent(): TDSComponent {
               return value(result);
             };
           },
+        },
+        locale: {
+          type: "object",
+          queryParam: "locale.x",
+          allowDelegate: true,
+          queryValue: ({ value }) => `${value.lang}_${value.country}`,
+          value: getLocale,
         },
         onCancel: {
           type: "function",
