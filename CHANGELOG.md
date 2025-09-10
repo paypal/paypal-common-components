@@ -1,3 +1,9 @@
+## <small>1.0.56 (2025-09-10)</small>
+
+* Add locale support to three-domain-secure component (#110) ([d6c1889](https://github.paypal.com/paypal/paypal-checkout/commit/d6c1889)), closes [#110](https://github.paypal.com/paypal/paypal-checkout/issues/110)
+
+
+
 ## <small>1.0.55 (2025-07-09)</small>
 
 * pass a new prop go_to for 3ds component (#107) ([abcd77e](https://github.paypal.com/paypal/paypal-checkout/commit/abcd77e)), closes [#107](https://github.paypal.com/paypal/paypal-checkout/issues/107)
