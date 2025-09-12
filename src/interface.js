@@ -8,6 +8,7 @@ import {
   getThreeDomainSecureComponent,
   type TDSComponent,
 } from "./three-domain-secure";
+import { getCaptchaComponent, type CaptchaComponent } from "./captcha";
 
 export type LazyExport<T> = {|
   __get__: () => T,
@@ -25,6 +26,10 @@ function protectedExport<T>(xport: T): ?T {
 
 export const ThreeDomainSecure: LazyProtectedExport<TDSComponent> = {
   __get__: () => protectedExport(getThreeDomainSecureComponent()),
+};
+
+export const Captcha: LazyProtectedExport<CaptchaComponent> = {
+  __get__: () => protectedExport(getCaptchaComponent()),
 };
 
 export const postRobot: LazyProtectedExport<typeof postRobotModule> = {
