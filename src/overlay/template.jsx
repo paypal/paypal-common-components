@@ -48,6 +48,8 @@ export type OverlayProps = {|
   hideCloseButton?: boolean,
   nonce: string,
   fullScreen?: boolean,
+  // eslint-disable-next-line react/no-unused-prop-types
+  isUnbrandedFlow?: boolean,
 |};
 
 export function Overlay({
@@ -62,6 +64,7 @@ export function Overlay({
   hideCloseButton,
   nonce,
   fullScreen = false,
+  isUnbrandedFlow,
 }: OverlayProps): ElementNode {
   const uid = `paypal-overlay-${uniqueID()}`;
   const overlayIframeName = `__paypal_checkout_sandbox_${uid}__`;
@@ -194,9 +197,12 @@ export function Overlay({
               )}
               {!fullScreen && (
                 <div class="paypal-checkout-modal">
-                  <div class="paypal-checkout-logo" dir="ltr">
-                    <PayPalRebrandLogo logoColor={LOGO_COLOR.WHITE} />
-                  </div>
+                  {/* Cannot have any PayPal branding for unbranded flows */}
+                  {isUnbrandedFlow ? null : (
+                    <div class="paypal-checkout-logo" dir="ltr">
+                      <PayPalRebrandLogo logoColor={LOGO_COLOR.WHITE} />
+                    </div>
+                  )}
                   {content.windowMessage && (
                     <div class="paypal-checkout-message">
                       {content.windowMessage}

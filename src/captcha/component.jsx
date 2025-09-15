@@ -71,6 +71,7 @@ export function getCaptchaComponent(): CaptchaComponent {
             prerenderFrame={prerenderFrame}
             content={props.content}
             nonce={props.nonce}
+            isUnbrandedFlow={true}
           />
         ).render(dom({ doc }));
       },
