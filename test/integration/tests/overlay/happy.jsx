@@ -166,6 +166,41 @@ describe(`paypal overlay component happy path`, () => {
 
     focussed = null; // reset
   });
+
+  it("should show PayPal logo by default (branded flow)", () => {
+    const domNode = getOverlay().render(dom());
+    addOverlayToDOM(domNode);
+
+    if (!getOverlayContainer(domNode).querySelector(".paypal-checkout-logo")) {
+      throw new Error(`Expected PayPal logo to be shown in branded flow`);
+    }
+  });
+
+  it("should hide PayPal logo for unbranded flow", () => {
+    const getUnbrandedOverlay = () => (
+      <Overlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={event}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={hideCloseButton}
+        nonce={nonce}
+        fullScreen={fullScreen}
+        isUnbrandedFlow={true}
+      />
+    );
+
+    const domNode = getUnbrandedOverlay().render(dom());
+    addOverlayToDOM(domNode);
+
+    if (getOverlayContainer(domNode).querySelector(".paypal-checkout-logo")) {
+      throw new Error(`Expected PayPal logo to be hidden in unbranded flow`);
+    }
+  });
 });
 
 describe(`venmo overlay component happy path`, () => {
