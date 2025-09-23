@@ -48,7 +48,6 @@ export type OverlayProps = {|
   hideCloseButton?: boolean,
   nonce: string,
   fullScreen?: boolean,
-  isCaptcha?: boolean, // eslint-disable-line react/no-unused-prop-types
   isUnbrandedFlow?: boolean, // eslint-disable-line react/no-unused-prop-types
 |};
 
@@ -64,7 +63,6 @@ export function Overlay({
   hideCloseButton,
   nonce,
   fullScreen = false,
-  isCaptcha = false,
   isUnbrandedFlow = false,
 }: OverlayProps): ElementNode {
   const uid = `paypal-overlay-${uniqueID()}`;
@@ -138,18 +136,6 @@ export function Overlay({
     }
   };
 
-  function forceRenderAfterTimeout(frameEl, prerenderFrameEl, timeout = 2000) {
-    setTimeout(() => {
-      prerenderFrameEl.classList.remove(CLASS.VISIBLE);
-      prerenderFrameEl.classList.add(CLASS.INVISIBLE);
-
-      frameEl.classList.remove(CLASS.INVISIBLE);
-      frameEl.classList.add(CLASS.VISIBLE);
-
-      destroyElement(prerenderFrameEl);
-    }, timeout);
-  }
-
   let outlet;
 
   if (frame && prerenderFrame) {
@@ -159,21 +145,17 @@ export function Overlay({
     prerenderFrame.classList.add(CLASS.VISIBLE);
     frame.classList.add(CLASS.INVISIBLE);
 
-    if (isCaptcha) {
-      forceRenderAfterTimeout(frame, prerenderFrame);
-    } else {
-      event.on(EVENT.RENDERED, () => {
-        prerenderFrame.classList.remove(CLASS.VISIBLE);
-        prerenderFrame.classList.add(CLASS.INVISIBLE);
+    event.on(EVENT.RENDERED, () => {
+      prerenderFrame.classList.remove(CLASS.VISIBLE);
+      prerenderFrame.classList.add(CLASS.INVISIBLE);
 
-        frame.classList.remove(CLASS.INVISIBLE);
-        frame.classList.add(CLASS.VISIBLE);
+      frame.classList.remove(CLASS.INVISIBLE);
+      frame.classList.add(CLASS.VISIBLE);
 
-        setTimeout(() => {
-          destroyElement(prerenderFrame);
-        }, 1);
-      });
-    }
+      setTimeout(() => {
+        destroyElement(prerenderFrame);
+      }, 1);
+    });
 
     outlet = (
       <div class={CLASS.OUTLET} onRender={outletOnRender}>
