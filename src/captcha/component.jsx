@@ -5,18 +5,13 @@
 import { node, dom } from "@krakenjs/jsx-pragmatic/src";
 import { create, type ZoidComponent } from "@krakenjs/zoid/src";
 import { inlineMemoize, noop } from "@krakenjs/belter/src";
-import {
-  getLocale,
-  getSDKMeta,
-  getClientID,
-  getCSPNonce,
-} from "@paypal/sdk-client/src";
+import { getSDKMeta, getClientID, getCSPNonce } from "@paypal/sdk-client/src";
 import { ZalgoPromise } from "@krakenjs/zalgo-promise/src";
 
 import { Overlay } from "../overlay";
-import { getThreeDomainSecureUrl } from "../config";
+import { getCaptchaUrl } from "../config";
 
-export type TDSResult = {||};
+export type CaptchaResult = {||};
 
 export const USER_TYPE = {
   BRANDED_GUEST: ("BRANDED_GUEST": "BRANDED_GUEST"), // inline guest flow
@@ -24,12 +19,12 @@ export const USER_TYPE = {
   MEMBER: ("MEMBER": "MEMBER"),
 };
 
-export type TDSProps = {|
+export type CaptchaProps = {|
   action: string,
   xcomponent: string,
   flow: string,
   orderID: string,
-  onSuccess: (TDSResult) => void,
+  onSuccess: (CaptchaResult) => void,
   onError: (mixed) => void,
   sdkMeta: string,
   content?: void | {|
@@ -42,13 +37,13 @@ export type TDSProps = {|
   nonce: string,
 |};
 
-export type TDSComponent = ZoidComponent<TDSProps>;
+export type CaptchaComponent = ZoidComponent<CaptchaProps>;
 
-export function getThreeDomainSecureComponent(): TDSComponent {
-  return inlineMemoize(getThreeDomainSecureComponent, () => {
+export function getCaptchaComponent(): CaptchaComponent {
+  return inlineMemoize(getCaptchaComponent, () => {
     const component = create({
-      tag: "three-domain-secure",
-      url: getThreeDomainSecureUrl,
+      tag: "captcha",
+      url: getCaptchaUrl,
 
       attributes: {
         iframe: {
@@ -95,21 +90,18 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         flow: {
           type: "string",
           queryParam: true,
-          value: () => "3ds",
+          value: () => "rca",
         },
         createOrder: {
           type: "function",
-          queryParam: "cart_id",
+          queryParam: "token",
           // $FlowFixMe[incompatible-call]
           queryValue: ({ value }) => ZalgoPromise.try(value),
           required: false,
         },
-        vaultToken: {
+        token: {
           type: "string",
           queryParam: "token",
-          // We do not need to add queryValue here.
-          // This code has gone through E2E approval and so we are keeping it as a safeguard
-          // Refer zoid documentation for further clarity.
           queryValue: ({ value }) => value,
           required: false,
         },
@@ -118,6 +110,10 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           value: getClientID,
           queryParam: true,
         },
+        onError: {
+          type: "function",
+          required: false,
+        },
         onSuccess: {
           type: "function",
           alias: "onContingencyResult",
@@ -125,27 +121,23 @@ export function getThreeDomainSecureComponent(): TDSComponent {
             return (err, result) => {
               const isCardFieldFlow = props?.userType === "UNBRANDED_GUEST";
 
-              // HostedFields ONLY rejects when the err object is not null. The below implementation ensures that CardFields follows the same pattern.
-
               const hasError = isCardFieldFlow
                 ? Boolean(err)
                 : // $FlowFixMe[incompatible-use]
                   Boolean(err) || result?.success === false;
 
               if (hasError) {
-                return onError(err);
+                if (onError) {
+                  return onError(
+                    err || new Error("CAPTCHA verification failed")
+                  );
+                }
+                return;
               }
 
               return value(result);
             };
           },
-        },
-        locale: {
-          type: "object",
-          queryParam: "locale.x",
-          allowDelegate: true,
-          queryValue: ({ value }) => `${value.lang}_${value.country}`,
-          value: getLocale,
         },
         onCancel: {
           type: "function",
@@ -174,11 +166,6 @@ export function getThreeDomainSecureComponent(): TDSComponent {
           required: false,
           queryParam: true,
         },
-        go_to: {
-          type: "string",
-          required: false,
-          queryParam: true,
-        },
       },
     });
 
@@ -188,7 +175,6 @@ export function getThreeDomainSecureComponent(): TDSComponent {
         close: noop,
       };
     }
-
     return component;
   });
 }
