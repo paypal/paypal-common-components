@@ -1,3 +1,9 @@
+## <small>1.0.57 (2025-10-01)</small>
+
+* Added new component for captcha integration (#109) ([d5efa76](https://github.paypal.com/paypal/paypal-checkout/commit/d5efa76)), closes [#109](https://github.paypal.com/paypal/paypal-checkout/issues/109)
+
+
+
 ## <small>1.0.56 (2025-09-10)</small>
 
 * Add locale support to three-domain-secure component (#110) ([d6c1889](https://github.paypal.com/paypal/paypal-checkout/commit/d6c1889)), closes [#110](https://github.paypal.com/paypal/paypal-checkout/issues/110)
