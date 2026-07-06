@@ -1,3 +1,9 @@
+## <small>1.0.58 (2026-07-06)</small>
+
+* fix: add destroy export to common component to fix double-load crash (#112) ([9e4f7c0](https://github.paypal.com/paypal/paypal-checkout/commit/9e4f7c0)), closes [#112](https://github.paypal.com/paypal/paypal-checkout/issues/112)
+
+
+
 ## <small>1.0.57 (2025-10-01)</small>
 
 * Added new component for captcha integration (#109) ([d5efa76](https://github.paypal.com/paypal/paypal-checkout/commit/d5efa76)), closes [#109](https://github.paypal.com/paypal/paypal-checkout/issues/109)
