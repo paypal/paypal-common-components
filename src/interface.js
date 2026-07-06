@@ -3,6 +3,7 @@
 import { isPayPalDomain } from "@paypal/sdk-client/src";
 // eslint-disable-next-line import/no-namespace
 import * as postRobotModule from "@krakenjs/post-robot/src";
+import { destroy as zoidDestroy } from "@krakenjs/zoid/src";
 
 import {
   getThreeDomainSecureComponent,
@@ -35,3 +36,7 @@ export const Captcha: LazyProtectedExport<CaptchaComponent> = {
 export const postRobot: LazyProtectedExport<typeof postRobotModule> = {
   __get__: () => protectedExport(postRobotModule),
 };
+
+export function destroy(err?: mixed) {
+  zoidDestroy(err);
+}
