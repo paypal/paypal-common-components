@@ -1,3 +1,9 @@
+## <small>1.0.59 (2026-07-06)</small>
+
+* fix: use correct token for npm publishing (#113) ([40b6299](https://github.paypal.com/paypal/paypal-checkout/commit/40b6299)), closes [#113](https://github.paypal.com/paypal/paypal-checkout/issues/113)
+
+
+
 ## <small>1.0.58 (2026-07-06)</small>
 
 * fix: add destroy export to common component to fix double-load crash (#112) ([9e4f7c0](https://github.paypal.com/paypal/paypal-checkout/commit/9e4f7c0)), closes [#112](https://github.paypal.com/paypal/paypal-checkout/issues/112)
