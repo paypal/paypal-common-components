@@ -113,7 +113,7 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .paypal-checkout-modal {
-            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
+            font-family: PayPalOpen-Regular, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-size: 14px;
             text-align: center;
 
@@ -212,7 +212,7 @@ export function getContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .paypal-checkout-focus-warning {
-            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
+            font-family: PayPalOpen-Regular, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-size: 14px;
             font-weight: 400;
             line-height: 18px;
@@ -501,7 +501,7 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .venmo-checkout-modal .venmo-interrogative-message {
-            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
+            font-family: PayPalOpen-Regular, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-style: normal;
             font-size: 24px;
             line-height: 32px;
@@ -531,7 +531,7 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .venmo-checkout-modal .venmo-checkout-message {
-            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
+            font-family: PayPalOpen-Regular, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
@@ -549,7 +549,7 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
             background: #0074DE;
             border-radius: 24px;
             border: none;
-            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
+            font-family: PayPalOpen-Regular, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-style: normal;
             font-weight: 700;
             font-size: 18px;
@@ -562,7 +562,7 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .venmo-checkout-close {
-            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
+            font-family: PayPalOpen-Regular, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
             font-style: normal;
             font-weight: 700;
             font-size: 18px;
@@ -579,7 +579,7 @@ export function getVenmoContainerStyle({ uid }: {| uid: string |}): string {
         }
 
         #${uid} .venmo-checkout-focus-warning {
-            font-family: PayPal Plain, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
+            font-family: PayPalOpen-Regular, system-ui, -apple-system, Roboto, "Segoe UI", Helvetica-Neue, Helvetica, Arial, sans-serif;
            font-style: normal;
             font-weight: 400;
             font-size: 16px;
