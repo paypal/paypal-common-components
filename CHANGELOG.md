@@ -1,3 +1,9 @@
+## <small>1.0.60 (2026-08-18)</small>
+
+* update font-family to PayPalOpen-Regular in overlay styles (#114) ([a382270](https://github.paypal.com/paypal/paypal-checkout/commit/a382270)), closes [#114](https://github.paypal.com/paypal/paypal-checkout/issues/114)
+
+
+
 ## <small>1.0.59 (2026-07-06)</small>
 
 * fix: use correct token for npm publishing (#113) ([40b6299](https://github.paypal.com/paypal/paypal-checkout/commit/40b6299)), closes [#113](https://github.paypal.com/paypal/paypal-checkout/issues/113)
