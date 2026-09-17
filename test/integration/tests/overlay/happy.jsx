@@ -579,8 +579,8 @@ describe(`venmo overlay component happy path`, () => {
 // Exercise the *non-native* inert path. Headless Chrome has native
 // `inert`, so the polyfill bundled into the overlay self-guards to a no-op. Here
 // we remove native support and evaluate a fresh copy of the polyfill so it
-// actually installs, then assert it neutralizes background content the way the
-// audit requires (aria-hidden on the root, tabindex removal on descendants).
+// actually installs, then assert it neutralizes background content
+// (aria-hidden on the root, tabindex removal on descendants).
 describe(`overlay inert polyfill path`, () => {
   const close = () => ZalgoPromise.resolve();
   const focus = () => ZalgoPromise.resolve();
