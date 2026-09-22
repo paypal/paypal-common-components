@@ -1,3 +1,9 @@
+## <small>1.0.61 (2026-09-22)</small>
+
+* trap screen reader focus on overlay (#115) ([3d454c8](https://github.paypal.com/paypal/paypal-checkout/commit/3d454c8)), closes [#115](https://github.paypal.com/paypal/paypal-checkout/issues/115)
+
+
+
 ## <small>1.0.60 (2026-08-18)</small>
 
 * update font-family to PayPalOpen-Regular in overlay styles (#114) ([a382270](https://github.paypal.com/paypal/paypal-checkout/commit/a382270)), closes [#114](https://github.paypal.com/paypal/paypal-checkout/issues/114)
