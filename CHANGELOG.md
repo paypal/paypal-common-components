@@ -1,3 +1,9 @@
+## <small>1.0.62 (2026-09-25)</small>
+
+* Revert "trap screen reader focus on overlay (#115)" (#116) ([c561db5](https://github.paypal.com/paypal/paypal-checkout/commit/c561db5)), closes [#115](https://github.paypal.com/paypal/paypal-checkout/issues/115) [#116](https://github.paypal.com/paypal/paypal-checkout/issues/116)
+
+
+
 ## <small>1.0.61 (2026-09-22)</small>
 
 * trap screen reader focus on overlay (#115) ([3d454c8](https://github.paypal.com/paypal/paypal-checkout/commit/3d454c8)), closes [#115](https://github.paypal.com/paypal/paypal-checkout/issues/115)
