@@ -3,8 +3,28 @@
 
 import { node, dom } from "@krakenjs/jsx-pragmatic/src";
 import { ZalgoPromise } from "@krakenjs/zalgo-promise/src";
+import { EVENT } from "@krakenjs/zoid/src";
 
 import { Overlay, VenmoOverlay } from "../../../../src/overlay";
+
+// An event mock that records handlers so tests can trigger
+// EVENT.DISPLAY / EVENT.CLOSE and assert the overlay's return focus behavior.
+const createControllableEvent = () => {
+  const handlers = {};
+  const event = {
+    on: (name, handler) => {
+      handlers[name] = handlers[name] || [];
+      handlers[name].push(handler);
+      return { cancel: () => undefined };
+    },
+    once: () => ({ cancel: () => undefined }),
+    reset: () => undefined,
+    trigger: () => ZalgoPromise.resolve(),
+    triggerOnce: () => ZalgoPromise.resolve(),
+  };
+  const emit = (name) => (handlers[name] || []).forEach((handler) => handler());
+  return { event, emit };
+};
 
 describe(`paypal overlay component happy path`, () => {
   const cancel = () => undefined;
@@ -173,6 +193,172 @@ describe(`paypal overlay component happy path`, () => {
 
     if (!getOverlayContainer(domNode).querySelector(".paypal-checkout-logo")) {
       throw new Error(`Expected PayPal logo to be shown in branded flow`);
+    }
+  });
+
+  it("should move focus to the close button when the window regains focus while displayed", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    const domNode = (
+      <Overlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".paypal-checkout-close");
+
+    emit(EVENT.DISPLAY);
+
+    if (overlayDoc.activeElement !== closeButton) {
+      throw new Error(
+        `Expected close button to be focused when the overlay is displayed`
+      );
+    }
+
+    // $FlowFixMe[incompatible-use]
+    document.body.focus();
+    window.dispatchEvent(new Event("focus"));
+
+    if (overlayDoc.activeElement !== closeButton) {
+      throw new Error(
+        `Expected close button to regain focus when the window regains focus`
+      );
+    }
+  });
+
+  it("should stop moving focus to the overlay after it is closed", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    const domNode = (
+      <Overlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".paypal-checkout-close");
+
+    emit(EVENT.DISPLAY);
+    emit(EVENT.CLOSE);
+
+    closeButton.blur();
+    window.dispatchEvent(new Event("focus"));
+
+    if (overlayDoc.activeElement === closeButton) {
+      throw new Error(
+        `Expected close button to not be refocused after the overlay is closed`
+      );
+    }
+  });
+
+  it("should stop moving focus to the overlay after DESTROY, even without a prior CLOSE", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    const domNode = (
+      <Overlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".paypal-checkout-close");
+
+    emit(EVENT.DISPLAY);
+    // zoid can call destroy() directly without ever triggering CLOSE (e.g. an
+    // error while opening the component) - the listener must still be removed.
+    emit(EVENT.DESTROY);
+
+    closeButton.blur();
+    window.dispatchEvent(new Event("focus"));
+
+    if (overlayDoc.activeElement === closeButton) {
+      throw new Error(
+        `Expected close button to not be refocused after DESTROY`
+      );
+    }
+  });
+
+  it("should trap Tab/Shift+Tab within the overlay's focusable elements", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    const domNode = (
+      <Overlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".paypal-checkout-close");
+    const continueLink = overlayDoc.querySelector(
+      ".paypal-checkout-continue a"
+    );
+
+    emit(EVENT.DISPLAY);
+
+    // Tab forward from the last focusable element should wrap to the first.
+    continueLink.focus();
+    overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+
+    if (overlayDoc.activeElement !== closeButton) {
+      throw new Error(
+        `Expected Tab from the last focusable element to wrap to the close button`
+      );
+    }
+
+    // Shift+Tab back from the first focusable element should wrap to the last.
+    overlayDoc.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "Tab", shiftKey: true })
+    );
+
+    if (overlayDoc.activeElement !== continueLink) {
+      throw new Error(
+        `Expected Shift+Tab from the close button to wrap to the continue link`
+      );
     }
   });
 
@@ -360,5 +546,47 @@ describe(`venmo overlay component happy path`, () => {
     }
 
     focussed = null; // reset
+  });
+
+  it("should move focus to the close button when the window regains focus while displayed", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    const domNode = (
+      <VenmoOverlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".venmo-checkout-close a");
+
+    emit(EVENT.DISPLAY);
+
+    if (overlayDoc.activeElement !== closeButton) {
+      throw new Error(
+        `Expected close button to be focused when the overlay is displayed`
+      );
+    }
+
+    // $FlowFixMe[incompatible-use]
+    document.body.focus();
+    window.dispatchEvent(new Event("focus"));
+
+    if (overlayDoc.activeElement !== closeButton) {
+      throw new Error(
+        `Expected close button to regain focus when the window regains focus`
+      );
+    }
   });
 });
