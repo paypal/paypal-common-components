@@ -362,6 +362,82 @@ describe(`paypal overlay component happy path`, () => {
     }
   });
 
+  it("should stop trapping Tab/Shift+Tab after the overlay is closed", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    const domNode = (
+      <Overlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const continueLink = overlayDoc.querySelector(
+      ".paypal-checkout-continue a"
+    );
+
+    emit(EVENT.DISPLAY);
+    emit(EVENT.CLOSE);
+
+    continueLink.focus();
+    overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+
+    if (overlayDoc.activeElement !== continueLink) {
+      throw new Error(
+        `Expected Tab to no longer be trapped after the overlay is closed`
+      );
+    }
+  });
+
+  it("should stop trapping Tab/Shift+Tab after DESTROY, even without a prior CLOSE", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    const domNode = (
+      <Overlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const continueLink = overlayDoc.querySelector(
+      ".paypal-checkout-continue a"
+    );
+
+    emit(EVENT.DISPLAY);
+    // zoid can call destroy() directly without ever triggering CLOSE (e.g. an
+    // error while opening the component) - the keydown listener must still be removed.
+    emit(EVENT.DESTROY);
+
+    continueLink.focus();
+    overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+
+    if (overlayDoc.activeElement !== continueLink) {
+      throw new Error(`Expected Tab to no longer be trapped after DESTROY`);
+    }
+  });
+
   it("should hide PayPal logo for unbranded flow", () => {
     const getUnbrandedOverlay = () => (
       <Overlay
@@ -587,6 +663,202 @@ describe(`venmo overlay component happy path`, () => {
       throw new Error(
         `Expected close button to regain focus when the window regains focus`
       );
+    }
+  });
+
+  it("should stop moving focus to the overlay after it is closed", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    const domNode = (
+      <VenmoOverlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".venmo-checkout-close a");
+
+    emit(EVENT.DISPLAY);
+    emit(EVENT.CLOSE);
+
+    closeButton.blur();
+    window.dispatchEvent(new Event("focus"));
+
+    if (overlayDoc.activeElement === closeButton) {
+      throw new Error(
+        `Expected close button to not be refocused after the overlay is closed`
+      );
+    }
+  });
+
+  it("should stop moving focus to the overlay after DESTROY, even without a prior CLOSE", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    const domNode = (
+      <VenmoOverlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".venmo-checkout-close a");
+
+    emit(EVENT.DISPLAY);
+    // zoid can call destroy() directly without ever triggering CLOSE (e.g. an
+    // error while opening the component) - the listener must still be removed.
+    emit(EVENT.DESTROY);
+
+    closeButton.blur();
+    window.dispatchEvent(new Event("focus"));
+
+    if (overlayDoc.activeElement === closeButton) {
+      throw new Error(
+        `Expected close button to not be refocused after DESTROY`
+      );
+    }
+  });
+
+  it("should trap Tab/Shift+Tab within the overlay's focusable elements", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    const domNode = (
+      <VenmoOverlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".venmo-checkout-close a");
+    const continueLink = overlayDoc.querySelector(".venmo-checkout-continue a");
+
+    emit(EVENT.DISPLAY);
+
+    // Venmo's markup renders the continue link before the close button, so
+    // the close button is the last focusable element, not the first.
+    // Tab forward from the last focusable element should wrap to the first.
+    closeButton.focus();
+    overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+
+    if (overlayDoc.activeElement !== continueLink) {
+      throw new Error(
+        `Expected Tab from the last focusable element to wrap to the continue link`
+      );
+    }
+
+    // Shift+Tab back from the first focusable element should wrap to the last.
+    overlayDoc.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "Tab", shiftKey: true })
+    );
+
+    if (overlayDoc.activeElement !== closeButton) {
+      throw new Error(
+        `Expected Shift+Tab from the continue link to wrap to the close button`
+      );
+    }
+  });
+
+  it("should stop trapping Tab/Shift+Tab after the overlay is closed", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    const domNode = (
+      <VenmoOverlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".venmo-checkout-close a");
+
+    emit(EVENT.DISPLAY);
+    emit(EVENT.CLOSE);
+
+    closeButton.focus();
+    overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+
+    if (overlayDoc.activeElement !== closeButton) {
+      throw new Error(
+        `Expected Tab to no longer be trapped after the overlay is closed`
+      );
+    }
+  });
+
+  it("should stop trapping Tab/Shift+Tab after DESTROY, even without a prior CLOSE", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    const domNode = (
+      <VenmoOverlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={frame}
+        prerenderFrame={prerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".venmo-checkout-close a");
+
+    emit(EVENT.DISPLAY);
+    // zoid can call destroy() directly without ever triggering CLOSE (e.g. an
+    // error while opening the component) - the keydown listener must still be removed.
+    emit(EVENT.DESTROY);
+
+    closeButton.focus();
+    overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+
+    if (overlayDoc.activeElement !== closeButton) {
+      throw new Error(`Expected Tab to no longer be trapped after DESTROY`);
     }
   });
 });
