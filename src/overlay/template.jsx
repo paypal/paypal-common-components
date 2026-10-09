@@ -67,7 +67,7 @@ function setupReturnFocus(
 }
 
 const FOCUSABLE_SELECTOR =
-  'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  'a[href], button, input, select, textarea, iframe:not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])';
 
 function getFocusableElements(root: HTMLElement): $ReadOnlyArray<HTMLElement> {
   return Array.prototype.slice

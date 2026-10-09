@@ -362,6 +362,84 @@ describe(`paypal overlay component happy path`, () => {
     }
   });
 
+  it("should keep the checkout iframe reachable via Tab/Shift+Tab", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    // A real checkout iframe and its prerender sibling, exactly as the
+    // component renders them via the `frame`/`prerenderFrame` props.
+    const checkoutFrame = document.createElement("iframe");
+    const checkoutPrerenderFrame = document.createElement("iframe");
+
+    const domNode = (
+      <Overlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={checkoutFrame}
+        prerenderFrame={checkoutPrerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".paypal-checkout-close");
+    const continueLink = overlayDoc.querySelector(
+      ".paypal-checkout-continue a"
+    );
+
+    // `.paypal-checkout-iframe-container` is `display: none` outside of
+    // context="iframe" - force it visible here to simulate the checkout
+    // iframe actually being rendered, without losing the "popup"-context
+    // close button/continue link this test also needs.
+    overlayDoc.querySelector(
+      ".paypal-checkout-iframe-container"
+    ).style.display = "block";
+
+    emit(EVENT.DISPLAY);
+
+    // The checkout iframe (and its prerender sibling) render after the
+    // continue link, so Tab from the continue link must NOT wrap back to the
+    // close button - that would skip over the checkout iframe entirely and
+    // strand keyboard users on the shell controls.
+    continueLink.focus();
+    overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+
+    if (overlayDoc.activeElement === closeButton) {
+      throw new Error(
+        `Expected Tab from the continue link to not skip past the checkout iframe`
+      );
+    }
+
+    // The true last focusable element (the prerender iframe) should still
+    // wrap forward to the first.
+    checkoutPrerenderFrame.focus();
+    overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+
+    if (overlayDoc.activeElement !== closeButton) {
+      throw new Error(
+        `Expected Tab from the checkout iframe to wrap to the close button`
+      );
+    }
+
+    // Shift+Tab from the first focusable element should wrap back to the
+    // checkout iframe, not the continue link.
+    overlayDoc.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "Tab", shiftKey: true })
+    );
+
+    if (overlayDoc.activeElement !== checkoutPrerenderFrame) {
+      throw new Error(
+        `Expected Shift+Tab from the close button to wrap to the checkout iframe`
+      );
+    }
+  });
+
   it("should stop trapping Tab/Shift+Tab after the overlay is closed", () => {
     const { event: controllableEvent, emit } = createControllableEvent();
 
@@ -786,6 +864,82 @@ describe(`venmo overlay component happy path`, () => {
     if (overlayDoc.activeElement !== closeButton) {
       throw new Error(
         `Expected Shift+Tab from the continue link to wrap to the close button`
+      );
+    }
+  });
+
+  it("should keep the checkout iframe reachable via Tab/Shift+Tab", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    // A real checkout iframe and its prerender sibling, exactly as the
+    // component renders them via the `frame`/`prerenderFrame` props.
+    const checkoutFrame = document.createElement("iframe");
+    const checkoutPrerenderFrame = document.createElement("iframe");
+
+    const domNode = (
+      <VenmoOverlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={checkoutFrame}
+        prerenderFrame={checkoutPrerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".venmo-checkout-close a");
+    const continueLink = overlayDoc.querySelector(".venmo-checkout-continue a");
+
+    // `.venmo-checkout-iframe-container` is `display: none` outside of
+    // context="iframe" - force it visible here to simulate the checkout
+    // iframe actually being rendered, without losing the "popup"-context
+    // close button/continue link this test also needs.
+    overlayDoc.querySelector(".venmo-checkout-iframe-container").style.display =
+      "block";
+
+    emit(EVENT.DISPLAY);
+
+    // The checkout iframe (and its prerender sibling) render after the
+    // close button (Venmo's last shell control), so Tab from the close
+    // button must NOT wrap back to the first shell control - that would skip
+    // over the checkout iframe entirely and strand keyboard users on the
+    // shell controls.
+    closeButton.focus();
+    overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+
+    if (overlayDoc.activeElement === continueLink) {
+      throw new Error(
+        `Expected Tab from the close button to not skip past the checkout iframe`
+      );
+    }
+
+    // The true last focusable element (the prerender iframe) should still
+    // wrap forward to the first.
+    checkoutPrerenderFrame.focus();
+    overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+
+    if (overlayDoc.activeElement !== continueLink) {
+      throw new Error(
+        `Expected Tab from the checkout iframe to wrap to the continue link`
+      );
+    }
+
+    // Shift+Tab from the first focusable element should wrap back to the
+    // checkout iframe, not the close button.
+    overlayDoc.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "Tab", shiftKey: true })
+    );
+
+    if (overlayDoc.activeElement !== checkoutPrerenderFrame) {
+      throw new Error(
+        `Expected Shift+Tab from the continue link to wrap to the checkout iframe`
       );
     }
   });
