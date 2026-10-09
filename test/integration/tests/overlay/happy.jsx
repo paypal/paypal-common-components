@@ -492,6 +492,15 @@ describe(`paypal overlay component happy path`, () => {
       throw new Error(`Expected the overlay to render its focus sentinels`);
     }
 
+    // Calling .focus() directly on the sentinel is the closest we can get to
+    // this scenario at the unit-test level: a real Tab press causes the
+    // browser to move focus here natively once the iframe's content is
+    // exhausted, but dispatching a synthetic KeyboardEvent doesn't trigger
+    // that native focus traversal (only trusted, OS-level keypresses do).
+    // This still verifies the sentinel's own redirect logic correctly - it
+    // just can't exercise the native browser mechanism that would land focus
+    // here in a real Tab press.
+    //
     // Simulate the browser's native focus traversal moving focus out of the
     // checkout iframe's exhausted content forward onto the end sentinel -
     // this should redirect back to the first focusable element.
@@ -1085,6 +1094,15 @@ describe(`venmo overlay component happy path`, () => {
       throw new Error(`Expected the overlay to render its focus sentinels`);
     }
 
+    // Calling .focus() directly on the sentinel is the closest we can get to
+    // this scenario at the unit-test level: a real Tab press causes the
+    // browser to move focus here natively once the iframe's content is
+    // exhausted, but dispatching a synthetic KeyboardEvent doesn't trigger
+    // that native focus traversal (only trusted, OS-level keypresses do).
+    // This still verifies the sentinel's own redirect logic correctly - it
+    // just can't exercise the native browser mechanism that would land focus
+    // here in a real Tab press.
+    //
     // Simulate the browser's native focus traversal moving focus out of the
     // checkout iframe's exhausted content forward onto the end sentinel -
     // this should redirect back to the first focusable element.
