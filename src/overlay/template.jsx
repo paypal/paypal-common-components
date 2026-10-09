@@ -69,15 +69,41 @@ function setupReturnFocus(
 const FOCUSABLE_SELECTOR =
   'a[href], button, input, select, textarea, iframe:not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])';
 
+const FOCUS_TRAP_SENTINEL_ATTR = "data-focus-trap-sentinel";
+
 function getFocusableElements(root: HTMLElement): $ReadOnlyArray<HTMLElement> {
   return Array.prototype.slice
     .call(root.querySelectorAll(FOCUSABLE_SELECTOR))
-    .filter((candidate) => candidate.getClientRects().length > 0);
+    .filter((candidate) => candidate.getClientRects().length > 0)
+    .filter((candidate) => !candidate.hasAttribute(FOCUS_TRAP_SENTINEL_ATTR));
 }
 
 function setupFocusTrap(getRoot: () => ?HTMLElement, event: EventEmitterType) {
   let handleKeyDown: ?(KeyboardEvent) => void;
   let ownerDocument: ?Document;
+  let sentinelCleanups: Array<() => void> = [];
+
+  // The checkout iframe is cross-origin, so its document
+  // is never accessible, and even same-origin, keyboard events never
+  // cross frame/document boundaries - a `keydown` listener on the overlay's
+  // own document can't see a Tab press that happens once focus is inside it.
+  // What *does* fire in our own document is a native `focus` event once the
+  // browser's own focus traversal moves focus out of the exhausted iframe -
+  // that's a UA-level mechanism independent of script access into the frame.
+  // These sentinels sit just before/after the overlay's real content so
+  // whichever direction focus naturally escapes, it lands on something we
+  // control and can redirect back into the trap.
+  const createSentinel = (doc: Document, position: "start" | "end") => {
+    const sentinel = doc.createElement("span");
+    sentinel.setAttribute("tabindex", "0");
+    sentinel.setAttribute(FOCUS_TRAP_SENTINEL_ATTR, position);
+    sentinel.style.position = "fixed";
+    sentinel.style.width = "1px";
+    sentinel.style.height = "1px";
+    sentinel.style.opacity = "0";
+    sentinel.style.pointerEvents = "none";
+    return sentinel;
+  };
 
   event.on(EVENT.DISPLAY, () => {
     const root = getRoot();
@@ -115,12 +141,57 @@ function setupFocusTrap(getRoot: () => ?HTMLElement, event: EventEmitterType) {
     };
 
     doc.addEventListener("keydown", handleKeyDown, true);
+
+    const startSentinel = createSentinel(doc, "start");
+    const endSentinel = createSentinel(doc, "end");
+
+    const handleStartSentinelFocus = () => {
+      const liveRoot = getRoot();
+      const focusable = liveRoot ? getFocusableElements(liveRoot) : [];
+      const last = focusable[focusable.length - 1];
+
+      if (last) {
+        last.focus();
+      }
+    };
+
+    const handleEndSentinelFocus = () => {
+      const liveRoot = getRoot();
+      const focusable = liveRoot ? getFocusableElements(liveRoot) : [];
+      const first = focusable[0];
+
+      if (first) {
+        first.focus();
+      }
+    };
+
+    startSentinel.addEventListener("focus", handleStartSentinelFocus);
+    endSentinel.addEventListener("focus", handleEndSentinelFocus);
+
+    root.insertBefore(startSentinel, root.firstChild);
+    root.appendChild(endSentinel);
+
+    sentinelCleanups.push(() => {
+      startSentinel.removeEventListener("focus", handleStartSentinelFocus);
+      endSentinel.removeEventListener("focus", handleEndSentinelFocus);
+
+      if (startSentinel.parentNode) {
+        startSentinel.parentNode.removeChild(startSentinel);
+      }
+
+      if (endSentinel.parentNode) {
+        endSentinel.parentNode.removeChild(endSentinel);
+      }
+    });
   });
 
   const removeKeyDownListener = () => {
     if (ownerDocument && handleKeyDown) {
       ownerDocument.removeEventListener("keydown", handleKeyDown, true);
     }
+
+    sentinelCleanups.forEach((cleanup) => cleanup());
+    sentinelCleanups = [];
   };
 
   event.on(EVENT.CLOSE, removeKeyDownListener);

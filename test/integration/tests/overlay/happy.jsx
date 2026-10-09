@@ -440,6 +440,92 @@ describe(`paypal overlay component happy path`, () => {
     }
   });
 
+  it("should redirect focus that escapes the checkout iframe back into the overlay", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    // The checkout iframe is cross-origin, so we can
+    // never reach into its document to intercept Tab/Shift+Tab directly -
+    // instead, once its internal content is exhausted, the browser's own
+    // focus traversal moves focus out of the iframe natively. These sentinel
+    // elements sit just before/after the overlay's real content to catch
+    // that native escape and redirect it back into the trap.
+    const checkoutFrame = document.createElement("iframe");
+    const checkoutPrerenderFrame = document.createElement("iframe");
+
+    const domNode = (
+      <Overlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={checkoutFrame}
+        prerenderFrame={checkoutPrerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".paypal-checkout-close");
+    const continueLink = overlayDoc.querySelector(
+      ".paypal-checkout-continue a"
+    );
+
+    overlayDoc.querySelector(
+      ".paypal-checkout-iframe-container"
+    ).style.display = "block";
+
+    emit(EVENT.DISPLAY);
+
+    const startSentinel = overlayDoc.querySelector(
+      '[data-focus-trap-sentinel="start"]'
+    );
+    const endSentinel = overlayDoc.querySelector(
+      '[data-focus-trap-sentinel="end"]'
+    );
+
+    if (!startSentinel || !endSentinel) {
+      throw new Error(`Expected the overlay to render its focus sentinels`);
+    }
+
+    // Simulate the browser's native focus traversal moving focus out of the
+    // checkout iframe's exhausted content forward onto the end sentinel -
+    // this should redirect back to the first focusable element.
+    endSentinel.focus();
+
+    if (overlayDoc.activeElement !== closeButton) {
+      throw new Error(
+        `Expected focus reaching the end sentinel to redirect to the close button`
+      );
+    }
+
+    // Simulate the same escape happening backward (Shift+Tab out of the
+    // iframe's own first control) onto the start sentinel - this should
+    // redirect back to the last focusable element (the checkout iframe).
+    startSentinel.focus();
+
+    if (overlayDoc.activeElement !== checkoutPrerenderFrame) {
+      throw new Error(
+        `Expected focus reaching the start sentinel to redirect to the checkout iframe`
+      );
+    }
+
+    // Tab from the continue link - a normal mid-sequence element, not a
+    // trap boundary - must be left alone by the keydown trap.
+    continueLink.focus();
+    overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+
+    if (overlayDoc.activeElement !== continueLink) {
+      throw new Error(
+        `Expected Tab from the continue link to be left untouched by the trap`
+      );
+    }
+  });
+
   it("should stop trapping Tab/Shift+Tab after the overlay is closed", () => {
     const { event: controllableEvent, emit } = createControllableEvent();
 
@@ -467,6 +553,12 @@ describe(`paypal overlay component happy path`, () => {
 
     emit(EVENT.DISPLAY);
     emit(EVENT.CLOSE);
+
+    if (overlayDoc.querySelector("[data-focus-trap-sentinel]")) {
+      throw new Error(
+        `Expected focus trap sentinels to be removed after the overlay is closed`
+      );
+    }
 
     continueLink.focus();
     overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
@@ -940,6 +1032,89 @@ describe(`venmo overlay component happy path`, () => {
     if (overlayDoc.activeElement !== checkoutPrerenderFrame) {
       throw new Error(
         `Expected Shift+Tab from the continue link to wrap to the checkout iframe`
+      );
+    }
+  });
+
+  it("should redirect focus that escapes the checkout iframe back into the overlay", () => {
+    const { event: controllableEvent, emit } = createControllableEvent();
+
+    // The checkout iframe is cross-origin, so we can
+    // never reach into its document to intercept Tab/Shift+Tab directly -
+    // instead, once its internal content is exhausted, the browser's own
+    // focus traversal moves focus out of the iframe natively. These sentinel
+    // elements sit just before/after the overlay's real content to catch
+    // that native escape and redirect it back into the trap.
+    const checkoutFrame = document.createElement("iframe");
+    const checkoutPrerenderFrame = document.createElement("iframe");
+
+    const domNode = (
+      <VenmoOverlay
+        context={context}
+        content={content}
+        close={close}
+        focus={focus}
+        event={controllableEvent}
+        frame={checkoutFrame}
+        prerenderFrame={checkoutPrerenderFrame}
+        autoResize={autoResize}
+        hideCloseButton={false}
+        nonce={nonce}
+        fullScreen={fullScreen}
+      />
+    ).render(dom());
+    addOverlayToDOM(domNode);
+
+    const overlayDoc = getOverlayContainer(domNode);
+    const closeButton = overlayDoc.querySelector(".venmo-checkout-close a");
+    const continueLink = overlayDoc.querySelector(".venmo-checkout-continue a");
+
+    overlayDoc.querySelector(".venmo-checkout-iframe-container").style.display =
+      "block";
+
+    emit(EVENT.DISPLAY);
+
+    const startSentinel = overlayDoc.querySelector(
+      '[data-focus-trap-sentinel="start"]'
+    );
+    const endSentinel = overlayDoc.querySelector(
+      '[data-focus-trap-sentinel="end"]'
+    );
+
+    if (!startSentinel || !endSentinel) {
+      throw new Error(`Expected the overlay to render its focus sentinels`);
+    }
+
+    // Simulate the browser's native focus traversal moving focus out of the
+    // checkout iframe's exhausted content forward onto the end sentinel -
+    // this should redirect back to the first focusable element.
+    endSentinel.focus();
+
+    if (overlayDoc.activeElement !== continueLink) {
+      throw new Error(
+        `Expected focus reaching the end sentinel to redirect to the continue link`
+      );
+    }
+
+    // Simulate the same escape happening backward (Shift+Tab out of the
+    // iframe's own first control) onto the start sentinel - this should
+    // redirect back to the last focusable element (the checkout iframe).
+    startSentinel.focus();
+
+    if (overlayDoc.activeElement !== checkoutPrerenderFrame) {
+      throw new Error(
+        `Expected focus reaching the start sentinel to redirect to the checkout iframe`
+      );
+    }
+
+    // Tab from the close button - a normal mid-sequence element, not a
+    // trap boundary - must be left alone by the keydown trap.
+    closeButton.focus();
+    overlayDoc.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+
+    if (overlayDoc.activeElement !== closeButton) {
+      throw new Error(
+        `Expected Tab from the close button to be left untouched by the trap`
       );
     }
   });
