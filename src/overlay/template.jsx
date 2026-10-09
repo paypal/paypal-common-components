@@ -31,6 +31,173 @@ import {
   CLASS,
 } from "./style";
 
+function setupReturnFocus(
+  el: HTMLElement,
+  event: EventEmitterType,
+  getFocusTarget: () => ?HTMLElement
+) {
+  const ownerWindow = el.ownerDocument && el.ownerDocument.defaultView;
+
+  if (!ownerWindow) {
+    return;
+  }
+
+  const focusOverlay = () => {
+    const focusTarget = getFocusTarget();
+    if (focusTarget) {
+      try {
+        focusTarget.focus();
+      } catch (err) {
+        // focus() can throw in rare cross-frame situations; ignore.
+      }
+    }
+  };
+
+  event.on(EVENT.DISPLAY, () => {
+    focusOverlay();
+    ownerWindow.addEventListener("focus", focusOverlay);
+  });
+
+  const removeFocusListener = () => {
+    ownerWindow.removeEventListener("focus", focusOverlay);
+  };
+
+  event.on(EVENT.CLOSE, removeFocusListener);
+  event.on(EVENT.DESTROY, removeFocusListener);
+}
+
+const FOCUSABLE_SELECTOR =
+  'a[href], button, input, select, textarea, iframe:not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])';
+
+const FOCUS_TRAP_SENTINEL_ATTR = "data-focus-trap-sentinel";
+
+function getFocusableElements(root: HTMLElement): $ReadOnlyArray<HTMLElement> {
+  return Array.prototype.slice
+    .call(root.querySelectorAll(FOCUSABLE_SELECTOR))
+    .filter((candidate) => candidate.getClientRects().length > 0)
+    .filter((candidate) => !candidate.hasAttribute(FOCUS_TRAP_SENTINEL_ATTR));
+}
+
+function setupFocusTrap(getRoot: () => ?HTMLElement, event: EventEmitterType) {
+  let handleKeyDown: ?(KeyboardEvent) => void;
+  let ownerDocument: ?Document;
+  let sentinelCleanups: Array<() => void> = [];
+
+  // The checkout iframe is cross-origin, so its document
+  // is never accessible, and even same-origin, keyboard events never
+  // cross frame/document boundaries - a `keydown` listener on the overlay's
+  // own document can't see a Tab press that happens once focus is inside it.
+  // What *does* fire in our own document is a native `focus` event once the
+  // browser's own focus traversal moves focus out of the exhausted iframe -
+  // that's a UA-level mechanism independent of script access into the frame.
+  // These sentinels sit just before/after the overlay's real content so
+  // whichever direction focus naturally escapes, it lands on something we
+  // control and can redirect back into the trap.
+  const createSentinel = (doc: Document, position: "start" | "end") => {
+    const sentinel = doc.createElement("span");
+    sentinel.setAttribute("tabindex", "0");
+    sentinel.setAttribute(FOCUS_TRAP_SENTINEL_ATTR, position);
+    sentinel.style.position = "fixed";
+    sentinel.style.width = "1px";
+    sentinel.style.height = "1px";
+    sentinel.style.opacity = "0";
+    sentinel.style.pointerEvents = "none";
+    return sentinel;
+  };
+
+  event.on(EVENT.DISPLAY, () => {
+    const root = getRoot();
+    ownerDocument = root && root.ownerDocument;
+
+    if (!root || !ownerDocument) {
+      return;
+    }
+
+    const doc = ownerDocument;
+
+    handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") {
+        return;
+      }
+
+      const focusable = getFocusableElements(root);
+
+      if (!focusable.length) {
+        return;
+      }
+
+      const first = focusable[0];
+      const activeIndex = focusable.indexOf(doc.activeElement);
+
+      if (e.shiftKey) {
+        if (activeIndex <= 0) {
+          e.preventDefault();
+          focusable[focusable.length - 1].focus();
+        }
+      } else if (activeIndex === -1 || activeIndex === focusable.length - 1) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    doc.addEventListener("keydown", handleKeyDown, true);
+
+    const startSentinel = createSentinel(doc, "start");
+    const endSentinel = createSentinel(doc, "end");
+
+    const handleStartSentinelFocus = () => {
+      const liveRoot = getRoot();
+      const focusable = liveRoot ? getFocusableElements(liveRoot) : [];
+      const last = focusable[focusable.length - 1];
+
+      if (last) {
+        last.focus();
+      }
+    };
+
+    const handleEndSentinelFocus = () => {
+      const liveRoot = getRoot();
+      const focusable = liveRoot ? getFocusableElements(liveRoot) : [];
+      const first = focusable[0];
+
+      if (first) {
+        first.focus();
+      }
+    };
+
+    startSentinel.addEventListener("focus", handleStartSentinelFocus);
+    endSentinel.addEventListener("focus", handleEndSentinelFocus);
+
+    root.insertBefore(startSentinel, root.firstChild);
+    root.appendChild(endSentinel);
+
+    sentinelCleanups.push(() => {
+      startSentinel.removeEventListener("focus", handleStartSentinelFocus);
+      endSentinel.removeEventListener("focus", handleEndSentinelFocus);
+
+      if (startSentinel.parentNode) {
+        startSentinel.parentNode.removeChild(startSentinel);
+      }
+
+      if (endSentinel.parentNode) {
+        endSentinel.parentNode.removeChild(endSentinel);
+      }
+    });
+  });
+
+  const removeKeyDownListener = () => {
+    if (ownerDocument && handleKeyDown) {
+      ownerDocument.removeEventListener("keydown", handleKeyDown, true);
+    }
+
+    sentinelCleanups.forEach((cleanup) => cleanup());
+    sentinelCleanups = [];
+  };
+
+  event.on(EVENT.CLOSE, removeKeyDownListener);
+  event.on(EVENT.DESTROY, removeKeyDownListener);
+}
+
 export type OverlayProps = {|
   context: $Values<typeof CONTEXT>,
   close: () => ZalgoPromise<void>,
@@ -164,17 +331,29 @@ export function Overlay({
       </div>
     );
   }
+
+  let closeButtonEl: ?HTMLElement;
+  let sandboxIframeEl: ?HTMLElement;
+  let overlayRootEl: ?HTMLElement;
+
+  const containerOnRender = (el) => {
+    setupAnimations("container")(el);
+    setupReturnFocus(el, event, () => closeButtonEl || sandboxIframeEl);
+  };
+
+  setupFocusTrap(() => overlayRootEl, event);
+
   return (
-    <div
-      id={uid}
-      onRender={setupAnimations("container")}
-      class="paypal-checkout-sandbox"
-    >
+    <div id={uid} onRender={containerOnRender} class="paypal-checkout-sandbox">
       <style nonce={nonce}>{getSandboxStyle({ uid })}</style>
       <iframe
         title="PayPal Checkout Overlay"
         name={overlayIframeName}
         scrolling="no"
+        tabindex="-1"
+        onRender={(el) => {
+          sandboxIframeEl = el;
+        }}
         class={`paypal-checkout-sandbox-iframe${fullScreen ? "-full" : ""}`}
       >
         <html>
@@ -183,6 +362,9 @@ export function Overlay({
               dir="auto"
               id={uid}
               onClick={focusCheckout}
+              onRender={(el) => {
+                overlayRootEl = el;
+              }}
               class={`paypal-overlay-context-${context} paypal-checkout-overlay`}
             >
               {!hideCloseButton && (
@@ -190,6 +372,9 @@ export function Overlay({
                   href="#"
                   class="paypal-checkout-close"
                   onClick={closeCheckout}
+                  onRender={(el) => {
+                    closeButtonEl = el;
+                  }}
                   aria-label="close"
                   role="button"
                 />
@@ -356,17 +541,28 @@ export function VenmoOverlay({
     );
   }
 
+  let closeButtonEl: ?HTMLElement;
+  let sandboxIframeEl: ?HTMLElement;
+  let overlayRootEl: ?HTMLElement;
+
+  const containerOnRender = (el) => {
+    setupAnimations("container")(el);
+    setupReturnFocus(el, event, () => closeButtonEl || sandboxIframeEl);
+  };
+
+  setupFocusTrap(() => overlayRootEl, event);
+
   return (
-    <div
-      id={uid}
-      onRender={setupAnimations("container")}
-      class="venmo-checkout-sandbox"
-    >
+    <div id={uid} onRender={containerOnRender} class="venmo-checkout-sandbox">
       <style nonce={nonce}>{getVenmoSandboxStyle({ uid })}</style>
       <iframe
         title="Venmo Checkout Overlay"
         name={overlayIframeName}
         scrolling="no"
+        tabindex="-1"
+        onRender={(el) => {
+          sandboxIframeEl = el;
+        }}
         class={`venmo-checkout-sandbox-iframe${fullScreen ? "-full" : ""}`}
       >
         <html>
@@ -374,6 +570,9 @@ export function VenmoOverlay({
             <div
               id={uid}
               onClick={focusCheckout}
+              onRender={(el) => {
+                overlayRootEl = el;
+              }}
               class={`venmo-overlay-context-${context} venmo-checkout-overlay`}
             >
               {!fullScreen && (
@@ -404,7 +603,14 @@ export function VenmoOverlay({
                   )}
                   {content.cancelMessage && !hideCloseButton && (
                     <div class="venmo-checkout-close">
-                      <a href="#" onClick={closeCheckout} aria-label="close">
+                      <a
+                        href="#"
+                        onClick={closeCheckout}
+                        onRender={(el) => {
+                          closeButtonEl = el;
+                        }}
+                        aria-label="close"
+                      >
                         {content.cancelMessage}
                       </a>
                     </div>
