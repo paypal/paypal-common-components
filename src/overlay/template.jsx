@@ -235,6 +235,10 @@ export function Overlay({
   const uid = `paypal-overlay-${uniqueID()}`;
   const overlayIframeName = `__paypal_checkout_sandbox_${uid}__`;
 
+  let closeButtonEl: ?HTMLElement;
+  let sandboxIframeEl: ?HTMLElement;
+  let overlayRootEl: ?HTMLElement;
+
   function closeCheckout(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -263,6 +267,16 @@ export function Overlay({
 
     if (!supportsPopups()) {
       return;
+    }
+
+    // Give the overlay itself a definite focused element before handing
+    // focus off to the popup window - without this, the browser has no
+    // valid "last focused descendant" to restore focus to within this
+    // iframe when the window later regains focus (e.g. switching back from
+    // the popup), regardless of what was clicked to get here.
+    const focusTarget = closeButtonEl || sandboxIframeEl;
+    if (focusTarget) {
+      focusTarget.focus();
     }
 
     if (isIos() || isIpadOs()) {
@@ -331,10 +345,6 @@ export function Overlay({
       </div>
     );
   }
-
-  let closeButtonEl: ?HTMLElement;
-  let sandboxIframeEl: ?HTMLElement;
-  let overlayRootEl: ?HTMLElement;
 
   const containerOnRender = (el) => {
     setupAnimations("container")(el);
@@ -443,6 +453,10 @@ export function VenmoOverlay({
   const uid = `venmo-overlay-${uniqueID()}`;
   const overlayIframeName = `__venmo_checkout_sandbox_${uid}__`;
 
+  let closeButtonEl: ?HTMLElement;
+  let sandboxIframeEl: ?HTMLElement;
+  let overlayRootEl: ?HTMLElement;
+
   function closeCheckout(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -472,6 +486,16 @@ export function VenmoOverlay({
 
     if (!supportsPopups()) {
       return;
+    }
+
+    // Give the overlay itself a definite focused element before handing
+    // focus off to the popup window - without this, the browser has no
+    // valid "last focused descendant" to restore focus to within this
+    // iframe when the window later regains focus (e.g. switching back from
+    // the popup), regardless of what was clicked to get here.
+    const focusTarget = closeButtonEl || sandboxIframeEl;
+    if (focusTarget) {
+      focusTarget.focus();
     }
 
     if (isIos()) {
@@ -540,10 +564,6 @@ export function VenmoOverlay({
       </div>
     );
   }
-
-  let closeButtonEl: ?HTMLElement;
-  let sandboxIframeEl: ?HTMLElement;
-  let overlayRootEl: ?HTMLElement;
 
   const containerOnRender = (el) => {
     setupAnimations("container")(el);
